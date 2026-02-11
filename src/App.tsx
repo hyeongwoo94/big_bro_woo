@@ -1,16 +1,7 @@
-import DesignTokenPreview from "./shared/ui/DesignTokenPreview";
+import DesignTestPage from "./pages/DesignTestPage";
 
 function App() {
-  return (
-    <div style={{ display: "flex", flexWrap: "wrap", minHeight: "100vh" }}>
-      <div style={{ flex: "1 1 50%", minWidth: 320 }}>
-        <DesignTokenPreview theme="light" />
-      </div>
-      <div style={{ flex: "1 1 50%", minWidth: 320 }}>
-        <DesignTokenPreview theme="dark" />
-      </div>
-    </div>
-  );
+  return <DesignTestPage />;
 }
 
 export default App;
