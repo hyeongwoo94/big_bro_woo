@@ -1,0 +1,7 @@
+{
+  "targetFile": "docs/history.md",
+  "mode": "strict",
+  "commitPrefix": "docs:",
+  "runPush": true,
+  "maxMessageLength": 50
+}
