@@ -3,6 +3,7 @@
  * 마우스를 움직이면 궤적에 단어들이 드러나고, 이름(accent-warm)을 찾게 함
  */
 import { useCallback, useMemo, useRef, useState } from "react";
+import { TechNote } from "../shared/ui/TechNote";
 
 type HeroProps = {
   name?: string;
@@ -122,6 +123,69 @@ function Hero({ name = "김개발" }: HeroProps) {
         cursor: "none",
       }}
     >
+      <div
+        style={{
+          position: "absolute",
+          top: "var(--spacing-lg)",
+          right: "var(--spacing-lg)",
+          zIndex: 10,
+        }}
+      >
+        <TechNote
+          title="Hero 섹션 — 구현 설명"
+          content={
+            <>
+              <p style={{ marginBottom: "var(--spacing-md)" }}>
+                이 포트폴리오는 바이브코딩(AI와 협업)으로 제작 중이며, 구현에서 그치지 않고
+                학습한 내용까지 기록해 두려고 합니다. 이 섹션에서 쓴 기술과 이유를 정리했습니다.
+              </p>
+              <h3 style={{ fontSize: "var(--font-size-base)", fontWeight: 600, margin: "var(--spacing-lg) 0 var(--spacing-sm) 0" }}>
+                활용한 점 → 만든 것
+              </h3>
+              <ul style={{ margin: "0 0 var(--spacing-lg) 0", paddingLeft: "var(--spacing-lg)" }}>
+                <li>
+                  <strong>SVG mask + objectBoundingBox 좌표계</strong>를 활용해, 마우스 궤적에
+                  원형 브러시가 쌓이고 그 영역의 단어만 드러나는 찾기 효과를 만들었습니다.
+                </li>
+                <li>
+                  <strong>컨텐츠 영역(ref) 기준 좌표</strong>를 쓰면 maxWidth 등 레이아웃과
+                  브러시 위치가 일치한다는 걸 배워, section 전체가 아니라 contentRef 기준으로
+                  정규화하도록 바꿨습니다.
+                </li>
+                <li>
+                  <strong>requestAnimationFrame</strong>으로 커서·트레일을 갱신해 리렌더 없이
+                  부드럽게 움직이도록 했습니다.
+                </li>
+              </ul>
+
+              <p style={{ marginBottom: "var(--spacing-sm)", fontSize: "var(--font-size-sm)", color: "var(--color-text-muted)" }}>
+                <strong>objectBoundingBox</strong>: SVG에서 좌표를 요소의 “경계 상자” 대비 0~1 비율로 쓰는 단위. 픽셀이 아니라 비율이라서, 영역 크기가 바뀌어도 같은 mask가 비율대로 적용됩니다.
+                <br />
+                <strong>requestAnimationFrame</strong>: 브라우저가 “다음 프레임을 그리기 직전”에 콜백을 실행해 달라고 예약하는 API. 여기서 커서·트레일 위치를 갱신해서, 화면 주사율에 맞춰 끊김 없이 움직이도록 했습니다.
+              </p>
+
+              <h3 style={{ fontSize: "var(--font-size-base)", fontWeight: 600, margin: "var(--spacing-lg) 0 var(--spacing-sm) 0" }}>
+                이 설명 UI를 재사용하려면
+              </h3>
+              <p style={{ marginBottom: "var(--spacing-sm)" }}>
+                이 기술 설명 버튼과 모달은 <code style={{ fontSize: "var(--font-size-sm)", padding: "0 0.2em", background: "var(--color-border)", borderRadius: "var(--radius-sm)" }}>TechNote</code>로
+                구현되어 있습니다.
+              </p>
+              <p style={{ marginBottom: "var(--spacing-sm)" }}>
+                <strong>왜 Provider로 감싸야 하나요?</strong> 모달은 화면에 하나만 있어야 하고, 어떤 버튼을 눌렀는지에 따라 제목·내용만 바뀌어야 합니다. <code style={{ fontSize: "var(--font-size-sm)", padding: "0 0.2em", background: "var(--color-border)", borderRadius: "var(--radius-sm)" }}>TechNoteProvider</code>가 그 “열린 모달 하나”의 상태와 내용을 한 곳에서 관리하고, 모달 UI도 여기서 한 번만 렌더링합니다. 그래서 Provider 밖에 있는 <code style={{ fontSize: "var(--font-size-sm)", padding: "0 0.2em", background: "var(--color-border)", borderRadius: "var(--radius-sm)" }}>TechNote</code> 버튼들이 context로 “지금 이 제목/내용으로 열어줘”라고만 알려 주면 됩니다. 따라서 TechNote를 쓰는 영역(예: App 전체)을 반드시 <code style={{ fontSize: "var(--font-size-sm)", padding: "0 0.2em", background: "var(--color-border)", borderRadius: "var(--radius-sm)" }}>TechNoteProvider</code>로 감싸야 합니다.
+              </p>
+              <p style={{ marginBottom: "var(--spacing-sm)" }}>
+                사용 방법:
+              </p>
+              <ul style={{ margin: 0, paddingLeft: "var(--spacing-lg)" }}>
+                <li>App(또는 TechNote를 쓰는 상위)을 <code style={{ fontSize: "var(--font-size-sm)", padding: "0 0.2em", background: "var(--color-border)", borderRadius: "var(--radius-sm)" }}>TechNoteProvider</code>로 감싼 뒤,</li>
+                <li>섹션 안에 <code style={{ fontSize: "var(--font-size-sm)", padding: "0 0.2em", background: "var(--color-border)", borderRadius: "var(--radius-sm)" }}>&lt;TechNote title=&quot;...&quot; content=&#123;...&#125; /&gt;</code>를 넣으면 됩니다.</li>
+                <li>파일: <code style={{ fontSize: "var(--font-size-sm)", padding: "0 0.2em", background: "var(--color-border)", borderRadius: "var(--radius-sm)" }}>src/shared/ui/TechNote.tsx</code>. 768px 이하에서는 버튼과 모달이 비표시됩니다.</li>
+              </ul>
+            </>
+          }
+        />
+      </div>
       <svg aria-hidden style={{ position: "absolute", width: 0, height: 0 }}>
         <defs>
           <mask id="hero-cursor-trail" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">

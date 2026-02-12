@@ -2,6 +2,7 @@ import { useState } from "react";
 import Hero from "./sections/Hero";
 import Toast from "./shared/ui/Toast";
 import HeroModal from "./shared/ui/HeroModal";
+import { TechNoteProvider } from "./shared/ui/TechNote";
 
 function App() {
   const [showWelcomeToast, setShowWelcomeToast] = useState(true);
@@ -15,11 +16,11 @@ function App() {
   };
 
   return (
-    <>
+    <TechNoteProvider>
       {showHero && <Hero name="김개발" />}
       {showWelcomeToast && (
         <Toast
-          message="화면을 긁어주세요"
+          message="마우스를 움직여 이름을 찾아보세요"
           duration={4500}
           onClose={() => setShowWelcomeToast(false)}
         />
@@ -44,7 +45,7 @@ function App() {
           {/* 여기에 포트폴리오 컨텐츠를 추가하세요 */}
         </div>
       )}
-    </>
+    </TechNoteProvider>
   );
 }
 

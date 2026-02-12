@@ -50,6 +50,7 @@
 | 2026-02-11 | 코드일꾼 | 자동 커밋 스크립트 구현 (history 기반) |
 | 2026-02-11 | 코드일꾼 | 디자인 토큰 확정 (라이트/다크, primary·accent·accent-warm, DesignTokenPreview) |
 | 2026-02-11 | 코드일꾼 | Hero 섹션 구현 완료: 커서 트레일·찾기 컨셉, 컨텐츠 영역 기준 브러시/커서 좌표, HeroModal(3초 후 하단 슬라이드업·퀴즈), Toast(보더+그림자 스타일), 확인 시 포트폴리오 본문 전환 |
+| 2026-02-11 | 코드일꾼 | TechNote(섹션별 기술 설명 버튼+모달) 설계·구현, SectionExplanation→TechNote 리네이밍, Hero 설명 보강(Provider 이유·용어), 모달 중앙 정렬·README·tsconfig 수정 |
 
 ### 3.4 검토
 

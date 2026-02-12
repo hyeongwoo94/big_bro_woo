@@ -10,3 +10,20 @@ body {
   font-family: system-ui, sans-serif;
   line-height: 1.5;
 }
+
+/* 기술 설명(버튼·모달): 768px 이하에서는 비표시 */
+.tech-note-pc-only {
+  display: none !important;
+}
+@media (min-width: 769px) {
+  .tech-note-pc-only {
+    display: block !important;
+  }
+  .tech-note-pc-only.tech-note-trigger {
+    display: inline-block !important;
+  }
+  /* 모달 오버레이는 flex 유지해 가운데 정렬 */
+  .tech-note-pc-only.tech-note-overlay {
+    display: flex !important;
+  }
+}
