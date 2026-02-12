@@ -45,3 +45,21 @@
 .rounded-md   { border-radius: var(--radius-md); }
 .rounded-lg   { border-radius: var(--radius-lg); }
 .rounded-full { border-radius: var(--radius-full); }
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+background-color: var(--color-accent-warm);
+border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+/* background-color: var( --color-bg-surface); */
+}
+
+::-webkit-scrollbar-button {
+display: none;
+}

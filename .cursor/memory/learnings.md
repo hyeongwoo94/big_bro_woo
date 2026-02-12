@@ -21,3 +21,7 @@
 ### [포커스 링 a11y]
 - **상황**: 키보드 포커스 시 시각적 피드백 필요
 - **해결/패턴**: `index.css`에서 `button:focus-visible`, `a:focus-visible`, `[tabindex="0"]:focus-visible`에 `outline: 2px solid var(--color-focus-ring); outline-offset: 2px` 적용. `:focus-visible`로 마우스 클릭 시에는 링 미표시
+
+### [스크롤바 커스터마이징]
+- **상황**: 기본 브라우저 스크롤바가 디자인과 어울리지 않음
+- **해결/패턴**: `common.css`에서 전역 스크롤바 스타일 적용. Firefox는 `scrollbar-width: thin`, `scrollbar-color: var(--color-border) transparent`. Chrome/Safari/Edge는 `::-webkit-scrollbar` (8px, 둥근 thumb `--color-border`, hover `--color-accent`), `::-webkit-scrollbar-button { display: none }`로 화살표 제거. 디자인 토큰 사용으로 라이트/다크 모드 자동 대응

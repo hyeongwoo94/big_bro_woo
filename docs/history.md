@@ -54,6 +54,7 @@
 | 2026-02-11 | 코드일꾼 | CSS 구조 정리: 섹션 전용 styles는 sections/styles/, shared/ui 전용은 shared/styles/에서 index.css import, common.css(글씨·보더·배경 등 유틸) 추가, design-tokens에 shadow·포커스 링 활용, 포커스 링 전역 적용(button/a/tabindex: focus-visible 시 outline) |
 | 2026-02-11 | 코드일꾼 | TechNote 본문 템플릿(tech-note-tpl-a) 도입, 기술설명 콘텐츠 중앙 관리(shared/content/techNotes.tsx, getTechNoteContent), 다크모드·퀵메뉴: 다크모드 버튼(DarkModeToggle) 추가 후 QuickMenu로 통합(PC 오른쪽 하단 원형 "클릭"→4개 메뉴 펼침, 모바일 하단 플로팅 4개 고정, 다크모드+예시 링크 3) |
 | 2026-02-11 | 코드일꾼 | Hero 모달 다크모드 대응(design-tokens --shadow-modal·--color-modal-edge), 모바일 HeroModal 위치 조정(HeroModal.css, 플로팅 메뉴 위로), Hero 커서: 퀵메뉴/모달 위에서도 표시(전역 mousemove·body.hero-cursor-mode), 커서 z-index 10010·색상 --color-accent |
+| 2026-02-11 | 코드일꾼 | 전역 스크롤바 커스터마이징(common.css): 디자인 토큰(--color-border thumb, --color-accent hover) 사용, 라이트/다크 모드 자동 대응, Firefox scrollbar-width/scrollbar-color, Chrome/Safari/Edge ::-webkit-scrollbar 스타일, 화살표 버튼 제거 |
 
 ### 3.4 검토
 
