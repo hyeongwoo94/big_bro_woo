@@ -4,6 +4,7 @@
  */
 import { useCallback, useMemo, useRef, useState } from "react";
 import { TechNote } from "../shared/ui/TechNote";
+import "./styles/Hero.css";
 
 type HeroProps = {
   name?: string;
@@ -105,24 +106,15 @@ function Hero({ name = "김개발" }: HeroProps) {
 
   return (
     <section
+      className="hero-sec"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseMove}
       onMouseLeave={() => {
         cursorRef.current?.style.setProperty("display", "none");
       }}
-      style={{
-        position: "relative",
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "hidden",
-        backgroundColor: "var(--color-bg)",
-        color: "var(--color-text)",
-        cursor: "none",
-      }}
     >
+      <div className="_cont">
       <div
         style={{
           position: "absolute",
@@ -226,12 +218,8 @@ function Hero({ name = "김개발" }: HeroProps) {
           return (
             <span
               key={i}
-              style={{
-                fontSize: "clamp(1rem, 3.5vw, 1.75rem)",
-                fontWeight: isNameChar ? 700 : 500,
-                color: isNameChar ? "var(--color-accent-warm)" : "var(--color-text-muted)",
-                opacity: isNameChar ? 1 : 0.85,
-              }}
+              className="_text"
+              data-name-char={isNameChar ? "true" : undefined}
             >
               {word}
             </span>
@@ -255,6 +243,7 @@ function Hero({ name = "김개발" }: HeroProps) {
           zIndex: 9999,
         }}
       />
+      </div>
     </section>
   );
 }

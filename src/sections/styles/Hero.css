@@ -1,0 +1,36 @@
+/**
+ * Hero 섹션 스타일
+ * 선택자는 항상 .hero-sec부터 이어서 작성. 재사용 시 .hero-sec 구조를 그대로 가져와야 함.
+ */
+
+.hero-sec {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  cursor: none;
+}
+
+.hero-sec ._cont {
+  position: relative;
+  width: 100%;
+  align-self: stretch;
+}
+
+/* 역할 클래스는 최상단 + 역할만으로 선택 (깊이 제한, specificity 낮게) */
+.hero-sec ._text {
+  font-size: clamp(var(--font-size-base), 3.5vw, 1.75rem);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  opacity: 0.85;
+}
+
+.hero-sec ._text[data-name-char="true"] {
+  font-weight: 700;
+  color: var(--color-accent-warm);
+  opacity: 1;
+}

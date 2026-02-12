@@ -117,91 +117,27 @@ function TechNoteModal({
       aria-labelledby="tech-note-title"
       tabIndex={-1}
       onKeyDown={onKeyDown}
-      style={{
-        position: "fixed",
-        inset: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "var(--spacing-xl)",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        zIndex: 10002,
-        opacity: isAnimatingOut ? 0 : 1,
-        transition: "opacity 0.22s ease-out",
-      }}
+      data-animating-out={isAnimatingOut ? "true" : undefined}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
       <div
+        className="tech-note-modal"
         role="document"
-        style={{
-          position: "relative",
-          width: "100%",
-          maxWidth: 1020,
-          maxHeight: "90vh",
-          overflow: "auto",
-          backgroundColor: "var(--color-bg)",
-          color: "var(--color-text)",
-          borderRadius: "var(--radius-lg)",
-          padding: "var(--spacing-xl)",
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.25)",
-          opacity: isAnimatingOut ? 0 : 1,
-          transition: "opacity 0.22s ease-out",
-        }}
+        data-animating-out={isAnimatingOut ? "true" : undefined}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2
-          id="tech-note-title"
-          style={{
-            margin: "0 0 var(--spacing-lg) 0",
-            paddingRight: "var(--spacing-2xl)",
-            fontSize: "var(--font-size-lg)",
-            fontWeight: 600,
-          }}
-        >
+        <h2 id="tech-note-title" className="tech-note-title">
           {title}
         </h2>
-        <div
-          style={{
-            fontSize: "var(--font-size-base)",
-            lineHeight: 1.6,
-            color: "var(--color-text)",
-          }}
-        >
-          {content}
-        </div>
+        <div className="tech-note-body">{content}</div>
         <button
           ref={closeButtonRef}
           type="button"
           aria-label="닫기"
+          className="tech-note-close"
           onClick={onClose}
-          style={{
-            position: "absolute",
-            top: "var(--spacing-xl)",
-            right: "var(--spacing-xl)",
-            width: 32,
-            height: 32,
-            padding: 0,
-            border: "none",
-            borderRadius: "var(--radius-md)",
-            backgroundColor: "transparent",
-            color: "var(--color-text-muted)",
-            cursor: "pointer",
-            fontSize: "1.25rem",
-            lineHeight: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "var(--color-border)";
-            e.currentTarget.style.color = "var(--color-text)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "transparent";
-            e.currentTarget.style.color = "var(--color-text-muted)";
-          }}
         >
           ×
         </button>
@@ -227,26 +163,8 @@ export function TechNote({ title, content }: TechNoteProps) {
       <button
         type="button"
         aria-label="이 섹션 구현 설명 보기"
+        className="tech-note-btn"
         onClick={() => open(title, content)}
-        style={{
-          padding: "var(--spacing-sm) var(--spacing-md)",
-          fontSize: "var(--font-size-sm)",
-          fontWeight: 500,
-          color: "var(--color-text-muted)",
-          backgroundColor: "transparent",
-          border: "1px solid var(--color-border)",
-          borderRadius: "var(--radius-md)",
-          cursor: "pointer",
-          letterSpacing: "0.02em",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = "var(--color-accent-warm)";
-          e.currentTarget.style.color = "var(--color-accent-warm)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = "var(--color-border)";
-          e.currentTarget.style.color = "var(--color-text-muted)";
-        }}
       >
         기술 설명
       </button>

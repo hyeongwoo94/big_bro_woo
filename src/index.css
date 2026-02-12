@@ -1,4 +1,7 @@
 @import "./shared/styles/design-tokens.css";
+@import "./shared/styles/common.css";
+@import "./shared/styles/Toast.css";
+@import "./shared/styles/TechNote.css";
 
 * {
   margin: 0;
@@ -11,19 +14,10 @@ body {
   line-height: 1.5;
 }
 
-/* 기술 설명(버튼·모달): 768px 이하에서는 비표시 */
-.tech-note-pc-only {
-  display: none !important;
-}
-@media (min-width: 769px) {
-  .tech-note-pc-only {
-    display: block !important;
-  }
-  .tech-note-pc-only.tech-note-trigger {
-    display: inline-block !important;
-  }
-  /* 모달 오버레이는 flex 유지해 가운데 정렬 */
-  .tech-note-pc-only.tech-note-overlay {
-    display: flex !important;
-  }
+/* 포커스 링 (a11y): 키보드 포커스 시에만 표시, 토큰 사용 */
+button:focus-visible,
+a:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
 }

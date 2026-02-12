@@ -1,0 +1,106 @@
+/**
+ * TechNote (shared/ui) — 기술 설명 버튼·모달
+ * index.css에서 import.
+ */
+
+/* 768px 이하 비표시 */
+.tech-note-pc-only {
+  display: none !important;
+}
+@media (min-width: 769px) {
+  .tech-note-pc-only {
+    display: block !important;
+  }
+  .tech-note-pc-only.tech-note-trigger {
+    display: inline-block !important;
+  }
+  .tech-note-pc-only.tech-note-overlay {
+    display: flex !important;
+  }
+}
+
+/* 모달 오버레이 */
+.tech-note-overlay {
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10002;
+  transition: opacity 0.22s ease-out;
+}
+.tech-note-overlay[data-animating-out="true"] {
+  opacity: 0;
+}
+
+/* 모달 박스 */
+.tech-note-modal {
+  position: relative;
+  width: 100%;
+  max-width: 1020px;
+  max-height: 90vh;
+  overflow: auto;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  transition: opacity 0.22s ease-out;
+}
+.tech-note-modal[data-animating-out="true"] {
+  opacity: 0;
+}
+
+.tech-note-modal .tech-note-title {
+  margin: 0 0 var(--spacing-lg) 0;
+  padding-right: var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.tech-note-modal .tech-note-body {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.tech-note-modal .tech-note-close {
+  position: absolute;
+  top: var(--spacing-xl);
+  right: var(--spacing-xl);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: var(--font-size-lg);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tech-note-modal .tech-note-close:hover {
+  background-color: var(--color-border);
+  color: var(--color-text);
+}
+
+/* 트리거 버튼 */
+.tech-note-trigger .tech-note-btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+.tech-note-trigger .tech-note-btn:hover {
+  border-color: var(--color-accent-warm);
+  color: var(--color-accent-warm);
+}

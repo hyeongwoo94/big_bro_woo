@@ -17,3 +17,7 @@
 ### [Hero 브러시/커서 좌표]
 - **상황**: 컨텐츠에 maxWidth 등으로 영역이 제한되면 마우스와 브러시 위치가 어긋남
 - **해결/패턴**: 트레일·커서 좌표를 section 전체가 아니라 **컨텐츠 래퍼(ref)의 getBoundingClientRect()** 기준으로 정규화
+
+### [포커스 링 a11y]
+- **상황**: 키보드 포커스 시 시각적 피드백 필요
+- **해결/패턴**: `index.css`에서 `button:focus-visible`, `a:focus-visible`, `[tabindex="0"]:focus-visible`에 `outline: 2px solid var(--color-focus-ring); outline-offset: 2px` 적용. `:focus-visible`로 마우스 클릭 시에는 링 미표시
