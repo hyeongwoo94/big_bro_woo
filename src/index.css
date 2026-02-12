@@ -2,6 +2,9 @@
 @import "./shared/styles/common.css";
 @import "./shared/styles/Toast.css";
 @import "./shared/styles/TechNote.css";
+@import "./shared/styles/DarkModeToggle.css";
+@import "./shared/styles/QuickMenu.css";
+@import "./shared/styles/HeroModal.css";
 
 * {
   margin: 0;
@@ -10,10 +13,12 @@
 }
 
 body {
-  font-family: system-ui, sans-serif;
+  font-family: "IBM Plex Sans KR", sans-serif;
   line-height: 1.5;
 }
-
+ul,ol,dl{
+  list-style: none;
+}
 /* 포커스 링 (a11y): 키보드 포커스 시에만 표시, 토큰 사용 */
 button:focus-visible,
 a:focus-visible,

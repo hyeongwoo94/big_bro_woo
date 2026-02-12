@@ -8,8 +8,10 @@ import {
   type ReactNode,
 } from "react";
 
+export type TechNoteTemplateId = "a" | "b" | "c";
+
 type TechNoteContextValue = {
-  open: (title: string, content: ReactNode) => void;
+  open: (title: string, content: ReactNode, template?: TechNoteTemplateId) => void;
   close: () => void;
 };
 
@@ -27,13 +29,15 @@ export function TechNoteProvider({ children }: TechNoteProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState<ReactNode>(null);
+  const [template, setTemplate] = useState<TechNoteTemplateId>("a");
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
 
-  const open = useCallback((t: string, c: ReactNode) => {
+  const open = useCallback((t: string, c: ReactNode, tmpl: TechNoteTemplateId = "a") => {
     setTitle(t);
     setContent(c);
+    setTemplate(tmpl);
     setIsAnimatingOut(false);
     setIsOpen(true);
   }, []);
@@ -70,6 +74,7 @@ export function TechNoteProvider({ children }: TechNoteProviderProps) {
         <TechNoteModal
           title={title}
           content={content}
+          template={template}
           isAnimatingOut={isAnimatingOut}
           onClose={close}
           onKeyDown={handleKeyDown}
@@ -83,6 +88,7 @@ export function TechNoteProvider({ children }: TechNoteProviderProps) {
 type TechNoteModalProps = {
   title: string;
   content: ReactNode;
+  template: TechNoteTemplateId;
   isAnimatingOut: boolean;
   onClose: () => void;
   onKeyDown: (e: React.KeyboardEvent) => void;
@@ -92,6 +98,7 @@ type TechNoteModalProps = {
 function TechNoteModal({
   title,
   content,
+  template,
   isAnimatingOut,
   onClose,
   onKeyDown,
@@ -131,7 +138,9 @@ function TechNoteModal({
         <h2 id="tech-note-title" className="tech-note-title">
           {title}
         </h2>
-        <div className="tech-note-body">{content}</div>
+        <div className="tech-note-body">
+          <div className={`tech-note-tpl-${template}`}>{content}</div>
+        </div>
         <button
           ref={closeButtonRef}
           type="button"
@@ -149,13 +158,15 @@ function TechNoteModal({
 type TechNoteProps = {
   title: string;
   content: ReactNode;
+  template?: TechNoteTemplateId;
 };
 
 /**
  * 섹션별 "기술 설명" 버튼. 769px 이상에서만 표시.
  * 클릭 시 기술 설명 모달을 해당 title/content로 연다 (동시에 하나만 열림).
+ * template으로 tpl-a / tpl-b / tpl-c 스타일 적용 (기본 "a").
  */
-export function TechNote({ title, content }: TechNoteProps) {
+export function TechNote({ title, content, template = "a" }: TechNoteProps) {
   const { open } = useTechNote();
 
   return (
@@ -164,7 +175,7 @@ export function TechNote({ title, content }: TechNoteProps) {
         type="button"
         aria-label="이 섹션 구현 설명 보기"
         className="tech-note-btn"
-        onClick={() => open(title, content)}
+        onClick={() => open(title, content, template)}
       >
         기술 설명
       </button>

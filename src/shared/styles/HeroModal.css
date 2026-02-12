@@ -1,0 +1,11 @@
+/**
+ * HeroModal (shared/ui)
+ * 모바일: 플로팅 퀵메뉴 위로 올리기 위해 bottom 여백 추가
+ */
+
+@media (max-width: 768px) {
+  .hero-modal {
+    bottom: 80px !important;
+    padding-bottom: var(--spacing-xl) !important;
+  }
+}

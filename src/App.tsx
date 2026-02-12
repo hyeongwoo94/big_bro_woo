@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Hero from "./sections/Hero";
 import Toast from "./shared/ui/Toast";
 import HeroModal from "./shared/ui/HeroModal";
 import { TechNoteProvider } from "./shared/ui/TechNote";
+import { QuickMenu } from "./shared/ui/QuickMenu";
 
 function App() {
   const [showWelcomeToast, setShowWelcomeToast] = useState(true);
@@ -15,8 +16,14 @@ function App() {
     // 여기에 포트폴리오 컨텐츠를 추가하면 됩니다
   };
 
+  useEffect(() => {
+    document.body.classList.toggle("hero-cursor-mode", showHero);
+    return () => document.body.classList.remove("hero-cursor-mode");
+  }, [showHero]);
+
   return (
     <TechNoteProvider>
+      <QuickMenu />
       {showHero && <Hero name="김개발" />}
       {showWelcomeToast && (
         <Toast

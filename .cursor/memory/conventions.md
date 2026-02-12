@@ -54,6 +54,8 @@ src/
 
 - **섹션 전용** (해당 섹션에서만 사용): `src/sections/styles/{Section}.css`에 둔다. 해당 섹션 TSX에서 직접 import한다. 예: `Hero.tsx` → `import "./styles/Hero.css"`.
 - **shared/ui 전용** (Toast, TechNote 등): `src/shared/styles/{Component}.css`에 둔다. **`src/index.css`에서 `@import`** 하여 전역에 로드한다. (design-tokens 다음 순서로 import)
+- **TechNote 콘텐츠 위치**: 각 섹션 기술 설명의 제목·내용은 **한곳에서만** 관리한다. `src/shared/content/techNotes.tsx`에 `TECH_NOTE_CONTENT`와 `getTechNoteContent(id)`를 두고, 섹션에서는 `<TechNote {...getTechNoteContent("hero")} />`처럼 id만 넘긴다. 새 섹션 추가 시 `TechNoteId` 타입과 `TECH_NOTE_CONTENT`에만 항목을 추가하면 됨.
+- **TechNote 본문·템플릿**: 모달 안 content는 인라인 스타일 없이 마크업만 사용. 레이아웃/구조가 다르면 **템플릿 래퍼 클래스**로 구분한다. 현재는 `tech-note-tpl-a`(소제목·리스트·강조·muted). B/C 추가 시 content를 `<div className="tech-note-tpl-b">...</div>`처럼 감싸고, `TechNote.css`에 `.tech-note-body .tech-note-tpl-b` 하위 선택자만 추가하면 됨. `shared/styles/TechNote.css`의 `.tech-note-body` 하위 스타일(p, h3, ul, li, strong, code, .tech-note-muted)이 적용되므로 다른 섹션 기술 설명에서도 동일한 태그·클래스(p, h3, ul, li, strong, code, 필요 시 p.tech-note-muted)를 쓰면 됨.
 - **공통 유틸리티**: 글씨 크기·굵기·색, 보더, 모서리 등 대중적으로 쓰는 클래스는 `src/shared/styles/common.css`에 모아 둔다. `index.css`에서 design-tokens 바로 다음에 import.
   - 제공 클래스 요약: 글씨 크기 `.text-xs`~`.text-2xl`, 굵기 `.font-normal`~`.font-bold`, 색 `.text-default`/`.text-muted`/`.text-accent`/`.text-accent-warm`, 줄높이 `.leading-*`, 보더 `.border`/`.border-thick`+색 모디파이어, 모서리 `.rounded-sm`~`.rounded-full`, 배경 `.bg-default`/`.bg-surface`/`.bg-transparent`. 필요 시 common.css에만 추가해 한곳에서 관리.
 

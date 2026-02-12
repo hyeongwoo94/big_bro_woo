@@ -52,6 +52,8 @@
 | 2026-02-11 | 코드일꾼 | Hero 섹션 구현 완료: 커서 트레일·찾기 컨셉, 컨텐츠 영역 기준 브러시/커서 좌표, HeroModal(3초 후 하단 슬라이드업·퀴즈), Toast(보더+그림자 스타일), 확인 시 포트폴리오 본문 전환 |
 | 2026-02-11 | 코드일꾼 | TechNote(섹션별 기술 설명 버튼+모달) 설계·구현, SectionExplanation→TechNote 리네이밍, Hero 설명 보강(Provider 이유·용어), 모달 중앙 정렬·README·tsconfig 수정 |
 | 2026-02-11 | 코드일꾼 | CSS 구조 정리: 섹션 전용 styles는 sections/styles/, shared/ui 전용은 shared/styles/에서 index.css import, common.css(글씨·보더·배경 등 유틸) 추가, design-tokens에 shadow·포커스 링 활용, 포커스 링 전역 적용(button/a/tabindex: focus-visible 시 outline) |
+| 2026-02-11 | 코드일꾼 | TechNote 본문 템플릿(tech-note-tpl-a) 도입, 기술설명 콘텐츠 중앙 관리(shared/content/techNotes.tsx, getTechNoteContent), 다크모드·퀵메뉴: 다크모드 버튼(DarkModeToggle) 추가 후 QuickMenu로 통합(PC 오른쪽 하단 원형 "클릭"→4개 메뉴 펼침, 모바일 하단 플로팅 4개 고정, 다크모드+예시 링크 3) |
+| 2026-02-11 | 코드일꾼 | Hero 모달 다크모드 대응(design-tokens --shadow-modal·--color-modal-edge), 모바일 HeroModal 위치 조정(HeroModal.css, 플로팅 메뉴 위로), Hero 커서: 퀵메뉴/모달 위에서도 표시(전역 mousemove·body.hero-cursor-mode), 커서 z-index 10010·색상 --color-accent |
 
 ### 3.4 검토
 

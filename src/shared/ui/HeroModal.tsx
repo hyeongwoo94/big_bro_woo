@@ -34,6 +34,7 @@ function HeroModal({ question, defaultName, onConfirm }: HeroModalProps) {
 
   return (
     <div
+      className="hero-modal"
       role="dialog"
       aria-modal="true"
       aria-labelledby="hero-modal-question"
@@ -58,7 +59,8 @@ function HeroModal({ question, defaultName, onConfirm }: HeroModalProps) {
           backgroundColor: "var(--color-bg)",
           borderRadius: "var(--radius-lg)",
           padding: "var(--spacing-xl)",
-          boxShadow: "0 -4px 24px rgba(0, 0, 0, 0.15)",
+          boxShadow: "var(--shadow-modal)",
+          border: "1px solid var(--color-modal-edge)",
           transform: visible ? "translateY(0)" : "translateY(100%)",
           opacity: visible ? 1 : 0,
           transition:

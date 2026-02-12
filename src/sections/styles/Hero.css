@@ -3,6 +3,14 @@
  * 선택자는 항상 .hero-sec부터 이어서 작성. 재사용 시 .hero-sec 구조를 그대로 가져와야 함.
  */
 
+/* Hero 화면일 때 전역 커서 숨김(퀵메뉴 포함) — App에서 body.hero-cursor-mode 적용 */
+body.hero-cursor-mode {
+  cursor: none !important;
+}
+body.hero-cursor-mode * {
+  cursor: none !important;
+}
+
 .hero-sec {
   position: relative;
   min-height: 100vh;

@@ -1,0 +1,144 @@
+/**
+ * QuickMenu (사이드 퀵메뉴)
+ * PC: 오른쪽 하단 원형 "클릭" → 클릭 시 위로 4개 메뉴
+ * 모바일: 하단 플로팅 4개 고정
+ */
+
+.quick-menu {
+  position: fixed;
+  z-index: 9998;
+}
+
+/* ----- PC (769px 이상): 오른쪽 하단 원형 버튼 + 클릭 시 위로 메뉴 ----- */
+.quick-menu__trigger {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .quick-menu {
+    bottom: var(--spacing-xl);
+    right: var(--spacing-xl);
+  }
+
+  .quick-menu__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-border);
+    background-color: var(--color-bg-surface);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  }
+  .quick-menu__trigger:hover {
+    background-color: var(--color-border);
+    border-color: var(--color-accent-warm);
+  }
+  .quick-menu__trigger-text {
+    line-height: 1;
+  }
+
+  .quick-menu__items {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--spacing-xs);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity var(--transition-normal), visibility var(--transition-normal), transform var(--transition-normal);
+    pointer-events: none;
+  }
+  .quick-menu[data-open] .quick-menu__items {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .quick-menu__item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-surface);
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+    white-space: nowrap;
+  }
+  .quick-menu__item:hover {
+    background-color: var(--color-border);
+    border-color: var(--color-accent-warm);
+  }
+  .quick-menu__icon {
+    font-size: 1.1em;
+    line-height: 1;
+  }
+  .quick-menu__label {
+    line-height: 1;
+  }
+}
+
+/* ----- 모바일 (768px 이하): 하단 플로팅 4개 고정 ----- */
+@media (max-width: 768px) {
+  .quick-menu {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--spacing-sm);
+    padding-bottom: max(var(--spacing-sm), env(safe-area-inset-bottom));
+    background-color: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  }
+  .quick-menu__trigger {
+    display: none !important;
+  }
+  .quick-menu__items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+  .quick-menu__item {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: var(--spacing-sm);
+    border: none;
+    border-radius: var(--radius-md);
+    background-color: transparent;
+    color: var(--color-text);
+    font-size: var(--font-size-xs);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+  }
+  .quick-menu__item:hover {
+    background-color: var(--color-border);
+  }
+  .quick-menu__icon {
+    font-size: 1.5em;
+    margin-bottom: 2px;
+  }
+  .quick-menu__label {
+    line-height: 1.2;
+  }
+}
