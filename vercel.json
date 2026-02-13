@@ -1,0 +1,4 @@
+{
+  "buildCommand": "npm run build:with-storybook",
+  "outputDirectory": "dist"
+}
