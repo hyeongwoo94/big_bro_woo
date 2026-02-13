@@ -20,15 +20,16 @@ type Answer = "yes" | "no";
 
 const QUESTION_DELAY_MS = 500; // 질문 등장 후 버튼 노출까지 (50% 단축)
 const RESULT_DELAY_MS = 400; // 5문 답변 후 결과 노출까지
-const INTRO_DURATION_MS = 1250; // 인트로 표시 시간 후 Q1 (50% 단축)
 
 export type MatchCompanyProps = {
+  onResult?: (company: string, result: "match" | "fail") => void;
   onMatch?: () => void;
 };
 
-function MatchCompany({ onMatch }: MatchCompanyProps) {
+function MatchCompany({ onResult, onMatch }: MatchCompanyProps) {
   const navigate = useNavigate();
   const [phase, setPhase] = useState<Phase>("intro");
+  const [companyName, setCompanyName] = useState("");
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [showButtons, setShowButtons] = useState(false);
@@ -53,10 +54,9 @@ function MatchCompany({ onMatch }: MatchCompanyProps) {
     );
   }, [phase]);
 
-  // 인트로 페이드 아웃 후 Q1로 전환 (버벅임 방지)
-  useEffect(() => {
-    if (phase !== "intro") return;
-    timerRef.current = setTimeout(() => {
+  const handleIntroSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
       const el = introRef.current;
       if (el) {
         gsap.to(el, {
@@ -74,9 +74,9 @@ function MatchCompany({ onMatch }: MatchCompanyProps) {
         setQuestionIndex(0);
         setShowButtons(false);
       }
-    }, INTRO_DURATION_MS);
-    return () => clearTimeout(timerRef.current);
-  }, [phase]);
+    },
+    []
+  );
 
   // 질문 첫 페인트 전에 숨김 처리(플래시 방지)
   useLayoutEffect(() => {
@@ -183,12 +183,14 @@ function MatchCompany({ onMatch }: MatchCompanyProps) {
   );
 
   const handleMatchConfirm = useCallback(() => {
+    onResult?.(companyName, "match");
     onMatch?.();
-  }, [onMatch]);
+  }, [companyName, onResult, onMatch]);
 
   const handleNoMatchConfirm = useCallback(() => {
+    onResult?.(companyName, "fail");
     navigate("/thankyou");
-  }, [navigate]);
+  }, [companyName, onResult, navigate]);
 
   return (
     <section className="match-company-sec" aria-label="우리 회사가 맞을까요?">
@@ -208,6 +210,20 @@ function MatchCompany({ onMatch }: MatchCompanyProps) {
         {phase === "intro" && (
           <div ref={introRef} className="_intro" role="status">
             <p className="_intro-text">{INTRO_TEXT}</p>
+            <form className="_intro-form" onSubmit={handleIntroSubmit}>
+              <input
+                type="text"
+                placeholder="회사명 (선택)"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                className="_intro-input"
+                aria-label="회사명"
+                autoComplete="organization"
+              />
+              <button type="submit" className="_btn _btn--yes _intro-submit">
+                시작하기
+              </button>
+            </form>
           </div>
         )}
 

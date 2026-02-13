@@ -24,6 +24,18 @@ function App() {
     setMatchCompanyPassed(true);
   };
 
+  const submitQuizResult = async (company: string, result: "match" | "fail") => {
+    try {
+      await fetch("/api/submit-quiz-result", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ company: company || "미입력", result }),
+      });
+    } catch (_) {
+      // 전송 실패 시 무시 (오프라인 등)
+    }
+  };
+
   useEffect(() => {
     const isHeroCursor = showHero && location.pathname === "/";
     document.body.classList.toggle("hero-cursor-mode", isHeroCursor);
@@ -83,7 +95,10 @@ function App() {
                     minHeight: matchCompanyPassed ? "auto" : "100vh",
                   }}
                 >
-                  <MatchCompany onMatch={handleMatchCompanyPass} />
+                  <MatchCompany
+                    onResult={submitQuizResult}
+                    onMatch={handleMatchCompanyPass}
+                  />
                   <section
                     id="portfolio-next"
                     aria-label="다음 섹션"

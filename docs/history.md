@@ -60,6 +60,8 @@
 | 2026-02-13 | 코드일꾼 | react-router-dom 도입, /thankyou 페이지(ThankYou: NO_MATCH_FALLBACK_MESSAGE만·버튼 없음), thankyou에서 QuickMenu 숨김·뒤로가기 방지(pushState), /thankyou 새로고침 시 커서 표시(hero-cursor-mode는 pathname "/"일 때만 적용) |
 | 2026-02-13 | 코드일꾼 | MatchCompany 인트로·질문 후 버튼 딜레이 50% 단축, 버튼 영역 레이아웃 미리 확보·퀴즈 통과 전 스크롤 잠금, conventions에 요구사항 대응 순서(설명·옵션 제시 후 확인하고 구현) 추가 |
 | 2026-02-13 | 코드일꾼 | Storybook 스토리 정리: Toast·TechNote·CommonUtilities·ButtonOX·DesignTokenPreview 스토리 작성, 스토리 파일을 src/stories/로 통합·main.ts 경로 변경, 빌드 시 dist/storybook 포함(base /storybook/), 퀵메뉴에 스토리북 링크(/storybook/), README에 스토리북(개발 vs 배포·build:with-storybook) 안내, App.tsx 미사용 navigate 제거 |
+| 2026-02-13 | 코드일꾼 | 퀴즈 결과 시트 연동: Google Sheets + Apps Script(doPost), Vercel API(api/submit-quiz-result) 프록시, MatchCompany 인트로에 회사명 입력(선택)·자동 진행 제거·엔터/시작하기로만 질문 단계 진입, 결과 시 (회사명, 매칭/실패) 전송, docs/design/quiz-result-sheet-setup.md 설정 가이드, vercel.json(buildCommand: build:with-storybook) |
+| 2026-02-13 | 코드일꾼 | QuickMenu 다크/라이트 아이콘 가운데 정렬(quick-menu__item--icon-only), MatchCompany 인트로 폼 가운데 정렬(._intro-form margin auto) |
 
 ### 3.4 검토
 
@@ -75,6 +77,7 @@
 | 2026-02-11 | UI는 Storybook 먼저, 검증 후 통합(C안) | 퍼블 작업을 독립적으로 검증할 수 있고, 통합 시 디버깅이 수월함 |
 | 2026-02-13 | MatchCompany 섹션명·매치 기준(O≥3)·미매치 시 /thankyou 페이지 분리 | 상호 선택 톤, thankyou에서 fallback 메시지만 노출·버튼 없음 |
 | 2026-02-13 | 요구사항 대응 시 설명·옵션 제시 후 확인하고 구현(conventions) | 바로 구현하지 않고 논의·선택 후 진행하도록 유지 |
+| 2026-02-13 | 퀴즈 결과(회사명·매칭/실패) Google Sheets + Apps Script로 저장, 인트로에서 회사명 입력(선택)·엔터/시작하기로 진행 | 서버 없이 시트로 회사별 결과 확인, 면접관이 직접 회사명 입력 |
 
 ---
 
