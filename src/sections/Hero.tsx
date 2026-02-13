@@ -98,24 +98,6 @@ function Hero({ name = "박형우" }: HeroProps) {
     [updateTrailFromPoint]
   );
 
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent<HTMLElement>) => {
-      const touch = e.touches[0];
-      if (!touch) return;
-      updateTrailFromPoint(touch.clientX, touch.clientY);
-    },
-    [updateTrailFromPoint]
-  );
-
-  const handleTouchMove = useCallback(
-    (e: React.TouchEvent<HTMLElement>) => {
-      const touch = e.touches[0];
-      if (!touch) return;
-      updateTrailFromPoint(touch.clientX, touch.clientY);
-    },
-    [updateTrailFromPoint]
-  );
-
   // Hero가 보이는 동안 전역 mousemove로만 커서 위치 갱신 (PC만, 모바일에서는 커서 비표시)
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -143,8 +125,6 @@ function Hero({ name = "박형우" }: HeroProps) {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseMove}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
     >
       <div className="_cont">
       <div

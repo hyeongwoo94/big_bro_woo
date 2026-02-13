@@ -74,6 +74,7 @@
 | 2026-02-13 | 코드일꾼 | Hero 모바일: 커서는 mousemove만(터치 시 커서 비표시로 원복), 마스크 적용 보정(transform/backface-visibility) |
 | 2026-02-13 | 코드일꾼 | HeroModal 인라인 스타일 제거, CSS 클래스(hero-modal__panel·__question·__body·__input·__btn, data-visible)로 이전 |
 | 2026-02-13 | 코드일꾼 | index.html 타이틀 설정, QuickMenu 모바일에서 아이콘 전용 항목 정렬 보강(quick-menu__item--icon-only) |
+| 2026-02-13 | 코드일꾼 | Hero 모바일 터치 지원 제거(브러시는 PC 마우스만), 모바일 토스트 문구 "제 이름을 찾아보세요"로 변경 |
 
 ### 3.4 검토
 

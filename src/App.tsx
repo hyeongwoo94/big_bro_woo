@@ -9,7 +9,7 @@ import { TechNoteProvider } from "./shared/ui/TechNote";
 import { QuickMenu } from "./shared/ui/QuickMenu";
 
 const TOAST_MESSAGE_PC = "마우스를 움직여 이름을 찾아보세요";
-const TOAST_MESSAGE_MOBILE = "화면은 문질러보세요";
+const TOAST_MESSAGE_MOBILE = "제 이름을 찾아보세요";
 
 function App() {
   const location = useLocation();
@@ -100,7 +100,7 @@ function App() {
               )}
               {showHero && (
                 <HeroModal
-                  question="제 이름을 알고 계시나요?"
+                  question="제 이름을 작성해주세요?"
                   defaultName="박형우"
                   onConfirm={handleQuizConfirm}
                 />
