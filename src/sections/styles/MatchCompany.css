@@ -1,0 +1,144 @@
+/**
+ * MatchCompany 섹션 스타일
+ * 선택자는 .match-company-sec부터 이어서 작성. 디자인 토큰만 사용.
+ * @see docs/design/match-company-design.md
+ */
+
+.match-company-sec {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  padding: var(--spacing-xl);
+}
+
+.match-company-sec ._cont {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2xl);
+  text-align: center;
+  min-height: 260px;
+}
+
+.match-company-sec ._cont._cont--blank {
+  min-height: 60vh;
+  background-color: var(--color-bg);
+}
+
+/* 인트로 */
+.match-company-sec ._intro {
+  width: 100%;
+}
+
+.match-company-sec ._intro-text {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* 진행 표시 */
+.match-company-sec ._progress {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+/* 질문 */
+.match-company-sec ._question {
+  width: 100%;
+  will-change: transform, opacity, filter;
+}
+
+.match-company-sec ._question-text {
+  font-size: var(--font-size-xl);
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (min-width: 769px) {
+  .match-company-sec ._question-text {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* 답변 버튼 영역 — 공간 미리 확보(display 토글 없음), opacity/transform으로 등장 */
+.match-company-sec ._buttons,
+.match-company-sec ._result-buttons {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 52px;
+  align-items: center;
+}
+
+/* O/X 버튼 공통 + 시각적 구분 */
+.match-company-sec ._btn {
+  min-width: 120px;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: transform var(--transition-fast), opacity var(--transition-fast),
+    background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+.match-company-sec ._btn:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.match-company-sec ._btn--yes {
+  background-color: var(--color-accent-warm);
+  color: var(--color-on-accent-warm);
+  border: 2px solid var(--color-accent-warm);
+}
+
+.match-company-sec ._btn--yes:hover {
+  background-color: var(--color-accent-warm-hover);
+  border-color: var(--color-accent-warm-hover);
+}
+
+.match-company-sec ._btn--no {
+  background-color: transparent;
+  color: var(--color-text-muted);
+  border: 2px solid var(--color-border);
+}
+
+.match-company-sec ._btn--no:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+}
+
+/* 결과 메시지 */
+.match-company-sec ._result {
+  width: 100%;
+  will-change: transform, opacity;
+}
+
+.match-company-sec ._result-text {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+@media (min-width: 769px) {
+  .match-company-sec ._result-text {
+    font-size: var(--font-size-xl);
+  }
+}

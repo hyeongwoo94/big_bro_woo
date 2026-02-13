@@ -32,3 +32,9 @@
 - **결정**: 섹션별 "기술 설명" 버튼+모달을 TechNote / TechNoteProvider로 명명, SectionExplanation에서 리네이밍.
 - **이유**: "기술 설명"에 대응하는 직관적인 이름으로 통일.
 - **대안**: SectionExplanation 유지
+
+### 2026-02-13 docs 설계 문서 폴더 구조
+
+- **결정**: 설계 문서를 `docs/design/` 폴더로 이전 (auto-commit-design, hero-design, section-explanation-design)
+- **이유**: docs 루트 정리, 설계 vs 히스토리(history.md) 역할 분리
+- **대안**: docs 루트에 그대로 유지

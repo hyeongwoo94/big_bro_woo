@@ -48,7 +48,7 @@ function shuffle<T>(arr: T[]): T[] {
   return out;
 }
 
-function Hero({ name = "김개발" }: HeroProps) {
+function Hero({ name = "박형우" }: HeroProps) {
   const [trail, setTrail] = useState<{ x: number; y: number }[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);

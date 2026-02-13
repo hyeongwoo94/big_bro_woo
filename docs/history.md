@@ -55,6 +55,10 @@
 | 2026-02-11 | 코드일꾼 | TechNote 본문 템플릿(tech-note-tpl-a) 도입, 기술설명 콘텐츠 중앙 관리(shared/content/techNotes.tsx, getTechNoteContent), 다크모드·퀵메뉴: 다크모드 버튼(DarkModeToggle) 추가 후 QuickMenu로 통합(PC 오른쪽 하단 원형 "클릭"→4개 메뉴 펼침, 모바일 하단 플로팅 4개 고정, 다크모드+예시 링크 3) |
 | 2026-02-11 | 코드일꾼 | Hero 모달 다크모드 대응(design-tokens --shadow-modal·--color-modal-edge), 모바일 HeroModal 위치 조정(HeroModal.css, 플로팅 메뉴 위로), Hero 커서: 퀵메뉴/모달 위에서도 표시(전역 mousemove·body.hero-cursor-mode), 커서 z-index 10010·색상 --color-accent |
 | 2026-02-11 | 코드일꾼 | 전역 스크롤바 커스터마이징(common.css): 디자인 토큰(--color-border thumb, --color-accent hover) 사용, 라이트/다크 모드 자동 대응, Firefox scrollbar-width/scrollbar-color, Chrome/Safari/Edge ::-webkit-scrollbar 스타일, 화살표 버튼 제거 |
+| 2026-02-13 | 코드일꾼 | docs 설계 문서 docs/design/로 이전, 참조 경로·conventions·decisions 반영 |
+| 2026-02-13 | 코드일꾼 | MatchCompany 섹션 설계(docs/design/match-company-design.md) 및 구현: 5문 O/X 퀴즈, 인트로 "솔직하게 대답해주세요", 진행 표시, 원근감·블러 전환, O/X 시각적 구분, 매치(O≥3) 시 다음 섹션·미매치 시 /thankyou 이동 |
+| 2026-02-13 | 코드일꾼 | react-router-dom 도입, /thankyou 페이지(ThankYou: NO_MATCH_FALLBACK_MESSAGE만·버튼 없음), thankyou에서 QuickMenu 숨김·뒤로가기 방지(pushState), /thankyou 새로고침 시 커서 표시(hero-cursor-mode는 pathname "/"일 때만 적용) |
+| 2026-02-13 | 코드일꾼 | MatchCompany 인트로·질문 후 버튼 딜레이 50% 단축, 버튼 영역 레이아웃 미리 확보·퀴즈 통과 전 스크롤 잠금, conventions에 요구사항 대응 순서(설명·옵션 제시 후 확인하고 구현) 추가 |
 
 ### 3.4 검토
 
@@ -68,6 +72,8 @@
 |------|------|------|
 | 2026-02-11 | FDD + feature 기반 폴더 구조 | 기능 단위로 응집도 높게 관리, 포트폴리오 섹션(Hero/About 등)이 자연스럽게 feature로 매핑 |
 | 2026-02-11 | UI는 Storybook 먼저, 검증 후 통합(C안) | 퍼블 작업을 독립적으로 검증할 수 있고, 통합 시 디버깅이 수월함 |
+| 2026-02-13 | MatchCompany 섹션명·매치 기준(O≥3)·미매치 시 /thankyou 페이지 분리 | 상호 선택 톤, thankyou에서 fallback 메시지만 노출·버튼 없음 |
+| 2026-02-13 | 요구사항 대응 시 설명·옵션 제시 후 확인하고 구현(conventions) | 바로 구현하지 않고 논의·선택 후 진행하도록 유지 |
 
 ---
 

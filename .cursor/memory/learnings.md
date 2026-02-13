@@ -25,3 +25,7 @@
 ### [스크롤바 커스터마이징]
 - **상황**: 기본 브라우저 스크롤바가 디자인과 어울리지 않음
 - **해결/패턴**: `common.css`에서 전역 스크롤바 스타일 적용. Firefox는 `scrollbar-width: thin`, `scrollbar-color: var(--color-border) transparent`. Chrome/Safari/Edge는 `::-webkit-scrollbar` (8px, 둥근 thumb `--color-border`, hover `--color-accent`), `::-webkit-scrollbar-button { display: none }`로 화살표 제거. 디자인 토큰 사용으로 라이트/다크 모드 자동 대응
+
+### [thankyou 뒤로가기 방지]
+- **상황**: 특정 페이지(/thankyou)에서 브라우저 뒤로가기로 이전 화면으로 돌아가는 것을 막고 싶음
+- **해결/패턴**: 해당 경로일 때 `history.pushState(null, '', '/thankyou')`로 동일 URL 히스토리 항목을 하나 더 쌓고, `popstate` 리스너에서 다시 `pushState`로 현재 URL을 쌓아서 뒤로가기 시에도 같은 페이지에 머물게 함. (React Router와 병행 시 pathname "/"일 때만 hero-cursor-mode 적용 등 경로별 분기 유의)

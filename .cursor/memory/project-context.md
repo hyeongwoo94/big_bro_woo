@@ -11,17 +11,18 @@
 
 ## 현재 상태
 
-- **진행 단계**: Hero 섹션 구현·설계 완료
-- **완료된 것**: 프로젝트 셋업, FDD·폴더 구조·C안(Storybook) 컨벤션, Storybook 설치, **Hero 섹션**(커서 트레일·찾기, HeroModal, Toast), **TechNote**(템플릿 tpl-a, 콘텐츠 techNotes.tsx 중앙 관리), **QuickMenu**(PC 원형 클릭→4개, 모바일 하단 플로팅, 다크모드 포함), **다크모드**(html data-theme, localStorage), Hero 커서 전역 표시·z-index·accent 색
-- **다음 할 것**: 포트폴리오 본문(다음 섹션) 또는 QuickMenu 예시 링크 실제 연결
+- **진행 단계**: Hero·MatchCompany 섹션 및 thankyou 페이지 완료
+- **완료된 것**: 프로젝트 셋업, FDD·폴더 구조·C안(Storybook) 컨벤션, Storybook 설치, **Hero 섹션**(커서 트레일·찾기, HeroModal, Toast), **TechNote**, **QuickMenu**, **다크모드**, Hero 커서 전역 표시, **docs/design/** 설계 문서 구조, **MatchCompany**(5문 O/X 퀴즈, 인트로·진행 표시·결과·퀴즈 통과 전 스크롤 잠금), **react-router-dom**, **ThankYou 페이지**(/thankyou, fallback 메시지만·버튼 없음, 뒤로가기 방지), thankyou에서 QuickMenu 숨김·hero-cursor-mode pathname "/"일 때만 적용
+- **다음 할 것**: 다음 섹션(Projects 등) 또는 QuickMenu 예시 링크 실제 연결
 
 ## 주요 경로/구조
 
 ```
 src/
-├── sections/     # Hero 등 섹션 단위 (Hero: 커서 트레일 + 찾기)
-├── shared/       # 공통 ui (Toast, HeroModal, TechNote, QuickMenu), content (techNotes), hooks, utils
-└── app/          # 라우팅, 레이아웃 (App.tsx)
+├── sections/     # Hero, MatchCompany 등 섹션 단위
+├── pages/        # ThankYou (/thankyou) 등 페이지
+├── shared/       # 공통 ui, content (techNotes, matchCompanyQuestions), hooks, utils
+└── app/          # 라우팅, 레이아웃 (App.tsx, Routes /, /thankyou)
 ```
 
 ## 비고

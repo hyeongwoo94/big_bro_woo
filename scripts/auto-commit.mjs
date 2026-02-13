@@ -3,7 +3,7 @@
 /**
  * 자동 커밋 스크립트
  * docs/history.md 변경 시 의미 있는 변화만 커밋·푸시
- * @see docs/auto-commit-design.md
+ * @see docs/design/auto-commit-design.md
  */
 
 import { spawnSync } from 'node:child_process';

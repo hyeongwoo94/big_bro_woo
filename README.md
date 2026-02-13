@@ -13,4 +13,4 @@ npm run auto-commit
 ```
 
 - `docs/history.md`에 “의미 있는” 변경(새 날짜 행, 새 섹션 등)이 있을 때만 커밋·푸시합니다(strict 모드).  
-- 상세: `docs/auto-commit-design.md` 참고.
+- 상세: `docs/design/auto-commit-design.md` 참고.
