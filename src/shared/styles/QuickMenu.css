@@ -133,6 +133,9 @@
     text-decoration: none;
     cursor: pointer;
     transition: background-color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .quick-menu__item:hover {
     background-color: var(--color-border);
