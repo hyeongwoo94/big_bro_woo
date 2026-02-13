@@ -24,12 +24,20 @@ function App() {
     setMatchCompanyPassed(true);
   };
 
-  const submitQuizResult = async (company: string, result: "match" | "fail") => {
+  const submitQuizResult = async (
+    company: string,
+    result: "match" | "fail",
+    answers: ("yes" | "no")[]
+  ) => {
     try {
       await fetch("/api/submit-quiz-result", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company: company || "미입력", result }),
+        body: JSON.stringify({
+          company: company || "미입력",
+          result,
+          answers: answers.slice(0, 5),
+        }),
       });
     } catch (_) {
       // 전송 실패 시 무시 (오프라인 등)

@@ -18,11 +18,12 @@ export default async function handler(req, res) {
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
     const company = String(body.company ?? "").trim() || "미입력";
     const result = body.result === "match" ? "match" : "fail";
+    const answers = Array.isArray(body.answers) ? body.answers.slice(0, 5) : [];
 
     const scriptRes = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ company, result }),
+      body: JSON.stringify({ company, result, answers }),
     });
 
     if (!scriptRes.ok) {

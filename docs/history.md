@@ -62,6 +62,7 @@
 | 2026-02-13 | 코드일꾼 | Storybook 스토리 정리: Toast·TechNote·CommonUtilities·ButtonOX·DesignTokenPreview 스토리 작성, 스토리 파일을 src/stories/로 통합·main.ts 경로 변경, 빌드 시 dist/storybook 포함(base /storybook/), 퀵메뉴에 스토리북 링크(/storybook/), README에 스토리북(개발 vs 배포·build:with-storybook) 안내, App.tsx 미사용 navigate 제거 |
 | 2026-02-13 | 코드일꾼 | 퀴즈 결과 시트 연동: Google Sheets + Apps Script(doPost), Vercel API(api/submit-quiz-result) 프록시, MatchCompany 인트로에 회사명 입력(선택)·자동 진행 제거·엔터/시작하기로만 질문 단계 진입, 결과 시 (회사명, 매칭/실패) 전송, docs/design/quiz-result-sheet-setup.md 설정 가이드, vercel.json(buildCommand: build:with-storybook) |
 | 2026-02-13 | 코드일꾼 | QuickMenu 다크/라이트 아이콘 가운데 정렬(quick-menu__item--icon-only), MatchCompany 인트로 폼 가운데 정렬(._intro-form margin auto) |
+| 2026-02-13 | 코드일꾼 | 퀴즈 결과 시트에 질문 1~5 답변(O/X) 저장: onResult에 answers 전달, API·Apps Script·시트 헤더 Q1~Q5 추가, quiz-result-sheet-setup.md 갱신 |
 
 ### 3.4 검토
 

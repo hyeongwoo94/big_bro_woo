@@ -22,7 +22,7 @@ const QUESTION_DELAY_MS = 500; // 질문 등장 후 버튼 노출까지 (50% 단
 const RESULT_DELAY_MS = 400; // 5문 답변 후 결과 노출까지
 
 export type MatchCompanyProps = {
-  onResult?: (company: string, result: "match" | "fail") => void;
+  onResult?: (company: string, result: "match" | "fail", answers: Answer[]) => void;
   onMatch?: () => void;
 };
 
@@ -183,14 +183,14 @@ function MatchCompany({ onResult, onMatch }: MatchCompanyProps) {
   );
 
   const handleMatchConfirm = useCallback(() => {
-    onResult?.(companyName, "match");
+    onResult?.(companyName, "match", answers);
     onMatch?.();
-  }, [companyName, onResult, onMatch]);
+  }, [companyName, answers, onResult, onMatch]);
 
   const handleNoMatchConfirm = useCallback(() => {
-    onResult?.(companyName, "fail");
+    onResult?.(companyName, "fail", answers);
     navigate("/thankyou");
-  }, [companyName, onResult, navigate]);
+  }, [companyName, answers, onResult, navigate]);
 
   return (
     <section className="match-company-sec" aria-label="우리 회사가 맞을까요?">
