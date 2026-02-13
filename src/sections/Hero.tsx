@@ -56,6 +56,7 @@ function Hero({ name = "박형우" }: HeroProps) {
   const pendingRef = useRef<{ x: number; y: number } | null>(null);
   const trailRafRef = useRef<number>(0);
   const rafRef = useRef<number>(0);
+  const contentSizeRef = useRef({ w: 1, h: 1 });
 
   const words = useMemo(() => {
     const decoys = DECOY_WORDS.filter((w) => w !== name);
@@ -64,49 +65,81 @@ function Hero({ name = "박형우" }: HeroProps) {
 
   const nameCharSet = useMemo(() => new Set([name]), [name]);
 
+  const updateTrailFromPoint = useCallback((clientX: number, clientY: number) => {
+    const content = contentRef.current;
+    if (!content) return;
+
+    const contentRect = content.getBoundingClientRect();
+    contentSizeRef.current = { w: contentRect.width, h: contentRect.height };
+    const x = (clientX - contentRect.left) / contentRect.width;
+    const y = (clientY - contentRect.top) / contentRect.height;
+
+    if (x < 0 || x > 1 || y < 0 || y > 1) return;
+
+    pendingRef.current = { x, y };
+
+    if (trailRafRef.current) return;
+    trailRafRef.current = requestAnimationFrame(() => {
+      trailRafRef.current = 0;
+      const p = pendingRef.current;
+      if (!p) return;
+      pendingRef.current = null;
+      setTrail((prev) => {
+        const next = [...prev, p];
+        return next.length > TRAIL_MAX ? next.slice(-TRAIL_MAX) : next;
+      });
+    });
+  }, []);
+
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
-      const content = contentRef.current;
-      if (!content) return;
-
-      const contentRect = content.getBoundingClientRect();
-      const x = (e.clientX - contentRect.left) / contentRect.width;
-      const y = (e.clientY - contentRect.top) / contentRect.height;
-
-      if (x < 0 || x > 1 || y < 0 || y > 1) return;
-
-      pendingRef.current = { x, y };
-
-      if (trailRafRef.current) return;
-      trailRafRef.current = requestAnimationFrame(() => {
-        trailRafRef.current = 0;
-        const p = pendingRef.current;
-        if (!p) return;
-        pendingRef.current = null;
-        setTrail((prev) => {
-          const next = [...prev, p];
-          return next.length > TRAIL_MAX ? next.slice(-TRAIL_MAX) : next;
-        });
-      });
+      updateTrailFromPoint(e.clientX, e.clientY);
     },
-    []
+    [updateTrailFromPoint]
   );
 
-  // Hero가 보이는 동안 전역 mousemove로 커서 위치 갱신 → 퀵메뉴 위에서도 커서 표시
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent<HTMLElement>) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      updateTrailFromPoint(touch.clientX, touch.clientY);
+    },
+    [updateTrailFromPoint]
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent<HTMLElement>) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      updateTrailFromPoint(touch.clientX, touch.clientY);
+    },
+    [updateTrailFromPoint]
+  );
+
+  // Hero가 보이는 동안 전역 mousemove/touchmove로 커서 위치 갱신 (PC + 모바일)
   useEffect(() => {
     const cursor = cursorRef.current;
     if (!cursor) return;
-    const onGlobalMove = (e: MouseEvent) => {
+
+    const setCursorPosition = (clientX: number, clientY: number) => {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
+        cursor.style.left = `${clientX}px`;
+        cursor.style.top = `${clientY}px`;
         cursor.style.display = "block";
       });
     };
+
+    const onGlobalMove = (e: MouseEvent) => setCursorPosition(e.clientX, e.clientY);
+    const onGlobalTouchMove = (e: TouchEvent) => {
+      if (e.touches[0]) setCursorPosition(e.touches[0].clientX, e.touches[0].clientY);
+    };
+
     document.addEventListener("mousemove", onGlobalMove);
+    document.addEventListener("touchmove", onGlobalTouchMove, { passive: true });
     return () => {
       document.removeEventListener("mousemove", onGlobalMove);
+      document.removeEventListener("touchmove", onGlobalTouchMove);
       cursor.style.display = "none";
     };
   }, []);
@@ -117,6 +150,8 @@ function Hero({ name = "박형우" }: HeroProps) {
       ref={sectionRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseMove}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
     >
       <div className="_cont">
       <div
@@ -133,49 +168,44 @@ function Hero({ name = "박형우" }: HeroProps) {
         <defs>
           <mask id="hero-cursor-trail" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
             <rect width="1" height="1" fill="black" />
-            {trail.map((p, i) => (
-              <circle key={i} cx={p.x} cy={p.y} r={BRUSH_RADIUS} fill="white" />
-            ))}
+            {trail.map((p, i) => {
+              const { w, h } = contentSizeRef.current;
+              const aspect = w / (h || 1);
+              return (
+                <ellipse
+                  key={i}
+                  cx={p.x}
+                  cy={p.y}
+                  rx={BRUSH_RADIUS}
+                  ry={BRUSH_RADIUS * aspect}
+                  fill="white"
+                />
+              );
+            })}
           </mask>
         </defs>
       </svg>
 
-      <div
-        ref={contentRef}
-        style={{
-          position: "absolute",
-          inset: 0,
-          display: "flex",
-          flexWrap: "wrap",
-          alignContent: "center",
-          justifyContent: "center",
-          gap: "clamp(0.5rem, 2vw, 1.5rem)",
-          padding: "2rem",
-          maxWidth: 1280,
-          width: "100%",
-          margin: "0 auto",
-          WebkitMaskImage: "url(#hero-cursor-trail)",
-          maskImage: "url(#hero-cursor-trail)",
-          WebkitMaskSize: "100% 100%",
-          maskSize: "100% 100%",
-          WebkitMaskPosition: "center",
-          maskPosition: "center",
-          WebkitMaskRepeat: "no-repeat",
-          maskRepeat: "no-repeat",
-        }}
-      >
-        {words.map((word, i) => {
-          const isNameChar = nameCharSet.has(word);
-          return (
-            <span
-              key={i}
-              className="_text"
-              data-name-char={isNameChar ? "true" : undefined}
-            >
-              {word}
-            </span>
-          );
-        })}
+      <div className="_hero-words">
+        <div className="_hero-words-frame">
+          <div
+            ref={contentRef}
+            className="_hero-words-mask"
+          >
+            {words.map((word, i) => {
+              const isNameChar = nameCharSet.has(word);
+              return (
+                <span
+                  key={i}
+                  className="_text"
+                  data-name-char={isNameChar ? "true" : undefined}
+                >
+                  {word}
+                </span>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       <div

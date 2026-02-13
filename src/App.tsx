@@ -8,12 +8,16 @@ import HeroModal from "./shared/ui/HeroModal";
 import { TechNoteProvider } from "./shared/ui/TechNote";
 import { QuickMenu } from "./shared/ui/QuickMenu";
 
+const TOAST_MESSAGE_PC = "마우스를 움직여 이름을 찾아보세요";
+const TOAST_MESSAGE_MOBILE = "화면은 문질러보세요";
+
 function App() {
   const location = useLocation();
   const [showWelcomeToast, setShowWelcomeToast] = useState(true);
   const [showHero, setShowHero] = useState(true);
   const [showPortfolio, setShowPortfolio] = useState(false);
   const [matchCompanyPassed, setMatchCompanyPassed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleQuizConfirm = (_name: string) => {
     setShowHero(false);
@@ -43,6 +47,14 @@ function App() {
       // 전송 실패 시 무시 (오프라인 등)
     }
   };
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const isHeroCursor = showHero && location.pathname === "/";
@@ -81,7 +93,7 @@ function App() {
               {showHero && <Hero name="박형우" />}
               {showWelcomeToast && (
                 <Toast
-                  message="마우스를 움직여 이름을 찾아보세요"
+                  message={isMobile ? TOAST_MESSAGE_MOBILE : TOAST_MESSAGE_PC}
                   duration={2000}
                   onClose={() => setShowWelcomeToast(false)}
                 />

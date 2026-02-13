@@ -29,6 +29,52 @@ body.hero-cursor-mode * {
   align-self: stretch;
 }
 
+/* 브러시 영역을 화면 중앙에 배치 (마스크 없음) */
+.hero-sec ._hero-words {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 테두리만 (항상 보임, 마스크 없음) */
+.hero-sec ._hero-words-frame {
+  margin: 15px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  max-width: 1280px;
+}
+
+/* 브러시 마스크 + 단어 (이 영역 안에서만 비비면 드러남) */
+.hero-sec ._hero-words-mask {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  -webkit-mask-image: url(#hero-cursor-trail);
+  mask-image: url(#hero-cursor-trail);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  .hero-sec ._hero-words {
+    align-items: flex-start;
+    padding-top: 2.5rem;
+  }
+
+  .hero-sec ._hero-words-mask {
+    align-content: flex-start;
+  }
+}
+
 /* 역할 클래스는 최상단 + 역할만으로 선택 (깊이 제한, specificity 낮게) */
 .hero-sec ._text {
   font-size: clamp(var(--font-size-base), 3.5vw, 1.75rem);

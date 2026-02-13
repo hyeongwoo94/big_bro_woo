@@ -12,7 +12,7 @@
 ## 현재 상태
 
 - **진행 단계**: Hero·MatchCompany 섹션 및 thankyou 페이지 완료
-- **완료된 것**: 프로젝트 셋업, FDD·폴더 구조·C안(Storybook) 컨벤션, Storybook 설치, **Hero 섹션**(커서 트레일·찾기, HeroModal, Toast), **TechNote**, **QuickMenu**, **다크모드**, Hero 커서 전역 표시, **docs/design/** 설계 문서 구조, **MatchCompany**(5문 O/X 퀴즈, 인트로·진행 표시·결과·퀴즈 통과 전 스크롤 잠금), **react-router-dom**, **ThankYou 페이지**(/thankyou, fallback 메시지만·버튼 없음, 뒤로가기 방지), thankyou에서 QuickMenu 숨김·hero-cursor-mode pathname "/"일 때만 적용, **Storybook 스토리 통합**(src/stories/, 빌드 시 dist/storybook 포함·퀵메뉴 스토리북 링크, README 안내), **퀴즈 결과 시트**(Google Sheets + Apps Script, Vercel API 프록시, MatchCompany 인트로 회사명 입력·엔터/시작하기로 진행·결과+Q1~Q5 답변(O/X) 전송), QuickMenu 다크/라이트 아이콘 가운데 정렬, vercel.json(build:with-storybook)
+- **완료된 것**: 프로젝트 셋업, FDD·폴더 구조·C안(Storybook) 컨벤션, Storybook 설치, **Hero 섹션**(커서 트레일·찾기, 모바일 터치·토스트 "화면은 문질러보세요", 보더 안쪽만 브러시·원형 ellipse 보정, HeroModal, Toast), **TechNote**, **QuickMenu**, **다크모드**, Hero 커서 전역 표시, **docs/design/** 설계 문서 구조, **MatchCompany**(5문 O/X 퀴즈, 인트로·진행 표시·결과·퀴즈 통과 전 스크롤 잠금), **react-router-dom**, **ThankYou 페이지**(/thankyou, fallback 메시지만·버튼 없음, 뒤로가기 방지), thankyou에서 QuickMenu 숨김·hero-cursor-mode pathname "/"일 때만 적용, **Storybook 스토리 통합**(src/stories/, 빌드 시 dist/storybook 포함·퀵메뉴 스토리북 링크, README 안내), **퀴즈 결과 시트**(Google Sheets + Apps Script, Vercel API 프록시, MatchCompany 인트로 회사명 입력·엔터/시작하기로 진행·결과+Q1~Q5 답변(O/X) 전송), QuickMenu 다크/라이트 아이콘 가운데 정렬, vercel.json(build:with-storybook)
 - **다음 할 것**: 다음 섹션(Projects 등) 또는 QuickMenu 예시 링크 실제 연결
 
 ## 주요 경로/구조

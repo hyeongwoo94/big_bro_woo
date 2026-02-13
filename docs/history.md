@@ -63,6 +63,9 @@
 | 2026-02-13 | 코드일꾼 | 퀴즈 결과 시트 연동: Google Sheets + Apps Script(doPost), Vercel API(api/submit-quiz-result) 프록시, MatchCompany 인트로에 회사명 입력(선택)·자동 진행 제거·엔터/시작하기로만 질문 단계 진입, 결과 시 (회사명, 매칭/실패) 전송, docs/design/quiz-result-sheet-setup.md 설정 가이드, vercel.json(buildCommand: build:with-storybook) |
 | 2026-02-13 | 코드일꾼 | QuickMenu 다크/라이트 아이콘 가운데 정렬(quick-menu__item--icon-only), MatchCompany 인트로 폼 가운데 정렬(._intro-form margin auto) |
 | 2026-02-13 | 코드일꾼 | 퀴즈 결과 시트에 질문 1~5 답변(O/X) 저장: onResult에 answers 전달, API·Apps Script·시트 헤더 Q1~Q5 추가, quiz-result-sheet-setup.md 갱신 |
+| 2026-02-13 | 코드일꾼 | Hero 모바일: 터치 지원(handleTouchStart/TouchMove·전역 touchmove 커서), 토스트 768px 이하 "화면은 문질러보세요" / 이상 "마우스를 움직여...", 단어 영역 모바일 위쪽 정렬(모달 겹침 완화) |
+| 2026-02-13 | 코드일꾼 | Hero 브러시 영역: _hero-words-frame(보더 항상 보임)·_hero-words-mask(마스크·contentRef)로 분리해 브러시는 보더 안쪽만, 인라인 스타일 CSS 이전 |
+| 2026-02-13 | 코드일꾼 | Hero 브러시 모양: objectBoundingBox 비율 보정(circle→ellipse, contentSizeRef로 rx/ry)해 드래그 시 원형 유지 |
 
 ### 3.4 검토
 
