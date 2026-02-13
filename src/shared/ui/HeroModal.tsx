@@ -15,7 +15,11 @@ function HeroModal({ question, defaultName, onConfirm }: HeroModalProps) {
     // 히어로 섹션 로딩 후 3초 뒤 표시
     const timer = setTimeout(() => {
       setVisible(true);
-      setTimeout(() => inputRef.current?.focus(), 150);
+      // PC에서만 자동 포커스 (모바일에서는 확대 방지)
+      const isMobile = window.innerWidth <= 768;
+      if (!isMobile) {
+        setTimeout(() => inputRef.current?.focus(), 150);
+      }
     }, 3000);
 
     return () => clearTimeout(timer);
