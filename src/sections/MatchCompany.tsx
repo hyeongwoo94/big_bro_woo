@@ -15,6 +15,17 @@ import { getTechNoteContent } from "../shared/content/techNotes";
 import { TechNote } from "../shared/ui/TechNote";
 import "./styles/MatchCompany.css";
 
+/** 문자열의 \n을 <br />로 변환해 React 노드로 반환 */
+function textWithLineBreaks(text: string) {
+  const lines = text.split("\n");
+  return lines.map((line, i, arr) => (
+    <span key={i}>
+      {line}
+      {i < arr.length - 1 && <br />}
+    </span>
+  ));
+}
+
 type Phase = "intro" | "question" | "result";
 type Answer = "yes" | "no";
 
@@ -209,7 +220,7 @@ function MatchCompany({ onResult, onMatch }: MatchCompanyProps) {
       <div className="_cont">
         {phase === "intro" && (
           <div ref={introRef} className="_intro" role="status">
-            <p className="_intro-text">{INTRO_TEXT}</p>
+            <p className="_intro-text">{textWithLineBreaks(INTRO_TEXT)}</p>
             <form className="_intro-form" onSubmit={handleIntroSubmit}>
               <input
                 type="text"
@@ -233,7 +244,9 @@ function MatchCompany({ onResult, onMatch }: MatchCompanyProps) {
               {questionIndex + 1} / {MATCH_COMPANY_QUESTIONS.length}
             </div>
             <div ref={questionRef} className="_question">
-              <p className="_question-text">{currentQuestion.text}</p>
+              <p className="_question-text">
+                {textWithLineBreaks(currentQuestion.text)}
+              </p>
             </div>
             <div
               ref={buttonsRef}
@@ -265,11 +278,11 @@ function MatchCompany({ onResult, onMatch }: MatchCompanyProps) {
           <>
             <div ref={resultRef} className="_result">
               <p className="_result-text">
-                {isMatch ? `
-                핵심 조건 매칭 완료 ✔  
-                귀사와 제가 좋은 시너지를 낼 거라는 확신이 들었습니다.
-                준비된 제 역량을 구체적으로 검토해 주시겠습니까?"` 
-                : NO_MATCH_MESSAGE}
+                {textWithLineBreaks(
+                  isMatch
+                    ? "핵심 조건 매칭 완료 ✔\n귀사와 제가 좋은 시너지를 낼 거라는 확신이 들었습니다.\n준비된 제 역량을 구체적으로 검토해 주시겠습니까?"
+                    : NO_MATCH_MESSAGE
+                )}
               </p>
             </div>
             <div ref={resultButtonsRef} className="_result-buttons">

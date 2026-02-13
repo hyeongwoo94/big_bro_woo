@@ -11,13 +11,13 @@ export type MatchQuestion = {
 };
 
 export const MATCH_COMPANY_QUESTIONS: MatchQuestion[] = [
-  { id: "q1", text: "워라밸을 중요시하나요?", yesLabel: "예", noLabel: "아니오" },
-  { id: "q2", text: "코드 리뷰 문화가 있나요?", yesLabel: "예", noLabel: "아니오" },
-  { id: "q3", text: "원격 근무·유연 근무를 지원하나요?", yesLabel: "예", noLabel: "아니오" },
-  { id: "q4", text: "성과보다 과정도 평가해 주시나요?", yesLabel: "예", noLabel: "아니오" },
+  { id: "q1", text: "사수가 있나요?", yesLabel: "예", noLabel: "아니오" },
+  { id: "q2", text: "저는 배우는 능력이 강하고 팀에 기여할 수 있는 사람입니다.\n 이런 팀원이 필요하신가요?", yesLabel: "예", noLabel: "아니오" },
+  { id: "q3", text: "직급/나이에 상관없이 상호 존중하는 분위기 인가요?", yesLabel: "예", noLabel: "아니오" },
+  { id: "q4", text: "저는 솔직하게 '아닌 건 아니다'라고 말하는 편인데,\n 팀에서 이런 성향을 건강하게 받아들이는 문화를 가지고 있나요?", yesLabel: "예", noLabel: "아니오" },
   {
     id: "q5",
-    text: "신입·주니어도 의견을 말할 수 있는 문화인가요?",
+    text: "제 포트폴리오가 참신하다고 생각하시나요?",
     yesLabel: "예",
     noLabel: "아니오",
   },
