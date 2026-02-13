@@ -25,9 +25,14 @@ export const MATCH_COMPANY_QUESTIONS: MatchQuestion[] = [
 
 export const MATCH_THRESHOLD = 3; // O >= 3 이면 매치
 
-export const INTRO_TEXT = "솔직하게 대답해주세요";
+export const INTRO_TEXT = `솔직한 답변을 바탕으로,
+귀사의 문화와 제 업무 방식이 시너지를 낼 수 있을지 확인하고자 합니다.
+`;
 
 export const NO_MATCH_MESSAGE =
   "솔직한 답변 감사합니다.";
 
-export const NO_MATCH_FALLBACK_MESSAGE = "제가 원하는 회사가 아닙니다.";
+export const NO_MATCH_FALLBACK_MESSAGE = `
+지금은 서로의 지향점이 조금 다를 수 있지만, 
+소중한 인연은 언제든 다시 이어지길 기대하겠습니다.
+`;

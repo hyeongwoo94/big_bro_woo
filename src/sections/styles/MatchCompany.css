@@ -43,6 +43,7 @@
   font-weight: 600;
   color: var(--color-text);
   margin: 0;
+  white-space: pre-line;
 }
 
 .match-company-sec ._intro-form {

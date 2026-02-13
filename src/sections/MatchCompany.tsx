@@ -213,7 +213,7 @@ function MatchCompany({ onResult, onMatch }: MatchCompanyProps) {
             <form className="_intro-form" onSubmit={handleIntroSubmit}>
               <input
                 type="text"
-                placeholder="회사명 (선택)"
+                placeholder="회사명"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
                 className="_intro-input"
@@ -265,7 +265,11 @@ function MatchCompany({ onResult, onMatch }: MatchCompanyProps) {
           <>
             <div ref={resultRef} className="_result">
               <p className="_result-text">
-                {isMatch ? "우리 잘 맞을 것 같아요." : NO_MATCH_MESSAGE}
+                {isMatch ? `
+                핵심 조건 매칭 완료 ✔  
+                귀사와 제가 좋은 시너지를 낼 거라는 확신이 들었습니다.
+                준비된 제 역량을 구체적으로 검토해 주시겠습니까?"` 
+                : NO_MATCH_MESSAGE}
               </p>
             </div>
             <div ref={resultButtonsRef} className="_result-buttons">
