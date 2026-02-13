@@ -67,6 +67,7 @@
   .quick-menu__item {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-sm);
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--radius-md);
@@ -93,6 +94,7 @@
   }
   .quick-menu__label {
     line-height: 1;
+    text-align: center;
   }
 }
 
@@ -152,5 +154,6 @@
   }
   .quick-menu__label {
     line-height: 1.2;
+    text-align: center;
   }
 }

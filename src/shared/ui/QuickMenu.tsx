@@ -1,8 +1,8 @@
 /**
  * 사이드 퀵메뉴
- * PC: 오른쪽 하단 동그란 "클릭" 버튼 → 클릭 시 위로 메뉴 4개 펼침
+ * PC: 오른쪽 하단 동그란 햄버거 아이콘 버튼 → 클릭 시 위로 메뉴 4개 펼침
  * 모바일: 하단 플로팅으로 4개 항목 항상 표시
- * 4개: 다크모드 + 예시 링크 3개(추후 링크 교체)
+ * 5개: 다크모드 + 토이·블로그·깃·디자인시스템
  */
 import { useEffect, useState } from "react";
 
@@ -24,14 +24,14 @@ function setTheme(theme: Theme) {
 }
 
 const QUICK_LINKS = [
+  { label: "토이", href: "#" },
+  { label: "블로그", href: "https://ineedurhelp.tistory.com/" },
+  { label: "깃", href: "https://github.com/hyeongwoo94" },
   { label: "디자인시스템", href: "/storybook/" },
-  { label: "예시1", href: "#" },
-  { label: "예시2", href: "#" },
-  { label: "예시3", href: "#" },
 ];
 
 export function QuickMenu() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [theme, setThemeState] = useState<Theme>(getTheme);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export function QuickMenu() {
 
   return (
     <div className="quick-menu" data-open={open || undefined}>
-      {/* PC: 펼쳐진 메뉴 4개 (위에서부터: 다크모드, 예시1, 예시2, 예시3) */}
+      {/* PC: 펼쳐진 메뉴 5개 (위에서부터: 다크모드, 토이, 블로그, 깃, 디자인시스템) */}
       <div className="quick-menu__items" role="menu">
         <button
           type="button"
@@ -70,7 +70,7 @@ export function QuickMenu() {
           </a>
         ))}
       </div>
-      {/* PC: 오른쪽 하단 동그란 "클릭" 버튼 (모바일에서는 숨김) */}
+      {/* PC: 오른쪽 하단 동그란 햄버거 아이콘 버튼 (모바일에서는 숨김) */}
       <button
         type="button"
         className="quick-menu__trigger"
@@ -79,7 +79,7 @@ export function QuickMenu() {
         aria-label={open ? "퀵메뉴 닫기" : "퀵메뉴 열기"}
         aria-haspopup="menu"
       >
-        <span className="quick-menu__trigger-text">클릭</span>
+        <span className="quick-menu__trigger-text">☰</span>
       </button>
     </div>
   );
