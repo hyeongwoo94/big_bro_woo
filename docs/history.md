@@ -66,6 +66,8 @@
 | 2026-02-13 | 코드일꾼 | Hero 모바일: 터치 지원(handleTouchStart/TouchMove·전역 touchmove 커서), 토스트 768px 이하 "화면은 문질러보세요" / 이상 "마우스를 움직여...", 단어 영역 모바일 위쪽 정렬(모달 겹침 완화) |
 | 2026-02-13 | 코드일꾼 | Hero 브러시 영역: _hero-words-frame(보더 항상 보임)·_hero-words-mask(마스크·contentRef)로 분리해 브러시는 보더 안쪽만, 인라인 스타일 CSS 이전 |
 | 2026-02-13 | 코드일꾼 | Hero 브러시 모양: objectBoundingBox 비율 보정(circle→ellipse, contentSizeRef로 rx/ry)해 드래그 시 원형 유지 |
+| 2026-02-13 | 코드일꾼 | Hero 모바일: 커서는 mousemove만(터치 시 커서 비표시로 원복), 마스크 적용 보정(transform/backface-visibility) |
+| 2026-02-13 | 코드일꾼 | HeroModal 인라인 스타일 제거, CSS 클래스(hero-modal__panel·__question·__body·__input·__btn, data-visible)로 이전 |
 
 ### 3.4 검토
 

@@ -62,6 +62,9 @@ body.hero-cursor-mode * {
   mask-position: center;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+  /* 모바일 WebKit에서 마스크가 적용되도록 레이어 분리 */
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
 }
 
 @media (max-width: 768px) {

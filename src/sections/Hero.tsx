@@ -116,30 +116,23 @@ function Hero({ name = "박형우" }: HeroProps) {
     [updateTrailFromPoint]
   );
 
-  // Hero가 보이는 동안 전역 mousemove/touchmove로 커서 위치 갱신 (PC + 모바일)
+  // Hero가 보이는 동안 전역 mousemove로만 커서 위치 갱신 (PC만, 모바일에서는 커서 비표시)
   useEffect(() => {
     const cursor = cursorRef.current;
     if (!cursor) return;
 
-    const setCursorPosition = (clientX: number, clientY: number) => {
+    const onGlobalMove = (e: MouseEvent) => {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
-        cursor.style.left = `${clientX}px`;
-        cursor.style.top = `${clientY}px`;
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
         cursor.style.display = "block";
       });
     };
 
-    const onGlobalMove = (e: MouseEvent) => setCursorPosition(e.clientX, e.clientY);
-    const onGlobalTouchMove = (e: TouchEvent) => {
-      if (e.touches[0]) setCursorPosition(e.touches[0].clientX, e.touches[0].clientY);
-    };
-
     document.addEventListener("mousemove", onGlobalMove);
-    document.addEventListener("touchmove", onGlobalTouchMove, { passive: true });
     return () => {
       document.removeEventListener("mousemove", onGlobalMove);
-      document.removeEventListener("touchmove", onGlobalTouchMove);
       cursor.style.display = "none";
     };
   }, []);
