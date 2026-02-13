@@ -84,6 +84,9 @@
     background-color: var(--color-border);
     border-color: var(--color-accent-warm);
   }
+  .quick-menu__item--icon-only {
+    justify-content: center;
+  }
   .quick-menu__icon {
     font-size: 1.1em;
     line-height: 1;
@@ -133,6 +136,12 @@
   }
   .quick-menu__item:hover {
     background-color: var(--color-border);
+  }
+  .quick-menu__item--icon-only {
+    justify-content: center;
+  }
+  .quick-menu__item--icon-only .quick-menu__label {
+    margin-bottom: 0;
   }
   .quick-menu__icon {
     font-size: 1.5em;

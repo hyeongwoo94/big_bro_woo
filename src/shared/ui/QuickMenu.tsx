@@ -24,7 +24,7 @@ function setTheme(theme: Theme) {
 }
 
 const QUICK_LINKS = [
-  { label: "스토리북", href: "/storybook/" },
+  { label: "디자인시스템", href: "/storybook/" },
   { label: "예시1", href: "#" },
   { label: "예시2", href: "#" },
   { label: "예시3", href: "#" },
@@ -50,15 +50,12 @@ export function QuickMenu() {
       <div className="quick-menu__items" role="menu">
         <button
           type="button"
-          className="quick-menu__item"
+          className="quick-menu__item quick-menu__item--icon-only"
           role="menuitem"
           onClick={handleThemeToggle}
           aria-label={theme === "light" ? "다크 모드로 전환" : "라이트 모드로 전환"}
         >
-          <span className="quick-menu__icon" aria-hidden>
-            {theme === "light" ? "🌙" : "☀️"}
-          </span>
-          <span className="quick-menu__label">다크모드</span>
+          <span className="quick-menu__label">{theme === "light" ? "🌙" : "☀️"}</span>
         </button>
         {QUICK_LINKS.map((link, i) => (
           <a
@@ -66,6 +63,7 @@ export function QuickMenu() {
             href={link.href}
             className="quick-menu__item"
             role="menuitem"
+            target="_blank"
             onClick={link.href === "#" ? (e) => e.preventDefault() : undefined}
           >
             <span className="quick-menu__label">{link.label}</span>
