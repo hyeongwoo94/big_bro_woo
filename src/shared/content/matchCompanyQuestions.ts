@@ -12,7 +12,7 @@ export type MatchQuestion = {
 
 export const MATCH_COMPANY_QUESTIONS: MatchQuestion[] = [
   { id: "q1", text: "사수가 있나요?", yesLabel: "예", noLabel: "아니오" },
-  { id: "q2", text: "저는 배우는 능력이 강하고 팀에 기여할 수 있는 사람입니다.\n 이런 팀원이 필요하신가요?", yesLabel: "예", noLabel: "아니오" },
+  { id: "q2", text: "저는 빠르게 배우고, 그 배움을 성과로 연결하는 사람입니다.\n귀사는 그 성장을 함께 투자할 조직인가요?", yesLabel: "예", noLabel: "아니오" },
   { id: "q3", text: "직급/나이에 상관없이 상호 존중하는 분위기 인가요?", yesLabel: "예", noLabel: "아니오" },
   { id: "q4", text: "저는 솔직하게 '아닌 건 아니다'라고 말하는 편인데,\n 팀에서 이런 성향을 건강하게 받아들이는 문화를 가지고 있나요?", yesLabel: "예", noLabel: "아니오" },
   {

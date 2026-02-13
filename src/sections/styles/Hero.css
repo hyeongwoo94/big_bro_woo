@@ -68,6 +68,10 @@ body.hero-cursor-mode * {
 }
 
 @media (max-width: 768px) {
+  .hero-sec {
+    padding-bottom: calc(52px + var(--spacing-sm) * 2 + env(safe-area-inset-bottom, 0px));
+  }
+
   .hero-sec ._hero-words {
     align-items: flex-start;
     padding-top: 2.5rem;
