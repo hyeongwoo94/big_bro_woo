@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import DesignTokenPreview from "./DesignTokenPreview";
+import DesignTokenPreview from "../shared/ui/DesignTokenPreview";
 
 const meta: Meta<typeof DesignTokenPreview> = {
   title: "shared/DesignTokenPreview",

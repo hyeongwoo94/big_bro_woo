@@ -23,7 +23,8 @@ function setTheme(theme: Theme) {
   } catch (_) {}
 }
 
-const PLACEHOLDER_LINKS = [
+const QUICK_LINKS = [
+  { label: "스토리북", href: "/storybook/" },
   { label: "예시1", href: "#" },
   { label: "예시2", href: "#" },
   { label: "예시3", href: "#" },
@@ -59,13 +60,13 @@ export function QuickMenu() {
           </span>
           <span className="quick-menu__label">다크모드</span>
         </button>
-        {PLACEHOLDER_LINKS.map((link, i) => (
+        {QUICK_LINKS.map((link, i) => (
           <a
             key={i}
             href={link.href}
             className="quick-menu__item"
             role="menuitem"
-            onClick={(e) => e.preventDefault()}
+            onClick={link.href === "#" ? (e) => e.preventDefault() : undefined}
           >
             <span className="quick-menu__label">{link.label}</span>
           </a>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Hero from "./sections/Hero";
 import MatchCompany from "./sections/MatchCompany";
 import ThankYou from "./pages/ThankYou";
@@ -10,7 +10,6 @@ import { QuickMenu } from "./shared/ui/QuickMenu";
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
   const [showWelcomeToast, setShowWelcomeToast] = useState(true);
   const [showHero, setShowHero] = useState(true);
   const [showPortfolio, setShowPortfolio] = useState(false);

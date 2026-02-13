@@ -38,3 +38,9 @@
 - **결정**: 설계 문서를 `docs/design/` 폴더로 이전 (auto-commit-design, hero-design, section-explanation-design)
 - **이유**: docs 루트 정리, 설계 vs 히스토리(history.md) 역할 분리
 - **대안**: docs 루트에 그대로 유지
+
+### 2026-02-13 Storybook 스토리 폴더·배포 연동
+
+- **결정**: 스토리 파일을 `src/stories/`에만 두고 일괄 관리. 앱 빌드 시 `build:with-storybook`으로 `dist/storybook`에 스토리북 포함, 퀵메뉴에서 `/storybook/` 링크로 접근
+- **이유**: 스토리 한 곳에서 관리·검색 용이, 배포 시 같은 호스트에서 디자인 시스템 확인 가능
+- **대안**: 컴포넌트 옆에 *.stories.* 유지

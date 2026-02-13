@@ -11,6 +11,8 @@ import {
   INTRO_TEXT,
   NO_MATCH_MESSAGE,
 } from "../shared/content/matchCompanyQuestions";
+import { getTechNoteContent } from "../shared/content/techNotes";
+import { TechNote } from "../shared/ui/TechNote";
 import "./styles/MatchCompany.css";
 
 type Phase = "intro" | "question" | "result";
@@ -190,6 +192,18 @@ function MatchCompany({ onMatch }: MatchCompanyProps) {
 
   return (
     <section className="match-company-sec" aria-label="우리 회사가 맞을까요?">
+      {phase === "result" && isMatch && (
+        <div
+          style={{
+            position: "absolute",
+            top: "var(--spacing-lg)",
+            right: "var(--spacing-lg)",
+            zIndex: 10,
+          }}
+        >
+          <TechNote {...getTechNoteContent("matchcompany")} />
+        </div>
+      )}
       <div className="_cont">
         {phase === "intro" && (
           <div ref={introRef} className="_intro" role="status">

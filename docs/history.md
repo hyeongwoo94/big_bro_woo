@@ -59,6 +59,7 @@
 | 2026-02-13 | 코드일꾼 | MatchCompany 섹션 설계(docs/design/match-company-design.md) 및 구현: 5문 O/X 퀴즈, 인트로 "솔직하게 대답해주세요", 진행 표시, 원근감·블러 전환, O/X 시각적 구분, 매치(O≥3) 시 다음 섹션·미매치 시 /thankyou 이동 |
 | 2026-02-13 | 코드일꾼 | react-router-dom 도입, /thankyou 페이지(ThankYou: NO_MATCH_FALLBACK_MESSAGE만·버튼 없음), thankyou에서 QuickMenu 숨김·뒤로가기 방지(pushState), /thankyou 새로고침 시 커서 표시(hero-cursor-mode는 pathname "/"일 때만 적용) |
 | 2026-02-13 | 코드일꾼 | MatchCompany 인트로·질문 후 버튼 딜레이 50% 단축, 버튼 영역 레이아웃 미리 확보·퀴즈 통과 전 스크롤 잠금, conventions에 요구사항 대응 순서(설명·옵션 제시 후 확인하고 구현) 추가 |
+| 2026-02-13 | 코드일꾼 | Storybook 스토리 정리: Toast·TechNote·CommonUtilities·ButtonOX·DesignTokenPreview 스토리 작성, 스토리 파일을 src/stories/로 통합·main.ts 경로 변경, 빌드 시 dist/storybook 포함(base /storybook/), 퀵메뉴에 스토리북 링크(/storybook/), README에 스토리북(개발 vs 배포·build:with-storybook) 안내, App.tsx 미사용 navigate 제거 |
 
 ### 3.4 검토
 

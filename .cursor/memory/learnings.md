@@ -29,3 +29,7 @@
 ### [thankyou 뒤로가기 방지]
 - **상황**: 특정 페이지(/thankyou)에서 브라우저 뒤로가기로 이전 화면으로 돌아가는 것을 막고 싶음
 - **해결/패턴**: 해당 경로일 때 `history.pushState(null, '', '/thankyou')`로 동일 URL 히스토리 항목을 하나 더 쌓고, `popstate` 리스너에서 다시 `pushState`로 현재 URL을 쌓아서 뒤로가기 시에도 같은 페이지에 머물게 함. (React Router와 병행 시 pathname "/"일 때만 hero-cursor-mode 적용 등 경로별 분기 유의)
+
+### [Storybook 개발 vs 배포]
+- **상황**: 스토리 수정 후 배포/preview에서 /storybook/에 반영하려면?
+- **해결/패턴**: 개발 시에는 `npm run storybook`만으로 실시간 반영. 배포·preview용으로는 스토리 수정 후 **`npm run build:with-storybook`** 을 다시 실행해야 dist/storybook이 갱신됨. README에 구분해서 적어두면 좋음

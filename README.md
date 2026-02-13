@@ -1,5 +1,12 @@
 # big_bro_woo
 
+## 스토리북 (Storybook)
+
+- **개발/미리보기**: `npm run storybook` → 실시간 반영, 별도 빌드 불필요.
+- **배포·preview**(앱과 함께 `/storybook/` 페이지로 보려면): 스토리를 수정한 뒤 **`npm run build:with-storybook`** 을 다시 실행해야 한다.  
+  - 이 명령은 앱 빌드 후 스토리북을 `dist/storybook`에 넣는다.  
+  - `npm run preview`로 확인 시 메인 앱은 `/`, 스토리북은 `/storybook/`에서 본다.
+
 ## 자동 커밋
 
 **명령만으로는 history·명세서를 수정하지 않습니다.**  

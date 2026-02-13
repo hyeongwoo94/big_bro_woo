@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:with-storybook": "npm run build && storybook build -o dist/storybook",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "preview-storybook": "npm run build-storybook && npx serve storybook-static -p 6006",
     "auto-commit": "node scripts/auto-commit.mjs"
   },
   "devDependencies": {
