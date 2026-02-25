@@ -24,7 +24,7 @@ function setTheme(theme: Theme) {
 }
 
 const QUICK_LINKS = [
-  { label: "토이", href: "#" },
+  { label: "토이", href: "https://toy-dashboard-blond.vercel.app/" },
   { label: "블로그", href: "https://ineedurhelp.tistory.com/" },
   { label: "깃", href: "https://github.com/hyeongwoo94" },
   { label: "디자인시스템", href: "/storybook/" },
