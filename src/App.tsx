@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Hero from "./sections/Hero";
 import MatchCompany from "./sections/MatchCompany";
+import Career from "./sections/Career";
 import ThankYou from "./pages/ThankYou";
 import Toast from "./shared/ui/Toast";
 import HeroModal from "./shared/ui/HeroModal";
@@ -119,21 +120,9 @@ function App() {
                     onResult={submitQuizResult}
                     onMatch={handleMatchCompanyPass}
                   />
-                  <section
-                    id="portfolio-next"
-                    aria-label="다음 섹션"
-                    style={{
-                      minHeight: "50vh",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: "var(--spacing-2xl)",
-                    }}
-                  >
-                    <p style={{ fontSize: "var(--font-size-lg)", color: "var(--color-text-muted)" }}>
-                      다음 섹션 (Projects 등)
-                    </p>
-                  </section>
+                  <div id="portfolio-next">
+                    <Career />
+                  </div>
                 </main>
               )}
             </>

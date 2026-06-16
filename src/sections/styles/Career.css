@@ -1,0 +1,166 @@
+/* Career 섹션 */
+.career-sec {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  padding: var(--spacing-xl);
+}
+
+.career-sec_cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2xl);
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: calc(100vh - var(--spacing-xl) * 2);
+}
+
+/* 그래프 영역 */
+.career-sec_graph {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.career-sec_svg {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+/* 그리드 라인 */
+.career-sec_grid {
+  stroke: var(--color-border);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  opacity: 0.5;
+}
+
+/* 축 */
+.career-sec_axis {
+  stroke: var(--color-text-muted);
+  stroke-width: 1.5;
+}
+
+/* 라벨 */
+.career-sec_label {
+  fill: var(--color-text-muted);
+  font-size: 11px;
+  transition: fill 0.3s ease, font-weight 0.3s ease;
+}
+
+.career-sec_label--active {
+  fill: var(--color-text);
+  font-weight: 600;
+}
+
+/* Y축 기술 스택 라벨 */
+.career-sec_skill-label {
+  fill: var(--color-text-muted);
+  font-size: 10px;
+  transition: fill 0.3s ease, font-weight 0.3s ease;
+}
+
+.career-sec_skill-label--active {
+  fill: var(--color-accent);
+  font-weight: 600;
+}
+
+/* 선 */
+.career-sec_line {
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 점 */
+.career-sec_dot {
+  fill: var(--color-bg);
+  stroke: var(--color-text-muted);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.career-sec_dot--active {
+  fill: var(--color-accent);
+  stroke: var(--color-accent);
+}
+
+.career-sec_dot--current {
+  fill: var(--color-accent-warm);
+  stroke: var(--color-accent-warm);
+}
+
+/* 히스토리 영역 (PC) */
+.career-sec_history {
+  flex: 1;
+  position: relative;
+  min-height: 200px;
+}
+
+.career-sec_item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.career-sec_item--active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.career-sec_year {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.career-sec_title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.career-sec_desc {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .career-sec_cont {
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--spacing-lg);
+  }
+
+  .career-sec_history {
+    flex: none;
+    width: 100%;
+    min-height: 200px;
+    text-align: center;
+  }
+
+  .career-sec_item {
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .career-sec_item--active {
+    transform: translateX(-50%) translateY(0);
+  }
+}
