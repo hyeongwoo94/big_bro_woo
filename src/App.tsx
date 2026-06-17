@@ -13,124 +13,131 @@ const TOAST_MESSAGE_PC = "마우스를 움직여 이름을 찾아보세요";
 const TOAST_MESSAGE_MOBILE = "제 이름을 찾아보세요";
 
 function App() {
-  const location = useLocation();
-  const [showWelcomeToast, setShowWelcomeToast] = useState(true);
-  const [showHero, setShowHero] = useState(true);
-  const [showPortfolio, setShowPortfolio] = useState(false);
-  const [matchCompanyPassed, setMatchCompanyPassed] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+    const location = useLocation();
+    const [showWelcomeToast, setShowWelcomeToast] = useState(true);
+    const [showHero, setShowHero] = useState(true);
+    const [showPortfolio, setShowPortfolio] = useState(false);
+    const [matchCompanyPassed, setMatchCompanyPassed] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
-  const handleQuizConfirm = (_name: string) => {
-    setShowHero(false);
-    setShowPortfolio(true);
-  };
-
-  const handleMatchCompanyPass = () => {
-    setMatchCompanyPassed(true);
-  };
-
-  const submitQuizResult = async (
-    company: string,
-    result: "match" | "fail",
-    answers: ("yes" | "no")[]
-  ) => {
-    try {
-      await fetch("/api/submit-quiz-result", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          company: company || "미입력",
-          result,
-          answers: answers.slice(0, 5),
-        }),
-      });
-    } catch (_) {
-      // 전송 실패 시 무시 (오프라인 등)
-    }
-  };
-
-  useEffect(() => {
-    const mql = window.matchMedia("(max-width: 768px)");
-    const update = () => setIsMobile(mql.matches);
-    update();
-    mql.addEventListener("change", update);
-    return () => mql.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    const isHeroCursor = showHero && location.pathname === "/";
-    document.body.classList.toggle("hero-cursor-mode", isHeroCursor);
-    return () => document.body.classList.remove("hero-cursor-mode");
-  }, [showHero, location.pathname]);
-
-  useEffect(() => {
-    if (!matchCompanyPassed || !showPortfolio) return;
-    const el = document.getElementById("portfolio-next");
-    el?.scrollIntoView({ behavior: "smooth" });
-  }, [matchCompanyPassed, showPortfolio]);
-
-  useEffect(() => {
-    if (location.pathname !== "/thankyou") return;
-    window.history.pushState(null, "", "/thankyou");
-    const handlePopState = () => {
-      window.history.pushState(null, "", "/thankyou");
+    const handleQuizConfirm = (_name: string) => {
+        setShowHero(false);
+        setShowPortfolio(true);
     };
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, [location.pathname]);
 
-  return (
-    <TechNoteProvider>
-      {location.pathname !== "/thankyou" && <QuickMenu />}
-      <Routes>
-        <Route
-          path="/thankyou"
-          element={<ThankYou />}
-        />
-        <Route
-          path="/"
-          element={
-            <>
-              {showHero && <Hero name="박형우" />}
-              {showWelcomeToast && (
-                <Toast
-                  message={isMobile ? TOAST_MESSAGE_MOBILE : TOAST_MESSAGE_PC}
-                  duration={2000}
-                  onClose={() => setShowWelcomeToast(false)}
+    const handleMatchCompanyPass = () => {
+        setMatchCompanyPassed(true);
+    };
+
+    const submitQuizResult = async (
+        company: string,
+        result: "match" | "fail",
+        answers: ("yes" | "no")[],
+    ) => {
+        try {
+            await fetch("/api/submit-quiz-result", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    company: company || "미입력",
+                    result,
+                    answers: answers.slice(0, 5),
+                }),
+            });
+        } catch (_) {
+            // 전송 실패 시 무시 (오프라인 등)
+        }
+    };
+
+    useEffect(() => {
+        const mql = window.matchMedia("(max-width: 768px)");
+        const update = () => setIsMobile(mql.matches);
+        update();
+        mql.addEventListener("change", update);
+        return () => mql.removeEventListener("change", update);
+    }, []);
+
+    useEffect(() => {
+        const isHeroCursor = showHero && location.pathname === "/";
+        document.body.classList.toggle("hero-cursor-mode", isHeroCursor);
+        return () => document.body.classList.remove("hero-cursor-mode");
+    }, [showHero, location.pathname]);
+
+    useEffect(() => {
+        if (!matchCompanyPassed || !showPortfolio) return;
+        const el = document.getElementById("portfolio-next");
+        el?.scrollIntoView({ behavior: "smooth" });
+    }, [matchCompanyPassed, showPortfolio]);
+
+    useEffect(() => {
+        if (location.pathname !== "/thankyou") return;
+        window.history.pushState(null, "", "/thankyou");
+        const handlePopState = () => {
+            window.history.pushState(null, "", "/thankyou");
+        };
+        window.addEventListener("popstate", handlePopState);
+        return () => window.removeEventListener("popstate", handlePopState);
+    }, [location.pathname]);
+
+    return (
+        <TechNoteProvider>
+            {location.pathname !== "/thankyou" && <QuickMenu />}
+            <Routes>
+                <Route path="/thankyou" element={<ThankYou />} />
+                <Route
+                    path="/"
+                    element={
+                        <>
+                            {showHero && <Hero name="박형우" />}
+                            {showWelcomeToast && (
+                                <Toast
+                                    message={
+                                        isMobile
+                                            ? TOAST_MESSAGE_MOBILE
+                                            : TOAST_MESSAGE_PC
+                                    }
+                                    duration={2000}
+                                    onClose={() => setShowWelcomeToast(false)}
+                                />
+                            )}
+                            {showHero && (
+                                <HeroModal
+                                    question="제 이름을 작성해주세요?"
+                                    defaultName="박형우"
+                                    onConfirm={handleQuizConfirm}
+                                />
+                            )}
+                            {showPortfolio && (
+                                <main
+                                    style={{
+                                        backgroundColor: "var(--color-bg)",
+                                        color: "var(--color-text)",
+                                        overflow: matchCompanyPassed
+                                            ? "visible"
+                                            : "hidden",
+                                        height: matchCompanyPassed
+                                            ? "auto"
+                                            : "100vh",
+                                        minHeight: matchCompanyPassed
+                                            ? "auto"
+                                            : "100vh",
+                                    }}
+                                >
+                                    <MatchCompany
+                                        onResult={submitQuizResult}
+                                        onMatch={handleMatchCompanyPass}
+                                    />
+                                    <div id="portfolio-next">
+                                        <Career />
+                                    </div>
+                                </main>
+                            )}
+                        </>
+                    }
                 />
-              )}
-              {showHero && (
-                <HeroModal
-                  question="제 이름을 작성해주세요?"
-                  defaultName="박형우"
-                  onConfirm={handleQuizConfirm}
-                />
-              )}
-              {showPortfolio && (
-                <main
-                  style={{
-                    backgroundColor: "var(--color-bg)",
-                    color: "var(--color-text)",
-                    overflow: matchCompanyPassed ? "visible" : "hidden",
-                    height: matchCompanyPassed ? "auto" : "100vh",
-                    minHeight: matchCompanyPassed ? "auto" : "100vh",
-                  }}
-                >
-                  <MatchCompany
-                    onResult={submitQuizResult}
-                    onMatch={handleMatchCompanyPass}
-                  />
-                  <div id="portfolio-next">
-                    <Career />
-                  </div>
-                </main>
-              )}
-            </>
-          }
-        />
-      </Routes>
-    </TechNoteProvider>
-  );
+            </Routes>
+        </TechNoteProvider>
+    );
 }
 
 export default App;
