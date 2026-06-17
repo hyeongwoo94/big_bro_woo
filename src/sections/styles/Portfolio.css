@@ -1,5 +1,6 @@
 /* Portfolio 섹션 */
 .portfolio-sec {
+  position: relative;
   min-height: 100vh;
   background-color: var(--color-bg);
   color: var(--color-text);

@@ -5,6 +5,8 @@ import {
     OUTER_ORBIT_DATA,
     PROFILE_IMAGE,
 } from "../shared/content/portfolioData";
+import { getTechNoteContent } from "../shared/content/techNotes";
+import { TechNote } from "../shared/ui/TechNote";
 import "./styles/Portfolio.css";
 
 export default function Portfolio() {
@@ -20,6 +22,18 @@ export default function Portfolio() {
 
     return (
         <section className="portfolio-sec">
+            {!isMobile && (
+                <div
+                    style={{
+                        position: "absolute",
+                        top: "var(--spacing-lg)",
+                        right: "var(--spacing-lg)",
+                        zIndex: 10,
+                    }}
+                >
+                    <TechNote {...getTechNoteContent("portfolio")} />
+                </div>
+            )}
             <div className="portfolio-sec_cont">
                 <h2 className="portfolio-sec_heading">포트폴리오</h2>
 

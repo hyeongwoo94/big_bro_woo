@@ -7,6 +7,8 @@ import {
     CAREER_LEVEL_RANGE,
     SKILL_LABELS,
 } from "../shared/content/careerData";
+import { getTechNoteContent } from "../shared/content/techNotes";
+import { TechNote } from "../shared/ui/TechNote";
 import "./styles/Career.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -120,6 +122,18 @@ export default function Career() {
 
     return (
         <section ref={sectionRef} className="career-sec">
+            {!isMobile && (
+                <div
+                    style={{
+                        position: "absolute",
+                        top: "var(--spacing-lg)",
+                        right: "var(--spacing-lg)",
+                        zIndex: 10,
+                    }}
+                >
+                    <TechNote {...getTechNoteContent("career")} />
+                </div>
+            )}
             <div className="career-sec_cont">
                 <h2 className="career-sec_heading">실무와 함께 성장한 과정</h2>
                 <div className="career-sec_body">

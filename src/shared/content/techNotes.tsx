@@ -6,7 +6,7 @@
 import type { ReactNode } from "react";
 import type { TechNoteTemplateId } from "../ui/TechNote";
 
-export type TechNoteId = "hero" | "matchcompany";
+export type TechNoteId = "hero" | "matchcompany" | "career" | "portfolio";
 
 export type TechNoteEntry = {
   title: string;
@@ -102,6 +102,91 @@ const TECH_NOTE_CONTENT: Record<TechNoteId, TechNoteEntry> = {
           구현: <code>MatchCompany.tsx</code>에서 <code>phase === &quot;result&quot; &amp;&amp; isMatch</code>일 때만
           <code>TechNote</code>를 감싼 div를 렌더합니다.<br /> JSX에서 <code>&#123;조건 &amp;&amp; &lt;컴포넌트 /&gt;&#125;</code>처럼
           조건이 참일 때만 해당 요소가 그려지므로, 같은 state(<code>phase</code>, <code>isMatch</code>)로 "누구에게 무엇을 보여줄지"를 한 곳에서 제어할 수 있습니다.
+        </p>
+      </>
+    ),
+  },
+  career: {
+    title: "Career 섹션 / 기술설명",
+    template: "a",
+    content: (
+      <>
+        <h3>활용한 것들</h3>
+        <ul>
+          <li>
+            <strong>GSAP ScrollTrigger로 스크롤 애니메이션</strong> — 스크롤 위치에 따라 그래프 선이 그려지고 히스토리가 바뀝니다.
+            <code>pin: true</code>로 섹션을 고정하고, <code>scrub: 1</code>로 스크롤과 애니메이션을 부드럽게 연동했습니다.
+          </li>
+          <li>
+            <strong>SVG로 그래프 직접 그리기</strong> — Chart.js 같은 라이브러리 없이, <code>&lt;path&gt;</code>, <code>&lt;line&gt;</code>,
+            <code>&lt;circle&gt;</code> 요소로 직접 꺾은선 그래프를 만들었습니다. 데이터가 바뀌면 좌표만 다시 계산하면 됩니다.
+          </li>
+          <li>
+            <strong>strokeDasharray/strokeDashoffset으로 선 그리기</strong> — SVG에서 선을 "점선"으로 만든 뒤,
+            점선 간격(offset)을 조절해 선이 그려지는 것처럼 보이게 했습니다. 스크롤 진행도(progress)에 따라 offset을 줄여 선이 나타납니다.
+          </li>
+          <li>
+            <strong>CSS 변수로 색상 관리</strong> — <code>linearGradient</code>에서 <code>var(--color-accent)</code> 같은 CSS 변수를 사용해,
+            테마 색상이 바뀌면 그래프 색상도 자동으로 바뀝니다.
+          </li>
+        </ul>
+
+        <p className="tech-note-muted">
+          <strong>ScrollTrigger</strong>: GSAP 플러그인. 스크롤 위치를 트리거로 애니메이션을 실행하거나, 스크롤과 애니메이션을 동기화(scrub)할 수 있습니다.
+          <br />
+          <strong>strokeDasharray/strokeDashoffset</strong>: SVG 선의 점선 패턴과 시작 위치를 지정. offset을 전체 길이로 두면 선이 안 보이고, 0으로 줄이면 선이 다 보입니다.
+        </p>
+
+        <h3>반응형 처리</h3>
+        <p>
+          <code>matchMedia(&quot;(max-width: 768px)&quot;)</code>로 모바일 여부를 감지합니다.
+          모바일에서는 그래프를 숨기고 히스토리만 표시하며, 스크롤에 따라 텍스트가 fade in/out 됩니다.
+          <code>isMobile</code> state가 바뀌면 ScrollTrigger를 다시 설정해 브라우저 리사이즈에도 대응합니다.
+        </p>
+      </>
+    ),
+  },
+  portfolio: {
+    title: "Portfolio 섹션 / 기술설명",
+    template: "a",
+    content: (
+      <>
+        <h3>활용한 것들</h3>
+        <ul>
+          <li>
+            <strong>CSS @keyframes로 궤도 회전</strong> — JavaScript 없이 순수 CSS로 위성들이 중심을 기준으로 회전합니다.
+            안쪽/바깥 궤도가 서로 다른 속도와 방향으로 돌아, 역동적인 느낌을 줍니다.
+          </li>
+          <li>
+            <strong>CSS 변수(--angle)로 위성 위치 계산</strong> — 각 위성에 <code>--angle</code> 변수를 주고,
+            <code>transform: rotate(var(--angle)) translateX(반지름)</code>으로 원형 배치합니다.
+            JS에서 각도만 계산해 style로 넘기면 CSS가 나머지를 처리합니다.
+          </li>
+          <li>
+            <strong>역회전(counter-rotate)으로 아이콘 정방향 유지</strong> — 부모가 회전하면 자식도 같이 돌아가는데,
+            자식에게 반대 방향 회전을 걸어 썸네일이 항상 정방향을 유지하도록 했습니다.
+          </li>
+          <li>
+            <strong>pointer-events로 클릭 영역 제어</strong> — 궤도 컨테이너는 <code>pointer-events: none</code>,
+            위성만 <code>pointer-events: auto</code>로 설정해 컨테이너가 클릭을 가리지 않도록 했습니다.
+          </li>
+          <li>
+            <strong>animation-play-state로 호버 시 정지</strong> — <code>:hover</code> 시 부모와 자식 모두
+            <code>animation-play-state: paused</code>를 걸어 회전을 멈추고, 해당 항목을 강조합니다.
+          </li>
+        </ul>
+
+        <p className="tech-note-muted">
+          <strong>transform 체이닝</strong>: <code>rotate() → translateX() → rotate()</code> 순서가 중요합니다.
+          먼저 각도만큼 회전 → 반지름만큼 이동 → 다시 역회전하면 원형 궤도 위에 정방향 아이콘이 배치됩니다.
+          <br />
+          <strong>pointer-events</strong>: 요소가 마우스 이벤트를 받을지 결정. none이면 클릭이 아래로 "투과"됩니다.
+        </p>
+
+        <h3>시각 효과</h3>
+        <p>
+          궤도와 위성에 <code>box-shadow</code>로 glow 효과를 주고, <code>::before/::after</code> 가상 요소로
+          프로필 주변의 회전 링을 만들었습니다. 별(✦)은 <code>@keyframes star-twinkle</code>로 반짝이는 효과를 줍니다.
         </p>
       </>
     ),
