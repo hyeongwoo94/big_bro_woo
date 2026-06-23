@@ -1,0 +1,473 @@
+/* AI 경험 섹션 */
+.ai-exp-sec {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  padding: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-exp-sec_cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* 소제목 */
+.ai-exp-sec_heading {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: center;
+  margin: 0 0 var(--spacing-xl) 0;
+}
+
+/* ===== 탭 네비게이션 ===== */
+.ai-exp-sec_tabs {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.ai-exp-sec_tab {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ai-exp-sec_tab:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.ai-exp-sec_tab--active {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* ===== 프로젝트 상세 ===== */
+.ai-exp-sec_content {
+  width: 100%;
+}
+
+.ai-exp-sec_detail {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.ai-exp-sec_title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--color-text);
+}
+
+.ai-exp-sec_desc {
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+/* 태그 */
+.ai-exp-sec_tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.ai-exp-sec_tag-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-right: var(--spacing-xs);
+}
+
+.ai-exp-sec_tag {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(100, 180, 255, 0.15);
+  border: 1px solid rgba(100, 180, 255, 0.3);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  color: rgba(100, 180, 255, 1);
+}
+
+.ai-exp-sec_tag--ai {
+  background: rgba(150, 120, 255, 0.15);
+  border-color: rgba(150, 120, 255, 0.3);
+  color: rgba(150, 120, 255, 1);
+}
+
+/* 자동화 태그 */
+.ai-exp-sec_tag--auto {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: rgba(16, 185, 129, 1);
+}
+
+/* ===== AI 활용 장점 ===== */
+.ai-exp-sec_benefits {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.ai-exp-sec_benefits-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-accent);
+  margin: 0 0 var(--spacing-lg) 0;
+  text-align: center;
+}
+
+.ai-exp-sec_benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+.ai-exp-sec_benefit-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  transition: border-color 0.3s ease;
+}
+
+.ai-exp-sec_benefit-card:hover {
+  border-color: var(--color-accent);
+}
+
+.ai-exp-sec_benefit-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.ai-exp-sec_benefit-icon {
+  font-size: var(--font-size-lg);
+  color: var(--color-accent);
+}
+
+.ai-exp-sec_benefit-title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.ai-exp-sec_benefit-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== 준비 중 플레이스홀더 ===== */
+.ai-exp-sec_placeholder {
+  background: var(--color-bg-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  text-align: center;
+}
+
+.ai-exp-sec_placeholder-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.ai-exp-sec_placeholder-text {
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ===== AI 워크플로우 ===== */
+.ai-exp-sec_workflow {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+}
+
+/* 워크플로우 헤더 */
+.ai-exp-sec_workflow-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.ai-exp-sec_workflow-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text);
+}
+
+/* 예시 보기 버튼 */
+.ai-exp-sec_example-btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ai-exp-sec_example-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* 워크플로우 차트 - 가로 (PC) */
+.ai-exp-sec_workflow-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.ai-exp-sec_workflow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ai-exp-sec_workflow-node {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-sm);
+  transition: transform 0.3s ease;
+}
+
+.ai-exp-sec_workflow-node:hover {
+  transform: scale(1.1);
+}
+
+.ai-exp-sec_workflow-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.ai-exp-sec_workflow-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 100px;
+  line-height: 1.4;
+}
+
+.ai-exp-sec_workflow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  color: var(--color-text-muted);
+  padding: 0 var(--spacing-xs);
+}
+
+/* 워크플로우 차트 - 세로 (Mobile) */
+.ai-exp-sec_workflow-chart--vertical {
+  flex-direction: column;
+  align-items: center;
+}
+
+.ai-exp-sec_workflow-chart--vertical .ai-exp-sec_workflow-item {
+  flex-direction: row;
+  text-align: left;
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 300px;
+}
+
+.ai-exp-sec_workflow-chart--vertical .ai-exp-sec_workflow-node {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.ai-exp-sec_workflow-chart--vertical .ai-exp-sec_workflow-desc {
+  max-width: none;
+  flex: 1;
+}
+
+.ai-exp-sec_workflow-chart--vertical .ai-exp-sec_workflow-arrow {
+  padding: var(--spacing-xs) 0;
+}
+
+/* ===== 슬라이드 패널 ===== */
+.ai-exp-sec_panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 100;
+}
+
+.ai-exp-sec_panel-overlay--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ai-exp-sec_panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  background: var(--color-bg);
+  border-left: 1px solid var(--color-border);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ai-exp-sec_panel--open {
+  transform: translateX(0);
+}
+
+.ai-exp-sec_panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.ai-exp-sec_panel-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.ai-exp-sec_panel-close {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-bg-surface);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ai-exp-sec_panel-close:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.ai-exp-sec_panel-subtitle {
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.ai-exp-sec_panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+}
+
+/* 대화 아이템 */
+.ai-exp-sec_panel-item {
+  margin-bottom: var(--spacing-lg);
+}
+
+.ai-exp-sec_panel-item:last-child {
+  margin-bottom: 0;
+}
+
+.ai-exp-sec_panel-role {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 2px solid;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.ai-exp-sec_panel-bubble {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .ai-exp-sec {
+    padding: var(--spacing-lg);
+  }
+
+  .ai-exp-sec_tabs {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ai-exp-sec_tab {
+    flex-shrink: 0;
+  }
+
+  .ai-exp-sec_detail,
+  .ai-exp-sec_workflow {
+    padding: var(--spacing-lg);
+  }
+
+  .ai-exp-sec_panel {
+    max-width: 100%;
+  }
+
+  .ai-exp-sec_benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}

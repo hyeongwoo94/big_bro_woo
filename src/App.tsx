@@ -4,6 +4,7 @@ import Hero from "./sections/Hero";
 import MatchCompany from "./sections/MatchCompany";
 import Career from "./sections/Career";
 import Portfolio from "./sections/Portfolio";
+import AIExperience from "./sections/AIExperience";
 import ThankYou from "./pages/ThankYou";
 import Toast from "./shared/ui/Toast";
 import HeroModal from "./shared/ui/HeroModal";
@@ -131,6 +132,7 @@ function App() {
                                     <div id="portfolio-next">
                                         <Career />
                                         <Portfolio />
+                                        <AIExperience />
                                     </div>
                                 </main>
                             )}

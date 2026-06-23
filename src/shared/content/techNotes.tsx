@@ -6,7 +6,7 @@
 import type { ReactNode } from "react";
 import type { TechNoteTemplateId } from "../ui/TechNote";
 
-export type TechNoteId = "hero" | "matchcompany" | "career" | "portfolio";
+export type TechNoteId = "hero" | "matchcompany" | "career" | "portfolio" | "aiexperience";
 
 export type TechNoteEntry = {
   title: string;
@@ -187,6 +187,45 @@ const TECH_NOTE_CONTENT: Record<TechNoteId, TechNoteEntry> = {
         <p>
           궤도와 위성에 <code>box-shadow</code>로 glow 효과를 주고, <code>::before/::after</code> 가상 요소로
           프로필 주변의 회전 링을 만들었습니다. 별(✦)은 <code>@keyframes star-twinkle</code>로 반짝이는 효과를 줍니다.
+        </p>
+      </>
+    ),
+  },
+  aiexperience: {
+    title: "AI 경험 섹션 / 기술설명",
+    template: "a",
+    content: (
+      <>
+        <h3>활용한 것들</h3>
+        <ul>
+          <li>
+            <strong>탭 UI 패턴</strong> — 여러 프로젝트를 탭으로 분리해 한 화면에서 전환합니다.
+            <code>useState</code>로 현재 선택된 탭 인덱스를 관리하고, 해당 프로젝트 데이터만 렌더링합니다.
+          </li>
+          <li>
+            <strong>컴포넌트 분리</strong> — <code>ProjectDetail</code>과 <code>WorkflowVisualization</code>을
+            별도 컴포넌트로 분리해 관심사를 나눴습니다. 재사용성과 가독성이 높아집니다.
+          </li>
+          <li>
+            <strong>데이터 기반 렌더링</strong> — 프로젝트 정보와 워크플로우 단계를 배열 데이터로 관리합니다.
+            <code>.map()</code>으로 순회하며 UI를 생성하므로, 새 프로젝트 추가 시 데이터만 추가하면 됩니다.
+          </li>
+          <li>
+            <strong>동적 스타일링</strong> — 워크플로우 노드에 역할별 색상을 <code>style</code> prop으로 전달합니다.
+            CSS 변수 대신 JS 객체(<code>WORKFLOW_COLORS</code>)로 색상을 관리해 유연성을 높였습니다.
+          </li>
+        </ul>
+
+        <p className="tech-note-muted">
+          <strong>컴포넌트 분리 기준</strong>: "이 부분이 독립적으로 의미가 있나?", "재사용될 수 있나?"를 기준으로 분리합니다.
+          너무 잘게 쪼개면 오히려 복잡해지므로, 적절한 크기를 유지하는 게 중요합니다.
+        </p>
+
+        <h3>반응형 처리</h3>
+        <p>
+          워크플로우 차트는 PC에서 가로, Mobile에서 세로로 표시됩니다.
+          <code>isMobile</code> prop을 받아 <code>ai-exp-sec_workflow-chart--vertical</code> 클래스를 조건부 적용합니다.
+          CSS에서 <code>flex-direction</code>을 바꿔 레이아웃을 전환합니다.
         </p>
       </>
     ),
