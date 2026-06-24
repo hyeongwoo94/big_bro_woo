@@ -310,6 +310,7 @@
   gap: var(--spacing-md);
   width: 100%;
   max-width: 300px;
+  justify-content: center;
 }
 
 .ai-exp-sec_workflow-chart--vertical .ai-exp-sec_workflow-node {
@@ -321,11 +322,10 @@
 
 .ai-exp-sec_workflow-chart--vertical .ai-exp-sec_workflow-desc {
   max-width: none;
-  flex: 1;
 }
 
 .ai-exp-sec_workflow-chart--vertical .ai-exp-sec_workflow-arrow {
-  padding: var(--spacing-xs) 0;
+  display: none;
 }
 
 /* ===== 슬라이드 패널 ===== */
@@ -465,6 +465,10 @@
 
   .ai-exp-sec_panel {
     max-width: 100%;
+  }
+
+  .ai-exp-sec_panel-content {
+    padding-bottom: 100px; /* QuickMenu 공간 확보 */
   }
 
   .ai-exp-sec_benefits-grid {
