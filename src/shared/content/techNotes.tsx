@@ -6,7 +6,7 @@
 import type { ReactNode } from "react";
 import type { TechNoteTemplateId } from "../ui/TechNote";
 
-export type TechNoteId = "hero" | "matchcompany" | "career" | "portfolio" | "aiexperience";
+export type TechNoteId = "hero" | "matchcompany" | "career" | "portfolio" | "aiexperience" | "aboutme";
 
 export type TechNoteEntry = {
   title: string;
@@ -226,6 +226,45 @@ const TECH_NOTE_CONTENT: Record<TechNoteId, TechNoteEntry> = {
           워크플로우 차트는 PC에서 가로, Mobile에서 세로로 표시됩니다.
           <code>isMobile</code> prop을 받아 <code>ai-exp-sec_workflow-chart--vertical</code> 클래스를 조건부 적용합니다.
           CSS에서 <code>flex-direction</code>을 바꿔 레이아웃을 전환합니다.
+        </p>
+      </>
+    ),
+  },
+  aboutme: {
+    title: "ABOUT ME 섹션 / 기술설명",
+    template: "a",
+    content: (
+      <>
+        <h3>활용한 것들</h3>
+        <ul>
+          <li>
+            <strong>아코디언 패턴</strong> — 긴 내용을 카드로 나누고, 클릭 시 펼쳐지는 UI입니다.
+            <code>useState</code>로 현재 열린 카드 id를 관리하고, 다른 카드를 클릭하면 이전 카드는 자동으로 닫힙니다.
+          </li>
+          <li>
+            <strong>CSS max-height 트랜지션</strong> — <code>height: auto</code>는 트랜지션이 안 되므로,
+            <code>max-height</code>를 큰 값(예: 500px)으로 설정하고 0에서 전환하는 방식을 썼습니다.
+          </li>
+          <li>
+            <strong>CSS Grid로 카드 레이아웃</strong> — PC에서 3열, 태블릿 2열, 모바일 1열로 반응형 그리드를 구성합니다.
+            열린 카드는 <code>grid-column: 1 / -1</code>로 전체 너비를 차지합니다.
+          </li>
+          <li>
+            <strong>데이터 분리</strong> — 카드 제목, 아이콘, 키워드, 내용을 배열 데이터로 관리합니다.
+            내용 수정 시 <code>aboutMeData.ts</code>만 수정하면 됩니다.
+          </li>
+        </ul>
+
+        <p className="tech-note-muted">
+          <strong>max-height 트릭</strong>: CSS transition은 auto 값에 적용되지 않습니다.
+          max-height를 실제 내용보다 큰 값으로 두면 "0 → 큰 값" 사이에서 트랜지션이 동작합니다.
+          단점은 실제 높이와 max-height 차이만큼 딜레이가 느껴질 수 있다는 점입니다.
+        </p>
+
+        <h3>접근성</h3>
+        <p>
+          카드 헤더를 <code>&lt;button&gt;</code>으로 만들어 키보드 접근이 가능하고,
+          <code>aria-expanded</code>로 현재 펼쳐진 상태를 스크린 리더에 알립니다.
         </p>
       </>
     ),

@@ -5,6 +5,7 @@ import MatchCompany from "./sections/MatchCompany";
 import Career from "./sections/Career";
 import Portfolio from "./sections/Portfolio";
 import AIExperience from "./sections/AIExperience";
+import AboutMe from "./sections/AboutMe";
 import ThankYou from "./pages/ThankYou";
 import Toast from "./shared/ui/Toast";
 import HeroModal from "./shared/ui/HeroModal";
@@ -133,6 +134,7 @@ function App() {
                                         <Career />
                                         <Portfolio />
                                         <AIExperience />
+                                        <AboutMe />
                                     </div>
                                 </main>
                             )}
