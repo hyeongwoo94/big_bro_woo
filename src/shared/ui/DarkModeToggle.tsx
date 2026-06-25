@@ -8,10 +8,10 @@ const THEME_KEY = "theme";
 type Theme = "light" | "dark";
 
 function getTheme(): Theme {
-  if (typeof document === "undefined") return "light";
+  if (typeof document === "undefined") return "dark";
   const attr = document.documentElement.getAttribute("data-theme");
   if (attr === "dark" || attr === "light") return attr;
-  return "light";
+  return "dark";
 }
 
 function setTheme(theme: Theme) {

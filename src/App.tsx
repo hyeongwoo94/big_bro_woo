@@ -26,6 +26,7 @@ function App() {
     const handleQuizConfirm = (_name: string) => {
         setShowHero(false);
         setShowPortfolio(true);
+        setShowWelcomeToast(false);
     };
 
     const handleMatchCompanyPass = () => {
@@ -99,13 +100,12 @@ function App() {
                                             ? TOAST_MESSAGE_MOBILE
                                             : TOAST_MESSAGE_PC
                                     }
-                                    duration={2000}
-                                    onClose={() => setShowWelcomeToast(false)}
+                                    duration={0}
                                 />
                             )}
                             {showHero && (
                                 <HeroModal
-                                    question="제 이름을 작성해주세요?"
+                                    question="제 이름을 작성해주세요"
                                     defaultName="박형우"
                                     onConfirm={handleQuizConfirm}
                                 />
