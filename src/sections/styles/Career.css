@@ -161,6 +161,7 @@
     color: var(--color-text-muted);
     line-height: 1.6;
     margin: 0;
+    white-space: pre-wrap;
 }
 
 /* 모바일 */
@@ -189,5 +190,9 @@
 
     .career-sec_item--active {
         transform: translateX(-50%) translateY(0);
+    }
+    .career-sec_desc {
+        word-break: keep-all;
+        overflow-wrap: break-word;
     }
 }

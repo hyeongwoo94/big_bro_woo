@@ -489,4 +489,8 @@
   .portfolio-sec {
     padding: var(--spacing-lg);
   }
+
+  .portfolio-sec_heading {
+    margin-bottom: var(--spacing-xl);
+  }
 }
