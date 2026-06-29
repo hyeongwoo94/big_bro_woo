@@ -1,5 +1,5 @@
 /**
- * MatchCompany: "내가 원하는 회사인가?" 5문 O/X 퀴즈
+ * MatchCompany: "내가 원하는 회사인가?" 3문 O/X 퀴즈
  * 설계: docs/design/match-company-design.md
  */
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -30,7 +30,7 @@ type Phase = "intro" | "question" | "result";
 type Answer = "yes" | "no";
 
 const QUESTION_DELAY_MS = 500; // 질문 등장 후 버튼 노출까지 (50% 단축)
-const RESULT_DELAY_MS = 400; // 5문 답변 후 결과 노출까지
+const RESULT_DELAY_MS = 400; // 3문 답변 후 결과 노출까지
 
 export type MatchCompanyProps = {
   onResult?: (company: string, result: "match" | "fail", answers: Answer[]) => void;

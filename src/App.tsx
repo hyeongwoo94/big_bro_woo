@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Hero from "./sections/Hero";
 import MatchCompany from "./sections/MatchCompany";
@@ -6,31 +6,44 @@ import Career from "./sections/Career";
 import Portfolio from "./sections/Portfolio";
 import AIExperience from "./sections/AIExperience";
 import AboutMe from "./sections/AboutMe";
+import Contact from "./sections/Contact";
 import ThankYou from "./pages/ThankYou";
+import NotFound from "./pages/NotFound";
 import Toast from "./shared/ui/Toast";
 import HeroModal from "./shared/ui/HeroModal";
 import { TechNoteProvider } from "./shared/ui/TechNote";
 import { QuickMenu } from "./shared/ui/QuickMenu";
+import { getIntroProgress, setIntroProgress } from "./shared/utils/introProgress";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const TOAST_MESSAGE_PC = "마우스를 움직여 이름을 찾아보세요";
 const TOAST_MESSAGE_MOBILE = "제 이름을 찾아보세요";
 
+const savedIntro = getIntroProgress();
+
 function App() {
     const location = useLocation();
-    const [showWelcomeToast, setShowWelcomeToast] = useState(true);
-    const [showHero, setShowHero] = useState(true);
-    const [showPortfolio, setShowPortfolio] = useState(false);
-    const [matchCompanyPassed, setMatchCompanyPassed] = useState(false);
+    const [showWelcomeToast, setShowWelcomeToast] = useState(
+        savedIntro === "none",
+    );
+    const [showHero, setShowHero] = useState(savedIntro === "none");
+    const [showPortfolio, setShowPortfolio] = useState(savedIntro !== "none");
+    const [matchCompanyPassed, setMatchCompanyPassed] = useState(
+        savedIntro === "complete",
+    );
     const [isMobile, setIsMobile] = useState(false);
+    const skipInitialScrollRef = useRef(savedIntro === "complete");
 
     const handleQuizConfirm = (_name: string) => {
         setShowHero(false);
         setShowPortfolio(true);
         setShowWelcomeToast(false);
+        setIntroProgress("hero");
     };
 
     const handleMatchCompanyPass = () => {
         setMatchCompanyPassed(true);
+        setIntroProgress("complete");
     };
 
     const submitQuizResult = async (
@@ -45,7 +58,7 @@ function App() {
                 body: JSON.stringify({
                     company: company || "미입력",
                     result,
-                    answers: answers.slice(0, 5),
+                    answers: answers.slice(0, 3),
                 }),
             });
         } catch (_) {
@@ -69,8 +82,18 @@ function App() {
 
     useEffect(() => {
         if (!matchCompanyPassed || !showPortfolio) return;
-        const el = document.getElementById("portfolio-next");
-        el?.scrollIntoView({ behavior: "smooth" });
+        if (skipInitialScrollRef.current) {
+            skipInitialScrollRef.current = false;
+            return;
+        }
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                document.getElementById("portfolio-next")?.scrollIntoView({
+                    behavior: "smooth",
+                });
+                ScrollTrigger.refresh();
+            });
+        });
     }, [matchCompanyPassed, showPortfolio]);
 
     useEffect(() => {
@@ -85,7 +108,7 @@ function App() {
 
     return (
         <TechNoteProvider>
-            {location.pathname !== "/thankyou" && <QuickMenu />}
+            {location.pathname === "/" && <QuickMenu />}
             <Routes>
                 <Route path="/thankyou" element={<ThankYou />} />
                 <Route
@@ -112,35 +135,33 @@ function App() {
                             )}
                             {showPortfolio && (
                                 <main
+                                    className="app-main"
                                     style={{
                                         backgroundColor: "var(--color-bg)",
                                         color: "var(--color-text)",
-                                        overflow: matchCompanyPassed
-                                            ? "visible"
-                                            : "hidden",
-                                        height: matchCompanyPassed
-                                            ? "auto"
-                                            : "100vh",
-                                        minHeight: matchCompanyPassed
-                                            ? "auto"
-                                            : "100vh",
                                     }}
                                 >
-                                    <MatchCompany
-                                        onResult={submitQuizResult}
-                                        onMatch={handleMatchCompanyPass}
-                                    />
-                                    <div id="portfolio-next">
-                                        <AboutMe />
-                                        <Career />
-                                        <Portfolio />
-                                        <AIExperience />
-                                    </div>
+                                    {!matchCompanyPassed && (
+                                        <MatchCompany
+                                            onResult={submitQuizResult}
+                                            onMatch={handleMatchCompanyPass}
+                                        />
+                                    )}
+                                    {matchCompanyPassed && (
+                                        <div id="portfolio-next">
+                                            <AboutMe />
+                                            <Career />
+                                            <Portfolio />
+                                            <AIExperience />
+                                            <Contact />
+                                        </div>
+                                    )}
                                 </main>
                             )}
                         </>
                     }
                 />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </TechNoteProvider>
     );

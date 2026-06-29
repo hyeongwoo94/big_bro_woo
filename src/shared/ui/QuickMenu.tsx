@@ -1,8 +1,8 @@
 /**
  * 사이드 퀵메뉴
- * PC: 오른쪽 하단 동그란 햄버거 아이콘 버튼 → 클릭 시 위로 메뉴 4개 펼침
- * 모바일: 하단 플로팅으로 4개 항목 항상 표시
- * 5개: 다크모드 + 토이·블로그·깃·디자인시스템
+ * PC: 오른쪽 하단 동그란 햄버거 아이콘 버튼 → 클릭 시 위로 메뉴 펼침
+ * 모바일: 하단 플로팅으로 항목 항상 표시
+ * 다크모드 + 토이·블로그·깃
  */
 import { useEffect, useState } from "react";
 
@@ -27,7 +27,6 @@ const QUICK_LINKS = [
   { label: "토이", href: "https://toy-dashboard-big-bro-woo.vercel.app/" },
   { label: "블로그", href: "https://ineedurhelp.tistory.com/" },
   { label: "깃", href: "https://github.com/hyeongwoo94" },
-  { label: "디자인시스템", href: "/storybook/" },
 ];
 
 export function QuickMenu() {
@@ -46,7 +45,7 @@ export function QuickMenu() {
 
   return (
     <div className="quick-menu" data-open={open || undefined}>
-      {/* PC: 펼쳐진 메뉴 5개 (위에서부터: 다크모드, 토이, 블로그, 깃, 디자인시스템) */}
+      {/* PC: 펼쳐진 메뉴 (위에서부터: 다크모드, 토이, 블로그, 깃) */}
       <div className="quick-menu__items" role="menu">
         <button
           type="button"

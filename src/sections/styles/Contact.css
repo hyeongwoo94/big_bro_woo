@@ -1,0 +1,76 @@
+/* Contact Footer — PC: 하단 고정, Mobile: 문서 흐름 맨 끝 */
+.contact-footer {
+    width: 100%;
+    background-color: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+}
+
+.contact-footer_cont {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm) var(--spacing-md);
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.contact-footer_copy {
+    color: var(--color-text-muted);
+}
+
+.contact-footer_sep {
+    color: var(--color-border);
+    user-select: none;
+}
+
+.contact-footer_link {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    word-break: break-all;
+}
+
+.contact-footer_link:hover {
+    color: var(--color-accent);
+}
+
+/* PC: 화면 하단 고정 */
+@media (min-width: 769px) {
+    .contact-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9990;
+    }
+}
+
+/* Mobile: 마지막 섹션 흐름, QuickMenu 위 여백 */
+@media (max-width: 768px) {
+    .contact-footer {
+        position: static;
+    }
+
+    .contact-footer_cont {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-lg) var(--spacing-md);
+        /* QuickMenu(약 68px) + safe-area */
+        padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .contact-footer_sep {
+        display: none;
+    }
+}
+
+/* PC: 고정 footer 있을 때만 본문 하단 여백 */
+@media (min-width: 769px) {
+    .app-main:has(.contact-footer) {
+        padding-bottom: 52px;
+    }
+}

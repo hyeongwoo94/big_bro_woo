@@ -1,4 +1,7 @@
 {
   "buildCommand": "npm run build:with-storybook",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
 }
