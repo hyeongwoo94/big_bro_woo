@@ -131,10 +131,10 @@ function App() {
                                         onMatch={handleMatchCompanyPass}
                                     />
                                     <div id="portfolio-next">
+                                        <AboutMe />
                                         <Career />
                                         <Portfolio />
                                         <AIExperience />
-                                        <AboutMe />
                                     </div>
                                 </main>
                             )}

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  ABOUT_INTRO,
   ABOUT_CARDS,
   type AboutCard,
 } from "../shared/content/aboutMeData";
@@ -42,8 +41,14 @@ export default function AboutMe() {
       <div className="aboutme-sec_cont">
         <h2 className="aboutme-sec_heading">ABOUT ME</h2>
 
-        {/* 인트로 */}
-        <p className="aboutme-sec_intro">{ABOUT_INTRO}</p>
+        {/* 이력서 다운로드 버튼 */}
+        <a
+          href="/resume.pdf"
+          download
+          className="aboutme-sec_resume-btn"
+        >
+          이력서보기
+        </a>
 
         {/* 카드 그리드 */}
         <div className="aboutme-sec_cards">

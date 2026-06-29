@@ -28,15 +28,27 @@
   margin: 0 0 var(--spacing-xl) 0;
 }
 
-/* 인트로 */
-.aboutme-sec_intro {
-  font-size: var(--font-size-lg);
-  line-height: 1.8;
-  color: var(--color-text);
-  text-align: center;
-  max-width: 800px;
+/* 이력서 다운로드 버튼 */
+.aboutme-sec_resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: transparent;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  color: var(--color-accent);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
   margin: 0 0 var(--spacing-2xl) 0;
-  word-break: keep-all;
+}
+
+.aboutme-sec_resume-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-bg);
 }
 
 /* ===== 카드 그리드 ===== */

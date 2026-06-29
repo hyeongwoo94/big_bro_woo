@@ -41,6 +41,40 @@ export interface WorkflowExample {
     content: string;
 }
 
+/** 공통 AI 페르소나 워크플로우 (모든 탭 동일) */
+export const DEFAULT_WORKFLOW: WorkflowStep[] = [
+    {
+        id: "cmd",
+        role: "command",
+        label: "명령",
+        description: "요청 전달",
+    },
+    {
+        id: "dir",
+        role: "director",
+        label: "총괄",
+        description: "방향 결정",
+    },
+    {
+        id: "plan",
+        role: "planning",
+        label: "기획일꾼",
+        description: "설계 작성",
+    },
+    {
+        id: "code",
+        role: "code",
+        label: "코드일꾼",
+        description: "코드 구현",
+    },
+    {
+        id: "review",
+        role: "review",
+        label: "검토일꾼",
+        description: "품질 검토",
+    },
+];
+
 export const WORKFLOW_EXAMPLE: WorkflowExample[] = [
     {
         role: "command",
@@ -98,38 +132,7 @@ export const AI_EXPERIENCE_DATA: AIProject[] = [
             "페르소나 기반 워크플로우를 적용해 체계적으로 개발했습니다.",
         techStack: ["React", "TypeScript", "CSS", "GSAP", "Vite"],
         aiTools: ["Cursor (Claude)"],
-        workflow: [
-            {
-                id: "cmd",
-                role: "command",
-                label: "명령",
-                description: "요청 전달",
-            },
-            {
-                id: "dir",
-                role: "director",
-                label: "총괄",
-                description: "방향 결정",
-            },
-            {
-                id: "plan",
-                role: "planning",
-                label: "기획일꾼",
-                description: "설계 작성",
-            },
-            {
-                id: "code",
-                role: "code",
-                label: "코드일꾼",
-                description: "코드 구현",
-            },
-            {
-                id: "review",
-                role: "review",
-                label: "검토일꾼",
-                description: "품질 검토",
-            },
-        ],
+        workflow: DEFAULT_WORKFLOW,
         aiBenefits: [
             {
                 title: "페르소나 기반 체계적 개발",
@@ -164,11 +167,49 @@ export const AI_EXPERIENCE_DATA: AIProject[] = [
         ],
     },
     {
-        id: "ERP",
-        title: "ERP",
-        description: "추후 작성 예정입니다.",
-        techStack: [],
-        aiTools: [],
-        workflow: [],
+        id: "toy-dashboard",
+        title: "업무관리 대시보드",
+        description:
+            "ERP 퍼블리싱 경험을 바탕으로, 퍼블리셔 → 프론트엔드 전환 학습 목적으로 제작한 React SPA입니다. " +
+            "로그인·메인 대시보드·업무 CRUD·공지사항·사이트 설명 페이지를 포함하며, " +
+            "pages / features / components 폴더 구조와 Zustand·React Router·커스텀 훅(useTasks)을 직접 설계했습니다. " +
+            "Cursor를 활용해 구현을 가속했고, 설계 의도는 앱 내 「사이트 설명」 페이지와 docs에 문서화했습니다.",
+        techStack: [
+            "React 19",
+            "TypeScript",
+            "Vite",
+            "React Router",
+            "Zustand",
+            "SCSS",
+            "DummyJSON",
+        ],
+        aiTools: ["Cursor"],
+        workflow: DEFAULT_WORKFLOW,
+        aiBenefits: [
+            {
+                title: "설계는 본인, 구현은 AI 가속",
+                description:
+                    "pages/features/components 분리, main_grid vs sub_layout, ProtectedRoute 등 " +
+                    "핵심 구조는 직접 결정하고, 모달·설명 페이지·모바일 메뉴 등은 Cursor로 빠르게 구현했습니다.",
+            },
+            {
+                title: "퍼블 경험이 AI 산출물 검토에 유리",
+                description:
+                    "SCSS·반응형·레이아웃 기준이 있어 AI가 만든 UI도 " +
+                    "그리드·브레이크포인트·간격을 본인 기준에 맞게 수정하기 쉬웠습니다.",
+            },
+            {
+                title: "막힐 때 힌트 → 필요 시 구현",
+                description:
+                    "Zustand, Outlet, SPA 배포(vercel.json) 등 막히는 지점은 힌트로 방향을 잡고, " +
+                    "「제작해줘」로 명시할 때만 코드를 받아 학습과 속도를 동시에 확보했습니다.",
+            },
+        ],
+        automations: [
+            "요구사항 정리 후 구현 요청",
+            "기존 패턴 재사용 구현",
+            "explainTabs / README 문서 초안",
+            "배포 이슈 원인 분석 및 해결",
+        ],
     },
 ];
