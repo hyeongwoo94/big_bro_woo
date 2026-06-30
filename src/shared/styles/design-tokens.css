@@ -13,11 +13,11 @@
   --color-text: #0F172A;
   --color-text-muted: #5C6B7A;
   
-  /* 포인트/액센트 — 전문성 (블루 계열) */
+  /* 포인트/액센트 — primary와 조화되는 뮤트 블루 */
   --color-primary: #0B3C5D;
   --color-primary-hover: #082d47;
-  --color-accent: #00C2FF;
-  --color-accent-hover: #33cdff;
+  --color-accent: #2A6F94;
+  --color-accent-hover: #3583AD;
   
   /* 개인 스토리 강조 — 따뜻한 액센트 (호박/골드) */
   --color-accent-warm: #D97706;
@@ -26,7 +26,7 @@
   
   /* 보조 */
   --color-border: #E5E2DD;
-  --color-focus-ring: #00C2FF;
+  --color-focus-ring: #2A6F94;
   /* 모달/패널 — 라이트에서는 검은 그림자 */
   --shadow-modal: 0 -4px 24px rgba(0, 0, 0, 0.15);
   --color-modal-edge: transparent;

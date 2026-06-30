@@ -13,6 +13,21 @@ export interface AboutCard {
 export const ABOUT_INTRO =
     "안녕하세요. 사용자 경험과 데이터의 흐름을 함께 고민하는 프론트엔드 개발자 박형우입니다.";
 
+export const ABOUT_TECH_STACK = [
+    "HTML",
+    "SCSS",
+    "CSS",
+    "JavaScript",
+    "GSAP",
+    "PHP",
+    "그누보드",
+    "Vue",
+    "React",
+    "TypeScript",
+    "Photoshop",
+    "Figma",
+] as const;
+
 export const ABOUT_CARDS: AboutCard[] = [
     {
         id: "why-frontend",
@@ -29,6 +44,14 @@ export const ABOUT_CARDS: AboutCard[] = [
         keywords: ["템플릿", "유지보수", "재사용"],
         content:
             "프로젝트는 개발보다 유지보수 기간이 더 길다고 생각합니다. 그래서 처음부터 규칙을 정하고 공통 요소를 템플릿과 컴포넌트로 구성하여 재사용성을 높입니다. 다른 개발자도 쉽게 이해하고 수정할 수 있는 구조를 만드는 것이 효율적인 개발이라고 생각합니다.",
+    },
+    {
+        id: "team-lead",
+        title: "팀리드 경험",
+        icon: "👥",
+        keywords: ["팀 리딩", "일정 조율", "프로세스 정립"],
+        content:
+            "1년 퍼블리셔 3명 팀을 리드했습니다.\n공통 페이지를 템플릿화해 홈페이지 제작 시간을 줄이고, 신규·유지보수 업무를 분담·조율했습니다.\n팀원별 강점에 맞게 업무를 배분하고, 제작 기준을 정리해 누구나 일관된 방식으로 작업할 수 있는 환경을 만들기 위해 노력했습니다.",
     },
     {
         id: "how-study",

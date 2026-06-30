@@ -16,7 +16,7 @@ export const CAREER_DATA: CareerItem[] = [
         level: 0,
         title: "웹 퍼블리싱 입문",
         description:
-            "HTML, CSS, JavaScript를 처음 배우며 웹 개발에 입문했습니다.\n웹페이지 레이아웃 설계와 정적 페이지 제작을 학습했습니다.\n Photoshop 자격증을 취득하며 디자인 협업을 위한 기초 역량도 갖추었습니다.",
+            "HTML, CSS, JavaScript를 처음 배우며 웹 개발에 입문했습니다.\n웹페이지 레이아웃 설계와 정적 페이지 제작을 학습했습니다.\nPhotoshop 자격증을 취득하며 디자인 협업을 위한 기초 역량도 갖추었습니다.",
     },
     {
         year: 2021,

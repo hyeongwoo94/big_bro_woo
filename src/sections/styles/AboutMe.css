@@ -25,25 +25,52 @@
   font-weight: 700;
   color: var(--color-text);
   text-align: center;
-  margin: 0 0 var(--spacing-xl) 0;
+  margin: 0 0 var(--spacing-md) 0;
 }
 
-/* 이력서 다운로드 버튼 */
+/* 기술 스택 */
+.aboutme-sec_stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  width: 100%;
+  margin: 0 0 var(--spacing-xl) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aboutme-sec_stack-item {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(100, 180, 255, 0.12);
+  border: 1px solid rgba(100, 180, 255, 0.28);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+/* 이력서 다운로드 — 카드 하단 오른쪽 */
+.aboutme-sec_resume-wrap {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: var(--spacing-lg);
+}
+
 .aboutme-sec_resume-btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md) var(--spacing-xl);
+  padding: var(--spacing-xs) var(--spacing-md);
   background: transparent;
-  border: 2px solid var(--color-accent);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
   color: var(--color-accent);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin: 0 0 var(--spacing-2xl) 0;
 }
 
 .aboutme-sec_resume-btn:hover {
@@ -151,6 +178,7 @@
   color: var(--color-text-muted);
   margin: 0;
   word-break: keep-all;
+  white-space: pre-line;
 }
 
 /* ===== 반응형 ===== */

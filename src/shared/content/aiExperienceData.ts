@@ -14,6 +14,12 @@ export interface AIBenefit {
     description: string;
 }
 
+/** 직접 설계·구현한 기능 영역 (토이 프로젝트 등) */
+export interface ImplementationArea {
+    title: string;
+    description: string;
+}
+
 export interface AIProject {
     id: string;
     title: string;
@@ -23,6 +29,9 @@ export interface AIProject {
     workflow: WorkflowStep[];
     aiBenefits?: AIBenefit[];
     automations?: string[];
+    /** 프론트엔드 역량을 보여주는 구현 범위 목록 */
+    implementationIntro?: string;
+    implementationAreas?: ImplementationArea[];
 }
 
 /** 워크플로우 역할별 색상 */
@@ -131,7 +140,7 @@ export const AI_EXPERIENCE_DATA: AIProject[] = [
             "Cursor IDE의 에이전트 기능을 활용하여 기획부터 구현까지 전 과정을 AI와 함께 진행했습니다. " +
             "페르소나 기반 워크플로우를 적용해 체계적으로 개발했습니다.",
         techStack: ["React", "TypeScript", "CSS", "GSAP", "Vite"],
-        aiTools: ["Cursor (Claude)"],
+        aiTools: ["Cursor", "ChatGPT"],
         workflow: DEFAULT_WORKFLOW,
         aiBenefits: [
             {
@@ -175,7 +184,7 @@ export const AI_EXPERIENCE_DATA: AIProject[] = [
             "pages / features / components 폴더 구조와 Zustand·React Router·커스텀 훅(useTasks)을 직접 설계했습니다. " +
             "Cursor를 활용해 구현을 가속했고, 설계 의도는 앱 내 「사이트 설명」 페이지와 docs에 문서화했습니다.",
         techStack: [
-            "React 19",
+            "React",
             "TypeScript",
             "Vite",
             "React Router",
@@ -185,31 +194,40 @@ export const AI_EXPERIENCE_DATA: AIProject[] = [
         ],
         aiTools: ["Cursor"],
         workflow: DEFAULT_WORKFLOW,
-        aiBenefits: [
-            {
-                title: "설계는 본인, 구현은 AI 가속",
-                description:
-                    "pages/features/components 분리, main_grid vs sub_layout, ProtectedRoute 등 " +
-                    "핵심 구조는 직접 결정하고, 모달·설명 페이지·모바일 메뉴 등은 Cursor로 빠르게 구현했습니다.",
-            },
-            {
-                title: "퍼블 경험이 AI 산출물 검토에 유리",
-                description:
-                    "SCSS·반응형·레이아웃 기준이 있어 AI가 만든 UI도 " +
-                    "그리드·브레이크포인트·간격을 본인 기준에 맞게 수정하기 쉬웠습니다.",
-            },
-            {
-                title: "막힐 때 힌트 → 필요 시 구현",
-                description:
-                    "Zustand, Outlet, SPA 배포(vercel.json) 등 막히는 지점은 힌트로 방향을 잡고, " +
-                    "「제작해줘」로 명시할 때만 코드를 받아 학습과 속도를 동시에 확보했습니다.",
-            },
-        ],
         automations: [
             "요구사항 정리 후 구현 요청",
             "기존 패턴 재사용 구현",
             "explainTabs / README 문서 초안",
             "배포 이슈 원인 분석 및 해결",
+        ],
+        implementationIntro:
+            "퍼블리셔에서 프론트엔드로 전환하기 위해 공부하며 직접 설계·구현한 범위입니다. " +
+            "아래 기능을 스스로 구조화하고 동작까지 완성할 수 있음을 보여주기 위한 목록입니다.",
+        implementationAreas: [
+            {
+                title: "설계",
+                description: "폴더 구조, 라우팅, 레이아웃, 상태 배치",
+            },
+            {
+                title: "로그인",
+                description: "mock 인증 + Zustand + localStorage",
+            },
+            {
+                title: "업무",
+                description: "CRUD + 탭/검색/페이지네이션 + 권한",
+            },
+            {
+                title: "API",
+                description: "DummyJSON 연동 + localStorage로 영속성 보완",
+            },
+            {
+                title: "공통 UI",
+                description: "List, Modal, Toast, DatePicker 등",
+            },
+            {
+                title: "대시보드",
+                description: "4위젯 메인 + 달력 연동",
+            },
         ],
     },
 ];

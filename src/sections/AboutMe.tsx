@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   ABOUT_CARDS,
+  ABOUT_TECH_STACK,
   type AboutCard,
 } from "../shared/content/aboutMeData";
 import { getTechNoteContent } from "../shared/content/techNotes";
@@ -39,18 +40,16 @@ export default function AboutMe() {
       )}
 
       <div className="aboutme-sec_cont">
-        <h2 className="aboutme-sec_heading">ABOUT ME</h2>
+        <h2 className="aboutme-sec_heading">WHO I AM</h2>
 
-        {/* 이력서 다운로드 버튼 */}
-        <a
-          href="/resume.pdf"
-          download
-          className="aboutme-sec_resume-btn"
-        >
-          이력서보기
-        </a>
+        <ul className="aboutme-sec_stack" aria-label="기술 스택">
+          {ABOUT_TECH_STACK.map((skill) => (
+            <li key={skill} className="aboutme-sec_stack-item">
+              {skill}
+            </li>
+          ))}
+        </ul>
 
-        {/* 카드 그리드 */}
         <div className="aboutme-sec_cards">
           {ABOUT_CARDS.map((card) => (
             <AccordionCard
@@ -60,6 +59,16 @@ export default function AboutMe() {
               onClick={() => handleCardClick(card.id)}
             />
           ))}
+        </div>
+
+        <div className="aboutme-sec_resume-wrap">
+          <a
+            href="/resume.pdf"
+            download
+            className="aboutme-sec_resume-btn"
+          >
+            이력서보기
+          </a>
         </div>
       </div>
     </section>

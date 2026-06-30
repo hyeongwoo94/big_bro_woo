@@ -191,6 +191,51 @@ src/
 | 2026-06-23 | 수정 | 워크플로우 설명 간소화 |
 | 2026-06-23 | 수정 | 워크플로우 화살표 분리 (flexbox 배치) |
 | 2026-06-23 | 완료 | 설계 문서 최종 정리 |
+| 2026-06-29 | 구현 | 업무관리 대시보드 탭 — 구현 범위 섹션 추가 |
+
+---
+
+## 10. 업무관리 대시보드 — 구현 범위 (2026-06-29)
+
+### 왜 추가했는가
+
+- AI 협업 경험만으로는 **프론트엔드로 전환하기 위해 직접 공부·구현한 역량**이 드러나지 않음.
+- 토이 프로젝트(업무관리 대시보드)에서 설계·인증·CRUD·API·공통 UI·대시보드까지 **스스로 구조화하고 완성한 범위**를 명시해, 채용 담당자에게 학습 수준과 실무 이해도를 전달.
+
+### 어떻게 추가하는가
+
+**데이터** (`aiExperienceData.ts`)
+
+```ts
+interface ImplementationArea {
+  title: string;       // 예: 설계, 로그인, 업무
+  description: string; // 구현 내용 요약
+}
+
+interface AIProject {
+  // ...
+  implementationIntro?: string;      // 섹션 상단 한 줄 설명
+  implementationAreas?: ImplementationArea[];
+}
+```
+
+**UI** (`AIExperience.tsx` → `ProjectDetail`)
+
+- `implementationAreas`가 있는 탭만 **「구현 범위」** 블록 렌더 (현재: `toy-dashboard`만).
+- 업무관리 대시보드 탭은 **AI 활용 장점 미표시** (`aiBenefits` 없음). 구현 범위로 프론트 역량을 전달.
+- 자동화 태그 아래, AI 활용 장점(포트폴리오 탭만) 위에 구현 범위 배치.
+- 2열 그리드 카드 (모바일 1열). AI 활용 장점 카드와 유사한 톤.
+
+**항목 (6개)**
+
+| 영역 | 내용 |
+|------|------|
+| 설계 | 폴더 구조, 라우팅, 레이아웃, 상태 배치 |
+| 로그인 | mock 인증 + Zustand + localStorage |
+| 업무 | CRUD + 탭/검색/페이지네이션 + 권한 |
+| API | DummyJSON 연동 + localStorage 영속성 보완 |
+| 공통 UI | List, Modal, Toast, DatePicker 등 |
+| 대시보드 | 4위젯 메인 + 달력 연동 |
 
 ---
 

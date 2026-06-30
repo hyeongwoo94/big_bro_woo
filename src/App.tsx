@@ -5,6 +5,7 @@ import MatchCompany from "./sections/MatchCompany";
 import Career from "./sections/Career";
 import Portfolio from "./sections/Portfolio";
 import AIExperience from "./sections/AIExperience";
+import Closing from "./sections/Closing";
 import AboutMe from "./sections/AboutMe";
 import Contact from "./sections/Contact";
 import ThankYou from "./pages/ThankYou";
@@ -13,7 +14,10 @@ import Toast from "./shared/ui/Toast";
 import HeroModal from "./shared/ui/HeroModal";
 import { TechNoteProvider } from "./shared/ui/TechNote";
 import { QuickMenu } from "./shared/ui/QuickMenu";
-import { getIntroProgress, setIntroProgress } from "./shared/utils/introProgress";
+import {
+    getIntroProgress,
+    setIntroProgress,
+} from "./shared/utils/introProgress";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const TOAST_MESSAGE_PC = "마우스를 움직여 이름을 찾아보세요";
@@ -150,9 +154,10 @@ function App() {
                                     {matchCompanyPassed && (
                                         <div id="portfolio-next">
                                             <AboutMe />
-                                            <Career />
                                             <Portfolio />
+                                            <Career />
                                             <AIExperience />
+                                            <Closing />
                                             <Contact />
                                         </div>
                                     )}

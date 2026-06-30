@@ -135,7 +135,7 @@ export default function Career() {
                 </div>
             )}
             <div className="career-sec_cont">
-                <h2 className="career-sec_heading">실무와 함께 성장한 과정</h2>
+                <h2 className="career-sec_heading">Career</h2>
                 <div className="career-sec_body">
                     {/* 왼쪽: 그래프 (PC만) */}
                     {!isMobile && (

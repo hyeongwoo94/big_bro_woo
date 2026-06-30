@@ -4,13 +4,59 @@ import {
     INNER_ORBIT_DATA,
     OUTER_ORBIT_DATA,
     PROFILE_IMAGE,
+    PORTFOLIO_TYPE_LABEL,
+    type PortfolioItem,
 } from "../shared/content/portfolioData";
 import { getTechNoteContent } from "../shared/content/techNotes";
 import { TechNote } from "../shared/ui/TechNote";
+import PortfolioModal from "./PortfolioModal";
+import PortfolioTypeBadge from "./PortfolioTypeBadge";
 import "./styles/Portfolio.css";
+
+function OrbitSatellite({
+    item,
+    orbit,
+    index,
+    total,
+    onSelect,
+}: {
+    item: PortfolioItem;
+    orbit: "inner" | "outer";
+    index: number;
+    total: number;
+    onSelect: (item: PortfolioItem) => void;
+}) {
+    return (
+        <button
+            type="button"
+            className={`portfolio-sec_satellite portfolio-sec_satellite--${orbit}`}
+            style={
+                {
+                    "--angle": `${(360 / total) * index}deg`,
+                } as React.CSSProperties
+            }
+            title={item.title}
+            aria-label={`${PORTFOLIO_TYPE_LABEL[item.type]} ${item.title} 프로젝트 상세 보기`}
+            onClick={() => onSelect(item)}
+        >
+            <img
+                src={item.thumbnail}
+                alt=""
+                className="portfolio-sec_thumb"
+            />
+            <span className="portfolio-sec_label">
+                {item.title}
+                <PortfolioTypeBadge type={item.type} variant="orbit" />
+            </span>
+        </button>
+    );
+}
 
 export default function Portfolio() {
     const [isMobile, setIsMobile] = useState(false);
+    const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(
+        null,
+    );
 
     useEffect(() => {
         const mql = window.matchMedia("(max-width: 768px)");
@@ -35,13 +81,11 @@ export default function Portfolio() {
                 </div>
             )}
             <div className="portfolio-sec_cont">
-                <h2 className="portfolio-sec_heading">포트폴리오</h2>
+                <h2 className="portfolio-sec_heading">PROJECTS</h2>
 
-                {/* PC: 원형 궤도 */}
                 {!isMobile && (
                     <div className="portfolio-sec_orbit-wrapper">
                         <div className="portfolio-sec_orbit">
-                            {/* 가운데 프로필 + 호버 툴팁 */}
                             <div className="portfolio-sec_center">
                                 <img
                                     src={PROFILE_IMAGE}
@@ -66,64 +110,33 @@ export default function Portfolio() {
                                 </div>
                             </div>
 
-                            {/* 안쪽 궤도 위성 */}
                             <div className="portfolio-sec_satellites portfolio-sec_satellites--inner">
                                 {INNER_ORBIT_DATA.map((item, i) => (
-                                    <a
+                                    <OrbitSatellite
                                         key={item.id}
-                                        href={item.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="portfolio-sec_satellite portfolio-sec_satellite--inner"
-                                        style={
-                                            {
-                                                "--angle": `${(360 / INNER_ORBIT_DATA.length) * i}deg`,
-                                            } as React.CSSProperties
-                                        }
-                                        title={item.title}
-                                    >
-                                        <img
-                                            src={item.thumbnail}
-                                            alt={item.title}
-                                            className="portfolio-sec_thumb"
-                                        />
-                                        <span className="portfolio-sec_label">
-                                            {item.title}
-                                        </span>
-                                    </a>
+                                        item={item}
+                                        orbit="inner"
+                                        index={i}
+                                        total={INNER_ORBIT_DATA.length}
+                                        onSelect={setSelectedItem}
+                                    />
                                 ))}
                             </div>
 
-                            {/* 바깥쪽 궤도 위성 */}
                             <div className="portfolio-sec_satellites portfolio-sec_satellites--outer">
                                 {OUTER_ORBIT_DATA.map((item, i) => (
-                                    <a
+                                    <OrbitSatellite
                                         key={item.id}
-                                        href={item.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="portfolio-sec_satellite portfolio-sec_satellite--outer"
-                                        style={
-                                            {
-                                                "--angle": `${(360 / OUTER_ORBIT_DATA.length) * i}deg`,
-                                            } as React.CSSProperties
-                                        }
-                                        title={item.title}
-                                    >
-                                        <img
-                                            src={item.thumbnail}
-                                            alt={item.title}
-                                            className="portfolio-sec_thumb"
-                                        />
-                                        <span className="portfolio-sec_label">
-                                            {item.title}
-                                        </span>
-                                    </a>
+                                        item={item}
+                                        orbit="outer"
+                                        index={i}
+                                        total={OUTER_ORBIT_DATA.length}
+                                        onSelect={setSelectedItem}
+                                    />
                                 ))}
                             </div>
                         </div>
 
-                        {/* 회전하는 별 + 호버 시 메시지 */}
                         <div className="portfolio-sec_star-orbit">
                             <div className="portfolio-sec_star-satellite">
                                 <span className="portfolio-sec_star">✦</span>
@@ -140,10 +153,8 @@ export default function Portfolio() {
                     </div>
                 )}
 
-                {/* Mobile: 프로필 + 리스트 */}
                 {isMobile && (
                     <div className="portfolio-sec_mobile">
-                        {/* 안내 문구 */}
                         <p className="portfolio-sec_mobile-notice">
                             ※ 본 프로젝트의 기획 및 개발은 재직 기간 중
                             수행하였으며,
@@ -152,7 +163,6 @@ export default function Portfolio() {
                             변경되었을 수 있습니다.
                         </p>
 
-                        {/* 프로필 사진 */}
                         <div className="portfolio-sec_mobile-profile">
                             <img
                                 src={PROFILE_IMAGE}
@@ -161,32 +171,39 @@ export default function Portfolio() {
                             />
                         </div>
 
-                        {/* 포트폴리오 리스트 */}
                         <ul className="portfolio-sec_list">
                             {PORTFOLIO_DATA.map((item) => (
                                 <li
                                     key={item.id}
                                     className="portfolio-sec_list-item"
                                 >
-                                    <a
-                                        href={item.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <button
+                                        type="button"
                                         className="portfolio-sec_link"
+                                        onClick={() => setSelectedItem(item)}
                                     >
                                         <span className="portfolio-sec_link-title">
                                             {item.title}
+                                            <PortfolioTypeBadge
+                                                type={item.type}
+                                                variant="inline"
+                                            />
                                         </span>
                                         <span className="portfolio-sec_link-arrow">
                                             →
                                         </span>
-                                    </a>
+                                    </button>
                                 </li>
                             ))}
                         </ul>
                     </div>
                 )}
             </div>
+
+            <PortfolioModal
+                item={selectedItem}
+                onClose={() => setSelectedItem(null)}
+            />
         </section>
     );
 }

@@ -41,7 +41,7 @@ export default function AIExperience() {
             )}
 
             <div className="ai-exp-sec_cont">
-                <h2 className="ai-exp-sec_heading">AI 경험</h2>
+                <h2 className="ai-exp-sec_heading">HOW I USE AI</h2>
 
                 {/* 탭 네비게이션 */}
                 <div className="ai-exp-sec_tabs" role="tablist">
@@ -142,6 +142,33 @@ function ProjectDetail({ project }: { project: AIProject }) {
                     ))}
                 </div>
             )}
+
+            {project.implementationAreas &&
+                project.implementationAreas.length > 0 && (
+                    <div className="ai-exp-sec_impl">
+                        <h4 className="ai-exp-sec_impl-title">구현 범위</h4>
+                        {project.implementationIntro && (
+                            <p className="ai-exp-sec_impl-intro">
+                                {project.implementationIntro}
+                            </p>
+                        )}
+                        <div className="ai-exp-sec_impl-grid">
+                            {project.implementationAreas.map((area) => (
+                                <div
+                                    key={area.title}
+                                    className="ai-exp-sec_impl-card"
+                                >
+                                    <strong className="ai-exp-sec_impl-label">
+                                        {area.title}
+                                    </strong>
+                                    <p className="ai-exp-sec_impl-desc">
+                                        {area.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
             {/* AI 활용 장점 */}
             {project.aiBenefits && project.aiBenefits.length > 0 && (

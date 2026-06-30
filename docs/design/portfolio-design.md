@@ -139,6 +139,7 @@ src/
 | 2026-06-17 | 기획 | 초안 작성 완료 |
 | 2026-06-17 | 구현 | 기본 구조 완료 (데이터, 컴포넌트, CSS, 궤도 애니메이션) |
 | 2026-06-17 | 완료 | 시각 효과 및 인터랙션 추가 완료 |
+| 2026-06-29 | 구현 | 프로젝트 상세 모달 (문제/해결/효과), 실무·토이 뱃지 |
 
 ---
 
@@ -192,10 +193,60 @@ interface PortfolioItem {
   thumbnail: string;
   url: string;
   orbit: "inner" | "outer";
+  type: "work" | "toy";
+  challenge: string;
+  solution: string;
+  result: string;
 }
 
 // 안쪽/바깥 궤도별 분리
-export const INNER_ORBIT_DATA: PortfolioItem[];  // 4개
-export const OUTER_ORBIT_DATA: PortfolioItem[];  // 2개
+export const INNER_ORBIT_DATA: PortfolioItem[];  // 4개 (type: work)
+export const OUTER_ORBIT_DATA: PortfolioItem[];  // 2개 (type: toy)
 export const PORTFOLIO_DATA: PortfolioItem[];    // 전체 6개
+export const PORTFOLIO_TYPE_LABEL: Record<"work" | "toy", string>;  // 실무 / 토이
 ```
+
+---
+
+## 10. 실무 / 토이 프로젝트 구분 (2026-06-29)
+
+### 왜 추가했는가
+
+- **안쪽 궤도** = 재직 중 수행한 **실무 프로젝트**, **바깥 궤도** = **토이 프로젝트**로 의미가 정해져 있으나, PC는 색(glow)만 다르고 모바일은 리스트 하나라 **사용자가 구분하기 어렵다**.
+- 면책 별(✦) 안내는 실무 프로젝트에만 해당하지만, 토이와의 차이가 UI에 드러나지 않으면 포트폴리오 전체가 실무처럼 보일 수 있다.
+- 범례·섹션 분리 대신 **프로젝트 이름을 읽는 순간** 실무/토이를 알 수 있도록, 맥락에 맞는 위치에 뱃지를 붙이기로 했다.
+
+### 어떻게 추가하는가
+
+| 구분 | 위치 | 표시 |
+|------|------|------|
+| PC | 위성 **호버 시** 프로젝트명 라벨 | 라벨 **오른쪽 위**에 `실무` / `토이` 뱃지 |
+| Mobile | 리스트 **프로젝트 제목 옆** | 제목 우측에 `실무` / `토이` 뱃지 |
+| 공통 | 프로젝트 **상세 모달** 헤더 | 제목 아래 동일 뱃지 (클릭 후 맥락 유지) |
+
+**데이터**
+
+- `portfolioData.ts`에 `type: "work" | "toy"` 추가 (안쪽 궤도 → `work`, 바깥 → `toy`).
+- 표시 문구는 `PORTFOLIO_TYPE_LABEL` (`실무`, `토이`)에서 한곳 관리.
+
+**컴포넌트**
+
+- `PortfolioTypeBadge.tsx` — type·variant(`orbit` | `inline` | `default`)에 따라 클래스 분기.
+- `Portfolio.tsx` — PC 라벨·모바일 리스트에 뱃지 삽입.
+- `PortfolioModal.tsx` — 모달 제목 영역에 뱃지.
+
+**스타일** (`Portfolio.css`)
+
+- `.portfolio-sec_type-badge--work` — `--color-accent` 계열 (안쪽 궤도 파란 톤과 통일).
+- `.portfolio-sec_type-badge--toy` — `--color-accent-warm` 계열 (바깥 궤도 보라/골드 톤과 통일).
+- `.portfolio-sec_type-badge--orbit` — 호버 라벨 기준 `position: absolute; top; right`.
+
+**접근성**
+
+- 위성 `aria-label`에 `실무/토이` + 프로젝트명 포함.
+
+### 진행 기록
+
+| 날짜 | 내용 |
+|------|------|
+| 2026-06-29 | 실무/토이 뱃지 UI 및 `type` 필드 추가 |

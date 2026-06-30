@@ -1,0 +1,65 @@
+/* Closing(마무리) 섹션 */
+.closing-sec {
+    position: relative;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    padding: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closing-sec_cont {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.closing-sec_body {
+    text-align: center;
+}
+
+.closing-sec_text {
+    margin: 0 0 var(--spacing-xl) 0;
+    font-size: var(--font-size-base);
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    word-break: keep-all;
+    white-space: pre-line;
+}
+
+.closing-sec_text:last-child {
+    margin-bottom: 0;
+}
+
+.closing-sec_text--thanks {
+    color: var(--color-text);
+}
+
+.closing-sec_highlight {
+    font-weight: 700;
+    color: var(--color-accent-warm);
+}
+
+@media (max-width: 768px) {
+    .closing-sec {
+        min-height: auto;
+        padding: var(--spacing-2xl) var(--spacing-lg);
+    }
+
+    .closing-sec_text {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-lg);
+    }
+}
+
+@media (min-width: 769px) {
+    .closing-sec {
+        min-height: calc(100vh - var(--contact-footer-height, 96px));
+    }
+
+    .closing-sec_text {
+        font-size: var(--font-size-lg);
+    }
+}

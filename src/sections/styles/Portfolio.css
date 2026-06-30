@@ -1,496 +1,752 @@
 /* Portfolio 섹션 */
 .portfolio-sec {
-  position: relative;
-  min-height: 100vh;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  padding: var(--spacing-xl);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: relative;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    padding: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .portfolio-sec_cont {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 /* 소제목 */
 .portfolio-sec_heading {
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
-  color: var(--color-text);
-  text-align: center;
-  margin: 0 0 var(--spacing-2xl) 0;
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: center;
+    margin: 0 0 var(--spacing-2xl) 0;
 }
 
 /* ===== PC: 원형 궤도 ===== */
 .portfolio-sec_orbit {
-  position: relative;
-  width: 600px;
-  height: 600px;
+    position: relative;
+    width: 600px;
+    height: 600px;
 }
 
 /* 안쪽 궤도 점선 원 + glow */
 .portfolio-sec_orbit::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  height: 400px;
-  transform: translate(-50%, -50%);
-  border: 2px dashed rgba(100, 180, 255, 0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  box-shadow: 
-    0 0 15px rgba(100, 180, 255, 0.3),
-    inset 0 0 15px rgba(100, 180, 255, 0.1);
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    border: 2px dashed rgba(100, 180, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow:
+        0 0 15px rgba(100, 180, 255, 0.3),
+        inset 0 0 15px rgba(100, 180, 255, 0.1);
 }
 
 /* 바깥쪽 궤도 점선 원 + glow */
 .portfolio-sec_orbit::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 550px;
-  height: 550px;
-  transform: translate(-50%, -50%);
-  border: 2px dashed rgba(150, 120, 255, 0.4);
-  border-radius: 50%;
-  pointer-events: none;
-  box-shadow: 
-    0 0 20px rgba(150, 120, 255, 0.25),
-    inset 0 0 20px rgba(150, 120, 255, 0.08);
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 550px;
+    height: 550px;
+    transform: translate(-50%, -50%);
+    border: 2px dashed rgba(150, 120, 255, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow:
+        0 0 20px rgba(150, 120, 255, 0.25),
+        inset 0 0 20px rgba(150, 120, 255, 0.08);
 }
 
 /* 가운데 프로필 */
 .portfolio-sec_center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 .portfolio-sec_profile {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--color-accent);
-  background-color: var(--color-bg-surface);
-  position: relative;
-  z-index: 2;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--color-accent);
+    background-color: var(--color-bg-surface);
+    position: relative;
+    z-index: 2;
 }
 
 /* 프로필 회전 링 */
 .portfolio-sec_center::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 180px;
-  height: 180px;
-  transform: translate(-50%, -50%);
-  border: 3px solid transparent;
-  border-top-color: rgba(100, 180, 255, 0.8);
-  border-right-color: rgba(150, 120, 255, 0.6);
-  border-radius: 50%;
-  animation: profile-ring-rotate 4s linear infinite;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+    height: 180px;
+    transform: translate(-50%, -50%);
+    border: 3px solid transparent;
+    border-top-color: rgba(100, 180, 255, 0.8);
+    border-right-color: rgba(150, 120, 255, 0.6);
+    border-radius: 50%;
+    animation: profile-ring-rotate 4s linear infinite;
 }
 
 .portfolio-sec_center::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200px;
-  height: 200px;
-  transform: translate(-50%, -50%);
-  border: 2px solid transparent;
-  border-bottom-color: rgba(255, 150, 200, 0.5);
-  border-left-color: rgba(100, 255, 200, 0.4);
-  border-radius: 50%;
-  animation: profile-ring-rotate 6s linear infinite reverse;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    border: 2px solid transparent;
+    border-bottom-color: rgba(255, 150, 200, 0.5);
+    border-left-color: rgba(100, 255, 200, 0.4);
+    border-radius: 50%;
+    animation: profile-ring-rotate 6s linear infinite reverse;
 }
 
 @keyframes profile-ring-rotate {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 /* 프로필 호버 툴팁 */
 .portfolio-sec_profile-tooltip {
-  position: absolute;
-  top: calc(100% + 25px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  padding: var(--spacing-md);
-  background: rgba(30, 30, 50, 0.95);
-  border: 1px solid rgba(100, 180, 255, 0.3);
-  border-radius: var(--radius-lg);
-  box-shadow: 
-    0 0 20px rgba(100, 180, 255, 0.2),
-    0 4px 20px rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 10;
+    position: absolute;
+    top: calc(100% + 25px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    padding: var(--spacing-md);
+    background: rgba(30, 30, 50, 0.95);
+    border: 1px solid rgba(100, 180, 255, 0.3);
+    border-radius: var(--radius-lg);
+    box-shadow:
+        0 0 20px rgba(100, 180, 255, 0.2),
+        0 4px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+    z-index: 10;
 }
 
 .portfolio-sec_profile-tooltip::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%) rotate(45deg);
-  width: 14px;
-  height: 14px;
-  background: rgba(30, 30, 50, 0.95);
-  border-top: 1px solid rgba(100, 180, 255, 0.3);
-  border-left: 1px solid rgba(100, 180, 255, 0.3);
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 14px;
+    height: 14px;
+    background: rgba(30, 30, 50, 0.95);
+    border-top: 1px solid rgba(100, 180, 255, 0.3);
+    border-left: 1px solid rgba(100, 180, 255, 0.3);
 }
 
 .portfolio-sec_center:hover .portfolio-sec_profile-tooltip {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 
 .portfolio-sec_profile-info {
-  margin: 0;
+    margin: 0;
 }
 
 .portfolio-sec_profile-info-row {
-  display: flex;
-  justify-content: space-between;
-  padding: var(--spacing-xs) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .portfolio-sec_profile-info-row:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 .portfolio-sec_profile-info dt {
-  font-size: var(--font-size-xs);
-  color: rgba(100, 180, 255, 0.9);
-  font-weight: 500;
+    font-size: var(--font-size-xs);
+    color: rgba(100, 180, 255, 0.9);
+    font-weight: 500;
 }
 
 .portfolio-sec_profile-info dd {
-  margin: 0;
-  font-size: var(--font-size-xs);
-  color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* 위성 컨테이너 - 회전 */
 .portfolio-sec_satellites {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
 /* 안쪽 궤도 회전 */
 .portfolio-sec_satellites--inner {
-  animation: orbit-inner 30s linear infinite;
+    animation: orbit-inner 30s linear infinite;
 }
 
 /* 바깥쪽 궤도 회전 (반대 방향, 더 느리게) */
 .portfolio-sec_satellites--outer {
-  animation: orbit-outer 45s linear infinite reverse;
+    animation: orbit-outer 45s linear infinite reverse;
 }
 
 @keyframes orbit-inner {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes orbit-outer {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* 개별 위성 공통 */
 .portfolio-sec_satellite {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-decoration: none;
-  pointer-events: auto;
-  cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-decoration: none;
+    pointer-events: auto;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
 }
 
 /* 안쪽 궤도 위성 */
 .portfolio-sec_satellite--inner {
-  width: 80px;
-  height: 80px;
-  margin: -40px 0 0 -40px;
-  transform: rotate(var(--angle)) translateX(200px) rotate(calc(-1 * var(--angle)));
-  animation: counter-rotate-inner 30s linear infinite;
+    width: 80px;
+    height: 80px;
+    margin: -40px 0 0 -40px;
+    transform: rotate(var(--angle)) translateX(200px)
+        rotate(calc(-1 * var(--angle)));
+    animation: counter-rotate-inner 30s linear infinite;
 }
 
 /* 바깥쪽 궤도 위성 */
 .portfolio-sec_satellite--outer {
-  width: 80px;
-  height: 80px;
-  margin: -40px 0 0 -40px;
-  transform: rotate(var(--angle)) translateX(275px) rotate(calc(-1 * var(--angle)));
-  animation: counter-rotate-outer 45s linear infinite reverse;
+    width: 80px;
+    height: 80px;
+    margin: -40px 0 0 -40px;
+    transform: rotate(var(--angle)) translateX(275px)
+        rotate(calc(-1 * var(--angle)));
+    animation: counter-rotate-outer 45s linear infinite reverse;
 }
 
 /* 안쪽 위성 역회전 (정방향 유지) */
 @keyframes counter-rotate-inner {
-  from { transform: rotate(var(--angle)) translateX(200px) rotate(calc(-1 * var(--angle) + 0deg)); }
-  to { transform: rotate(var(--angle)) translateX(200px) rotate(calc(-1 * var(--angle) - 360deg)); }
+    from {
+        transform: rotate(var(--angle)) translateX(200px)
+            rotate(calc(-1 * var(--angle) + 0deg));
+    }
+    to {
+        transform: rotate(var(--angle)) translateX(200px)
+            rotate(calc(-1 * var(--angle) - 360deg));
+    }
 }
 
 /* 바깥쪽 위성 역회전 (정방향 유지) */
 @keyframes counter-rotate-outer {
-  from { transform: rotate(var(--angle)) translateX(275px) rotate(calc(-1 * var(--angle) + 0deg)); }
-  to { transform: rotate(var(--angle)) translateX(275px) rotate(calc(-1 * var(--angle) + 360deg)); }
+    from {
+        transform: rotate(var(--angle)) translateX(275px)
+            rotate(calc(-1 * var(--angle) + 0deg));
+    }
+    to {
+        transform: rotate(var(--angle)) translateX(275px)
+            rotate(calc(-1 * var(--angle) + 360deg));
+    }
 }
 
 /* 호버 시 궤도 정지 */
 .portfolio-sec_orbit:hover .portfolio-sec_satellites {
-  animation-play-state: paused;
+    animation-play-state: paused;
 }
 
 .portfolio-sec_orbit:hover .portfolio-sec_satellite {
-  animation-play-state: paused;
+    animation-play-state: paused;
 }
 
 .portfolio-sec_satellite:hover {
-  z-index: 10;
+    z-index: 10;
 }
 
 .portfolio-sec_satellite:hover .portfolio-sec_thumb {
-  transform: scale(1.2);
-  border-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 
-    0 0 25px rgba(100, 180, 255, 0.7),
-    0 0 50px rgba(100, 180, 255, 0.4),
-    0 8px 24px rgba(0, 0, 0, 0.3);
+    transform: scale(1.2);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow:
+        0 0 25px rgba(100, 180, 255, 0.7),
+        0 0 50px rgba(100, 180, 255, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .portfolio-sec_satellite--outer:hover .portfolio-sec_thumb {
-  box-shadow: 
-    0 0 25px rgba(150, 120, 255, 0.7),
-    0 0 50px rgba(150, 120, 255, 0.4),
-    0 8px 24px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 0 25px rgba(150, 120, 255, 0.7),
+        0 0 50px rgba(150, 120, 255, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 /* 썸네일 이미지 + glow */
 .portfolio-sec_thumb {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: contain;
-  border: 3px solid rgba(100, 180, 255, 0.6);
-  background-color: var(--color-bg-surface);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  box-shadow:
-    0 0 15px rgba(100, 180, 255, 0.4),
-    0 0 30px rgba(100, 180, 255, 0.2);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 3px solid rgba(100, 180, 255, 0.6);
+    background-color: var(--color-bg-surface);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    box-shadow:
+        0 0 15px rgba(100, 180, 255, 0.4),
+        0 0 30px rgba(100, 180, 255, 0.2);
 }
 
 /* 바깥 궤도 위성은 다른 색상 */
 .portfolio-sec_satellite--outer .portfolio-sec_thumb {
-  border-color: rgba(150, 120, 255, 0.6);
-  box-shadow: 
-    0 0 15px rgba(150, 120, 255, 0.4),
-    0 0 30px rgba(150, 120, 255, 0.2);
+    border-color: rgba(150, 120, 255, 0.6);
+    box-shadow:
+        0 0 15px rgba(150, 120, 255, 0.4),
+        0 0 30px rgba(150, 120, 255, 0.2);
 }
 
 /* 라벨 (호버 시 표시) */
 .portfolio-sec_label {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: var(--font-size-sm);
-  color: var(--color-text);
-  background-color: var(--color-bg-surface);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-md);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+    background-color: var(--color-bg-surface);
+    padding: var(--spacing-xs) var(--spacing-md);
+    padding-top: calc(var(--spacing-xs) + 4px);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .portfolio-sec_satellite:hover .portfolio-sec_label {
-  opacity: 1;
+    opacity: 1;
+}
+
+/* 실무 / 토이 뱃지 */
+.portfolio-sec_type-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.portfolio-sec_type-badge--work {
+    background: rgba(100, 180, 255, 0.45);
+    border: 1px solid rgba(100, 180, 255, 0.7);
+    color: rgb(20, 85, 140);
+}
+
+.portfolio-sec_type-badge--toy {
+    background: rgba(150, 120, 255, 0.4);
+    border: 1px solid rgba(150, 120, 255, 0.65);
+    color: rgb(65, 45, 130);
+}
+
+[data-theme="dark"] .portfolio-sec_type-badge--work {
+    background: rgba(35, 85, 125, 0.92);
+    border-color: rgba(100, 180, 255, 0.75);
+    color: rgb(190, 230, 255);
+}
+
+[data-theme="dark"] .portfolio-sec_type-badge--toy {
+    background: rgba(65, 50, 115, 0.92);
+    border-color: rgba(150, 120, 255, 0.7);
+    color: rgb(225, 210, 255);
+}
+
+/* PC: 호버 라벨 오른쪽 위 */
+.portfolio-sec_type-badge--orbit {
+    position: absolute;
+    top: -10px;
+    right: -6px;
+}
+
+/* Mobile: 제목 옆 */
+.portfolio-sec_type-badge--inline {
+    flex-shrink: 0;
 }
 
 /* ===== Mobile: 프로필 + 리스트 ===== */
 .portfolio-sec_mobile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: var(--spacing-xl);
 }
 
 .portfolio-sec_mobile-notice {
-  margin: 0;
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  text-align: center;
-  line-height: 1.6;
-  opacity: 0.7;
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: 1.6;
+    opacity: 0.7;
 }
 
 .portfolio-sec_mobile-profile {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .portfolio-sec_profile--square {
-  width: 150px;
-  height: 150px;
-  border-radius: var(--radius-lg);
-  object-fit: cover;
-  border: 4px solid var(--color-accent);
-  background-color: var(--color-bg-surface);
+    width: 150px;
+    height: 150px;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    border: 4px solid var(--color-accent);
+    background-color: var(--color-bg-surface);
 }
 
 /* 리스트 */
 .portfolio-sec_list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 400px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 400px;
 }
 
 .portfolio-sec_list-item {
-  border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .portfolio-sec_list-item:first-child {
-  border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
 }
 
 .portfolio-sec_link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-md) var(--spacing-sm);
-  text-decoration: none;
-  color: var(--color-text);
-  transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-sm);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background-color 0.2s ease;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+    text-align: left;
 }
 
 .portfolio-sec_link:hover {
-  background-color: var(--color-bg-surface);
+    background-color: var(--color-bg-surface);
 }
 
 .portfolio-sec_link-title {
-  font-size: var(--font-size-base);
-  font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    font-size: var(--font-size-base);
+    font-weight: 500;
 }
 
 .portfolio-sec_link-arrow {
-  font-size: var(--font-size-lg);
-  color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
 }
 
 /* ===== 고정 별 + 호버 메시지 ===== */
 .portfolio-sec_orbit-wrapper {
-  position: relative;
+    position: relative;
 }
 
 .portfolio-sec_star-orbit {
-  position: absolute;
-  top: -20px;
-  right: -40px;
-  pointer-events: none;
+    position: absolute;
+    top: -20px;
+    right: -40px;
+    pointer-events: none;
 }
 
 .portfolio-sec_star-satellite {
-  pointer-events: auto;
-  cursor: pointer;
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 .portfolio-sec_star {
-  display: block;
-  font-size: 1.5rem;
-  color: rgba(255, 220, 100, 0.9);
-  text-shadow: 
-    0 0 10px rgba(255, 220, 100, 0.8),
-    0 0 20px rgba(255, 220, 100, 0.5);
-  animation: star-twinkle 2s ease-in-out infinite;
-  transition: transform 0.3s ease;
+    display: block;
+    font-size: 1.5rem;
+    color: rgba(255, 220, 100, 0.9);
+    text-shadow:
+        0 0 10px rgba(255, 220, 100, 0.8),
+        0 0 20px rgba(255, 220, 100, 0.5);
+    animation: star-twinkle 2s ease-in-out infinite;
+    transition: transform 0.3s ease;
 }
 
 @keyframes star-twinkle {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.3); }
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
 }
 
 .portfolio-sec_star-satellite:hover .portfolio-sec_star {
-  transform: scale(1.5);
+    transform: scale(1.5);
 }
 
 /* 호버 시 나오는 메시지 */
 .portfolio-sec_star-message {
-  position: absolute;
-  top: calc(100% + 15px);
-  right: -18px;
-  width: 280px;
-  padding: var(--spacing-md);
-  background: rgba(30, 30, 50, 0.95);
-  border: 1px solid rgba(255, 220, 100, 0.3);
-  border-radius: var(--radius-lg);
-  box-shadow: 
-    0 0 20px rgba(255, 220, 100, 0.2),
-    0 4px 20px rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+    position: absolute;
+    top: calc(100% + 15px);
+    right: -18px;
+    width: 280px;
+    padding: var(--spacing-md);
+    background: rgba(30, 30, 50, 0.95);
+    border: 1px solid rgba(255, 220, 100, 0.3);
+    border-radius: var(--radius-lg);
+    box-shadow:
+        0 0 20px rgba(255, 220, 100, 0.2),
+        0 4px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
 }
 
 .portfolio-sec_star-message::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  right: 20px;
-  transform: rotate(45deg);
-  width: 14px;
-  height: 14px;
-  background: rgba(30, 30, 50, 0.95);
-  border-top: 1px solid rgba(255, 220, 100, 0.3);
-  border-left: 1px solid rgba(255, 220, 100, 0.3);
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    transform: rotate(45deg);
+    width: 14px;
+    height: 14px;
+    background: rgba(30, 30, 50, 0.95);
+    border-top: 1px solid rgba(255, 220, 100, 0.3);
+    border-left: 1px solid rgba(255, 220, 100, 0.3);
 }
 
 .portfolio-sec_star-message p {
-  margin: 0;
-  font-size: var(--font-size-xs);
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.6;
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
 }
 
 .portfolio-sec_star-satellite:hover .portfolio-sec_star-message {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== 프로젝트 상세 모달 ===== */
+.portfolio-sec_modal-overlay {
+    position: fixed;
+    inset: 0;
+    border: none;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.portfolio-sec_modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - var(--spacing-xl) * 2);
+    max-width: 440px;
+    max-height: calc(100vh - var(--spacing-xl) * 2);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-modal);
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.portfolio-sec_modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+    flex-shrink: 0;
+}
+
+.portfolio-sec_modal-title-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+    min-width: 0;
+}
+
+.portfolio-sec_modal-title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.portfolio-sec_modal-close {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-bg-surface);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.portfolio-sec_modal-close:hover {
+    background: var(--color-border);
+    color: var(--color-text);
+}
+
+.portfolio-sec_modal-body {
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.portfolio-sec_modal-thumb-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.portfolio-sec_modal-thumb {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-surface);
+}
+
+.portfolio-sec_modal-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.portfolio-sec_modal-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.portfolio-sec_modal-label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.portfolio-sec_modal-text {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    word-break: keep-all;
+    white-space: pre-line;
+}
+
+.portfolio-sec_modal-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--color-accent-warm);
+    color: var(--color-on-accent-warm);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.portfolio-sec_modal-link:hover {
+    opacity: 0.9;
 }
 
 /* 반응형 */
 @media (max-width: 768px) {
-  .portfolio-sec {
-    padding: var(--spacing-lg);
-  }
+    .portfolio-sec {
+        padding: var(--spacing-lg);
+    }
 
-  .portfolio-sec_heading {
-    margin-bottom: var(--spacing-xl);
-  }
+    .portfolio-sec_heading {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .portfolio-sec_modal {
+        width: calc(100% - var(--spacing-lg) * 2);
+        max-height: calc(100vh - 120px);
+    }
+
+    .portfolio-sec_modal-overlay {
+        bottom: 0;
+    }
 }
