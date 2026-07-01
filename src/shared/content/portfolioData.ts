@@ -1,7 +1,11 @@
 /**
  * Portfolio 섹션에서 사용하는 포트폴리오 데이터.
  * 프로젝트 목록을 한곳에서 관리.
+ * 정적 이미지 파일은 public/images/portfolio/ 에 두고, URL은 /images/portfolio/ 로 참조한다.
  */
+
+/** public/images/portfolio/ 기준 정적 이미지 URL */
+const portfolioImage = (filename: string) => `/images/portfolio/${filename}`;
 
 export type PortfolioType = "work" | "toy";
 
@@ -28,7 +32,7 @@ export const INNER_ORBIT_DATA: PortfolioItem[] = [
     {
         id: "seoulmiz",
         title: "서울미즈병원",
-        thumbnail: "/images/portfolio/seoulmiz.png",
+        thumbnail: portfolioImage("seoulmiz.png"),
         url: "http://seoulmizhealthcare.com/",
         orbit: "inner",
         type: "work",
@@ -41,7 +45,7 @@ export const INNER_ORBIT_DATA: PortfolioItem[] = [
     {
         id: "bweye",
         title: "하늘안과",
-        thumbnail: "/images/portfolio/bweye.png",
+        thumbnail: portfolioImage("bweye.png"),
         url: "https://bweye.co.kr/",
         orbit: "inner",
         type: "work",
@@ -53,7 +57,7 @@ export const INNER_ORBIT_DATA: PortfolioItem[] = [
     {
         id: "thebon",
         title: "더본안과",
-        thumbnail: "/images/portfolio/thebon.png",
+        thumbnail: portfolioImage("thebon.png"),
         url: "https://theboneye.com/",
         orbit: "inner",
         type: "work",
@@ -66,7 +70,7 @@ export const INNER_ORBIT_DATA: PortfolioItem[] = [
     {
         id: "yale",
         title: "예일안과",
-        thumbnail: "/images/portfolio/yale.png",
+        thumbnail: portfolioImage("yale.png"),
         url: "https://lasikmasan.mycafe24.com/",
         orbit: "inner",
         type: "work",
@@ -83,7 +87,7 @@ export const OUTER_ORBIT_DATA: PortfolioItem[] = [
     {
         id: "toy1",
         title: "업무관리 대시보드",
-        thumbnail: "/images/portfolio/toy1.png",
+        thumbnail: portfolioImage("toy1.png"),
         url: "https://toy-dashboard-big-bro-woo.vercel.app/",
         orbit: "outer",
         type: "toy",
@@ -96,7 +100,7 @@ export const OUTER_ORBIT_DATA: PortfolioItem[] = [
     {
         id: "toy2",
         title: "토이프로젝트2",
-        thumbnail: "/images/portfolio/toy2.png",
+        thumbnail: portfolioImage("toy2.png"),
         url: "https://daum.net",
         orbit: "outer",
         type: "toy",
@@ -114,4 +118,4 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
 ];
 
 /** 프로필 이미지 경로 (placeholder) */
-export const PROFILE_IMAGE = "/images/portfolio/profile-placeholder.png";
+export const PROFILE_IMAGE = portfolioImage("이력서사진.jpg");
