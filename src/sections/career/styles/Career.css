@@ -168,7 +168,7 @@
     white-space: pre-wrap;
 }
 
-/* 경력 하이라이트 마퀴 — 섹션 상단 */
+/* 경력 하이라이트 마퀴 — Swiper loop + autoplay */
 .career-sec_marquee {
     flex-shrink: 0;
     width: calc(100% + var(--spacing-xl) * 2);
@@ -176,15 +176,37 @@
     overflow: hidden;
     border-bottom: 1px solid var(--color-border);
     background-color: var(--color-bg-surface);
+    padding: var(--spacing-sm) var(--spacing-lg);
 }
 
-.career-sec_marquee-track {
+.career-sec_marquee-swiper {
+    width: 100%;
+    overflow: visible;
+}
+
+.career-sec_marquee-swiper .swiper-wrapper {
+    transition-timing-function: linear !important;
+}
+
+.career-sec_marquee-slide {
+    width: auto !important;
+}
+
+.career-sec_marquee-group {
     display: flex;
     align-items: center;
-    width: max-content;
+    flex-shrink: 0;
     gap: var(--spacing-2xl);
+    min-width: 280px;
+    white-space: nowrap;
+}
+
+.career-sec_marquee--static .career-sec_marquee-static {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md) var(--spacing-xl);
     padding: var(--spacing-sm) var(--spacing-lg);
-    animation: career-sec-marquee 20s linear infinite;
 }
 
 .career-sec_stat {
@@ -204,25 +226,6 @@
 .career-sec_stat-label {
     font-size: var(--font-size-xs);
     color: var(--color-text-muted);
-}
-
-@keyframes career-sec-marquee {
-    from {
-        transform: translateX(-50%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .career-sec_marquee-track {
-        animation: none;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        gap: var(--spacing-md) var(--spacing-xl);
-    }
 }
 
 /* 모바일 */
