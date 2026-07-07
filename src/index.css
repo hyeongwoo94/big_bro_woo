@@ -4,7 +4,6 @@
 @import "./shared/styles/TechNote.css";
 @import "./shared/styles/DarkModeToggle.css";
 @import "./shared/styles/QuickMenu.css";
-@import "./shared/styles/HeroModal.css";
 
 * {
   margin: 0;

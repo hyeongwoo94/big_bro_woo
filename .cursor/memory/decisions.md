@@ -39,11 +39,11 @@
 - **이유**: docs 루트 정리, 설계 vs 히스토리(history.md) 역할 분리
 - **대안**: docs 루트에 그대로 유지
 
-### 2026-02-13 Storybook 스토리 폴더·배포 연동
+### 2026-07-07 섹션 폴더 구조(A-2) 및 Storybook 제거
 
-- **결정**: 스토리 파일을 `src/stories/`에만 두고 일괄 관리. 앱 빌드 시 `build:with-storybook`으로 `dist/storybook`에 스토리북 포함, 퀵메뉴에서 `/storybook/` 링크로 접근
-- **이유**: 스토리 한 곳에서 관리·검색 용이, 배포 시 같은 호스트에서 디자인 시스템 확인 가능
-- **대안**: 컴포넌트 옆에 *.stories.* 유지
+- **결정**: `src/sections/{section}/`에 컴포넌트·데이터·CSS를 함께 두는 A-2 구조 채택. Storybook·Vitest·Playwright 및 관련 빌드 스크립트 제거.
+- **이유**: 포트폴리오 규모에서는 섹션 단위 응집도가 더 실용적이고, Storybook 유지 비용 대비 이득이 적음.
+- **대안**: 기존 `sections/` 플랫 구조 + `shared/content` 데이터 분리, Storybook(C안) 유지
 
 ### 2026-02-13 퀴즈 결과 저장(회사별 매칭/실패)
 

@@ -14,7 +14,7 @@
 ### 현재 섹션 순서 (변경 후)
 
 ```
-About Me → Career → Portfolio → AI Experience → **Contact** (신규)
+WHO I AM → Career → Projects → HowIUseAI → **Contact** (신규)
 ```
 
 ---
@@ -23,12 +23,12 @@ About Me → Career → Portfolio → AI Experience → **Contact** (신규)
 
 | 항목 | 값 (확인 필요) | 비고 |
 |------|----------------|------|
-| 이름 | 박형우 | Portfolio 프로필 툴팁과 동일 |
-| 전화 | 010-9214-3819 | Portfolio에 이미 있음 |
+| 이름 | 박형우 | Projects 프로필 툴팁과 동일 |
+| 전화 | 010-9214-3819 | Projects에 이미 있음 |
 | 이메일 | **?(미정)** | 사용자 확인 필요 |
 
 **데이터 중복 정리 제안**  
-연락처를 `src/shared/content/contactData.ts` 한곳에 두고, Portfolio 툴팁도 여기서 가져오면 나중에 수정이 한 번이면 됩니다. (선택)
+연락처를 `src/shared/content/contactData.ts` 한곳에 두고, Projects 툴팁도 여기서 가져오면 나중에 수정이 한 번이면 됩니다. (선택)
 
 ---
 
@@ -73,7 +73,7 @@ About Me → Career → Portfolio → AI Experience → **Contact** (신규)
 └─────────────────────────────────────────────┘
 ```
 
-- About Me / AI Experience 카드 톤과 통일
+- WHO I AM / HowIUseAI 카드 톤과 통일
 - PC: 2열, 모바일: 1열
 
 ### B. 미니멀 리스트

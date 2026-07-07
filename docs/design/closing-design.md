@@ -18,7 +18,7 @@
 ### 기획일꾼
 
 - 콘텐츠는 `closingData.ts` 한곳 관리
-- About Me 「목표」카드와 **문장 일부 중복** 가능 → Closing은 **짧은 각오 + 감사**에 집중, 카드는 상세 서사
+- WHO I AM 「목표」카드와 **문장 일부 중복** 가능 → Closing은 **짧은 각오 + 감사**에 집중, 카드는 상세 서사
 - QuickMenu 앵커: **Nice** (섹션 수 많아지면 생략 가능)
 
 ### 검토일꾼
@@ -36,12 +36,12 @@
 | 섹션명 (표시) | 마무리 / 감사합니다 (택 1) |
 | 컴포넌트명 (가칭) | `Closing` |
 | CSS 루트 | `.closing-sec` |
-| 위치 | `AIExperience` → **`Closing`** → `Contact`(footer) |
+| 위치 | `HowIUseAI` → **`Closing`** → `Contact`(footer) |
 
 ### 현재 → 변경 후 섹션 순서
 
 ```
-About Me → Portfolio → Career → AI Experience → Closing (신규) → Contact(footer)
+WHO I AM → Projects → Career → HowIUseAI → Closing (신규) → Contact(footer)
 ```
 
 ---
@@ -91,7 +91,7 @@ export const CLOSING_PARAGRAPHS = [
 
 ### B. 좌측 정렬 블록
 
-- About Me·Career와 같은 **왼쪽 읽기 흐름**
+- WHO I AM·HowIUseAI와 같은 **왼쪽 읽기 흐름**
 - PC에서 본문 느낌, 다소 이력서 톤
 
 ### C. 인용구 스타일
@@ -124,7 +124,7 @@ export const CLOSING_PARAGRAPHS = [
 
 | 환경 | 주의 |
 |------|------|
-| PC | footer `position: fixed` — Closing 하단 `padding-bottom`으로 마퀴+연락처 가림 방지 (About Me·AI Experience와 동일 패턴) |
+| PC | footer `position: fixed` — Closing 하단 `padding-bottom`으로 연락처 가림 방지 (WHO I AM·HowIUseAI와 동일 패턴) |
 | Mobile | QuickMenu 하단 여백 `padding-bottom: ~100px` |
 | 회사매칭 전 | Closing 미렌더 (`matchCompanyPassed`와 동일 조건) |
 
@@ -152,7 +152,7 @@ export const CLOSING_PARAGRAPHS: readonly string[] = [ /* 위 문안 */ ];
 `App.tsx`:
 
 ```tsx
-<AIExperience />
+<HowIUseAI />
 <Closing />
 <Contact />
 ```

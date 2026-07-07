@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Hero from "./sections/Hero";
-import MatchCompany from "./sections/MatchCompany";
-import Career from "./sections/Career";
-import Portfolio from "./sections/Portfolio";
-import AIExperience from "./sections/AIExperience";
-import Closing from "./sections/Closing";
-import AboutMe from "./sections/AboutMe";
-import Contact from "./sections/Contact";
+import Hero from "./sections/hero/Hero";
+import MatchCompany from "./sections/match-company/MatchCompany";
+import Career from "./sections/career/Career";
+import Projects from "./sections/projects/Projects";
+import HowIUseAI from "./sections/howiuseai/HowIUseAI";
+import Closing from "./sections/closing/Closing";
+import WhoIAm from "./sections/whoiam/WhoIAm";
+import Contact from "./sections/contact/Contact";
 import ThankYou from "./pages/ThankYou";
 import NotFound from "./pages/NotFound";
 import Toast from "./shared/ui/Toast";
-import HeroModal from "./shared/ui/HeroModal";
+import HeroModal from "./sections/hero/HeroModal";
 import { TechNoteProvider } from "./shared/ui/TechNote";
 import { QuickMenu } from "./shared/ui/QuickMenu";
 import {
@@ -31,7 +31,7 @@ function App() {
         savedIntro === "none",
     );
     const [showHero, setShowHero] = useState(savedIntro === "none");
-    const [showPortfolio, setShowPortfolio] = useState(savedIntro !== "none");
+    const [showProjects, setShowProjects] = useState(savedIntro !== "none");
     const [matchCompanyPassed, setMatchCompanyPassed] = useState(
         savedIntro === "complete",
     );
@@ -40,7 +40,7 @@ function App() {
 
     const handleQuizConfirm = (_name: string) => {
         setShowHero(false);
-        setShowPortfolio(true);
+        setShowProjects(true);
         setShowWelcomeToast(false);
         setIntroProgress("hero");
     };
@@ -85,20 +85,20 @@ function App() {
     }, [showHero, location.pathname]);
 
     useEffect(() => {
-        if (!matchCompanyPassed || !showPortfolio) return;
+        if (!matchCompanyPassed || !showProjects) return;
         if (skipInitialScrollRef.current) {
             skipInitialScrollRef.current = false;
             return;
         }
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-                document.getElementById("portfolio-next")?.scrollIntoView({
+                document.getElementById("projects-next")?.scrollIntoView({
                     behavior: "smooth",
                 });
                 ScrollTrigger.refresh();
             });
         });
-    }, [matchCompanyPassed, showPortfolio]);
+    }, [matchCompanyPassed, showProjects]);
 
     useEffect(() => {
         if (location.pathname !== "/thankyou") return;
@@ -137,7 +137,7 @@ function App() {
                                     onConfirm={handleQuizConfirm}
                                 />
                             )}
-                            {showPortfolio && (
+                            {showProjects && (
                                 <main
                                     className="app-main"
                                     style={{
@@ -152,11 +152,11 @@ function App() {
                                         />
                                     )}
                                     {matchCompanyPassed && (
-                                        <div id="portfolio-next">
-                                            <AboutMe />
-                                            <Portfolio />
+                                        <div id="projects-next">
                                             <Career />
-                                            <AIExperience />
+                                            <WhoIAm />
+                                            <Projects />
+                                            <HowIUseAI />
                                             <Closing />
                                             <Contact />
                                         </div>

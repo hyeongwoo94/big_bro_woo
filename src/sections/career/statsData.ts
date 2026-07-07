@@ -1,0 +1,14 @@
+/**
+ * Career 섹션 경력 하이라이트 (마퀴)
+ */
+
+export interface CareerStat {
+    value: string;
+    label: string;
+}
+
+export const CAREER_STATS: CareerStat[] = [
+    { value: "10+", label: "랜딩페이지" },
+    { value: "40+", label: "웹사이트" },
+    { value: "1Y3M", label: "팀리드" },
+];

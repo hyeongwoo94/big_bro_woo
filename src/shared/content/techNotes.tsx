@@ -6,7 +6,7 @@
 import type { ReactNode } from "react";
 import type { TechNoteTemplateId } from "../ui/TechNote";
 
-export type TechNoteId = "hero" | "matchcompany" | "career" | "portfolio" | "aiexperience" | "aboutme";
+export type TechNoteId = "hero" | "matchcompany" | "career" | "projects" | "howiuseai" | "whoiam";
 
 export type TechNoteEntry = {
   title: string;
@@ -146,8 +146,8 @@ const TECH_NOTE_CONTENT: Record<TechNoteId, TechNoteEntry> = {
       </>
     ),
   },
-  portfolio: {
-    title: "Portfolio 섹션 / 기술설명",
+  projects: {
+    title: "Projects 섹션 / 기술설명",
     template: "a",
     content: (
       <>
@@ -191,8 +191,8 @@ const TECH_NOTE_CONTENT: Record<TechNoteId, TechNoteEntry> = {
       </>
     ),
   },
-  aiexperience: {
-    title: "AI 경험 섹션 / 기술설명",
+  howiuseai: {
+    title: "HOW I USE AI 섹션 / 기술설명",
     template: "a",
     content: (
       <>
@@ -224,14 +224,14 @@ const TECH_NOTE_CONTENT: Record<TechNoteId, TechNoteEntry> = {
         <h3>반응형 처리</h3>
         <p>
           워크플로우 차트는 PC에서 가로, Mobile에서 세로로 표시됩니다.
-          <code>isMobile</code> prop을 받아 <code>ai-exp-sec_workflow-chart--vertical</code> 클래스를 조건부 적용합니다.
+          <code>isMobile</code> prop을 받아 <code>howiuseai-sec_workflow-chart--vertical</code> 클래스를 조건부 적용합니다.
           CSS에서 <code>flex-direction</code>을 바꿔 레이아웃을 전환합니다.
         </p>
       </>
     ),
   },
-  aboutme: {
-    title: "ABOUT ME 섹션 / 기술설명",
+  whoiam: {
+    title: "WHO I AM 섹션 / 기술설명",
     template: "a",
     content: (
       <>
@@ -251,7 +251,7 @@ const TECH_NOTE_CONTENT: Record<TechNoteId, TechNoteEntry> = {
           </li>
           <li>
             <strong>데이터 분리</strong> — 카드 제목, 아이콘, 키워드, 내용을 배열 데이터로 관리합니다.
-            내용 수정 시 <code>aboutMeData.ts</code>만 수정하면 됩니다.
+            내용 수정 시 <code>sections/whoiam/whoIAmData.ts</code>만 수정하면 됩니다.
           </li>
         </ul>
 

@@ -14,38 +14,37 @@
 
 - **FDD (Feature-Driven Development)**: 기능 단위로 개발. 각 feature를 세로 슬라이스(UI + 로직 + 타입)로 구성한다.
 
-## 폴더 구조
+## 폴더 구조 (A-2: 섹션별 폴더 + 데이터 동반)
 
-응집도를 높이기 위해 기능별로 묶는다.
+응집도를 높이기 위해 **섹션 단위**로 묶는다. 각 섹션 폴더에 컴포넌트·데이터·스타일을 함께 둔다.
 
 ```
 src/
-├── features/           # 기능 단위 (Hero, About, Projects, Skills, Contact 등)
-│   ├── {feature}/
-│   │   ├── {Feature}.tsx      # 메인 컴포넌트
-│   │   ├── {feature}.hooks.ts # feature 전용 훅
-│   │   ├── {feature}.types.ts # feature 전용 타입
-│   │   └── {feature}.stories.tsx  # Storybook 스토리 (해당 feature UI)
-│   ├── hero/
-│   ├── about/
-│   └── ...
-├── shared/             # 여러 feature에서 공통 사용
-│   ├── ui/             # 공통 UI 원자 컴포넌트
-│   ├── hooks/
+├── sections/
+│   ├── hero/              Hero.tsx, styles/Hero.css
+│   ├── match-company/     MatchCompany.tsx, matchCompanyQuestions.ts, styles/
+│   ├── whoiam/            WhoIAm.tsx, whoIAmData.ts, styles/
+│   ├── projects/          Projects.tsx, projectsData.ts, 모달·styles/
+│   ├── career/            Career.tsx, careerData.ts, statsData.ts, styles/
+│   ├── howiuseai/         HowIUseAI.tsx, howIUseAIData.ts, styles/
+│   ├── closing/           Closing.tsx, closingData.ts, styles/
+│   └── contact/           Contact.tsx, contactData.ts, styles/
+├── shared/             # 여러 섹션에서 공통 사용
+│   ├── content/        # techNotes.tsx (기술 설명 콘텐츠만)
+│   ├── ui/             # Toast, TechNote, QuickMenu 등
+│   ├── styles/         # design-tokens, common, 전역 UI CSS
 │   └── utils/
-└── app/                # 라우팅, 레이아웃
+├── pages/              # ThankYou, NotFound
+└── App.tsx
 ```
 
-## UI 개발 워크플로우 (C안)
+- 섹션에서 shared 참조 시 import 경로: `../../shared/...` (섹션 폴더 기준)
+- 섹션 전용 데이터는 `sections/{name}/{name}Data.ts` 등 해당 폴더에 둔다.
 
-1. **Storybook에서 UI 먼저 만든다**: 해당 feature의 `.stories.tsx`에서 컴포넌트를 독립적으로 개발·검증한다.
-2. **검증 후 feature에 통합**: Storybook에서 확인 완료한 UI를 실제 페이지/컨테이너에 연결한다.
+## UI 개발 워크플로우
 
-### 규칙
-
-- feature 추가 시 `{feature}.stories.tsx`를 함께 만든다.
-- UI는 Storybook에서 먼저 본 뒤 통합한다.
-- `shared/ui`의 공통 컴포넌트도 `.stories.tsx`로 먼저 정의한다.
+- **앱에서 직접 검증**: `npm run dev`로 섹션 UI를 확인한다.
+- Storybook은 사용하지 않는다 (2026-07-07 제거).
 
 ## 코드/구조
 
@@ -60,7 +59,7 @@ src/
 
 ### CSS 파일 위치
 
-- **섹션 전용** (해당 섹션에서만 사용): `src/sections/styles/{Section}.css`에 둔다. 해당 섹션 TSX에서 직접 import한다. 예: `Hero.tsx` → `import "./styles/Hero.css"`.
+- **섹션 전용** (해당 섹션에서만 사용): `src/sections/{section}/styles/{Section}.css`에 둔다. 해당 섹션 TSX에서 직접 import한다. 예: `hero/Hero.tsx` → `import "./styles/Hero.css"`.
 - **shared/ui 전용** (Toast, TechNote 등): `src/shared/styles/{Component}.css`에 둔다. **`src/index.css`에서 `@import`** 하여 전역에 로드한다. (design-tokens 다음 순서로 import)
 - **TechNote 콘텐츠 위치**: 각 섹션 기술 설명의 제목·내용은 **한곳에서만** 관리한다. `src/shared/content/techNotes.tsx`에 `TECH_NOTE_CONTENT`와 `getTechNoteContent(id)`를 두고, 섹션에서는 `<TechNote {...getTechNoteContent("hero")} />`처럼 id만 넘긴다. 새 섹션 추가 시 `TechNoteId` 타입과 `TECH_NOTE_CONTENT`에만 항목을 추가하면 됨.
 - **TechNote 본문·템플릿**: 모달 안 content는 인라인 스타일 없이 마크업만 사용. 레이아웃/구조가 다르면 **템플릿 래퍼 클래스**로 구분한다. 현재는 `tech-note-tpl-a`(소제목·리스트·강조·muted). B/C 추가 시 content를 `<div className="tech-note-tpl-b">...</div>`처럼 감싸고, `TechNote.css`에 `.tech-note-body .tech-note-tpl-b` 하위 선택자만 추가하면 됨. `shared/styles/TechNote.css`의 `.tech-note-body` 하위 스타일(p, h3, ul, li, strong, code, .tech-note-muted)이 적용되므로 다른 섹션 기술 설명에서도 동일한 태그·클래스(p, h3, ul, li, strong, code, 필요 시 p.tech-note-muted)를 쓰면 됨.
