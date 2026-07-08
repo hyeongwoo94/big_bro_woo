@@ -41,14 +41,24 @@ function rebuildLoop(swiper: SwiperInstance) {
 
     if (swiper.slides.length < minLoopSlides) return;
 
+    swiper.autoplay.stop();
     swiper.params.loopAdditionalSlides = minLoopSlides + 2;
     swiper.loopDestroy();
     swiper.loopCreate();
     swiper.update();
+    swiper.loopFix();
+}
+
+function startAutoplay(swiper: SwiperInstance) {
+    swiper.params.speed = MARQUEE_SPEED_MS;
+    swiper.autoplay.start();
 }
 
 export default function CareerStatsMarquee() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const swiperRef = useRef<SwiperInstance | null>(null);
+    const loopReadyRef = useRef(false);
+    const resizeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [reduceMotion, setReduceMotion] = useState(false);
     const [canMountSwiper, setCanMountSwiper] = useState(false);
 
@@ -76,9 +86,33 @@ export default function CareerStatsMarquee() {
         return () => ro.disconnect();
     }, [reduceMotion]);
 
-    const handleSwiperReady = (swiper: SwiperInstance) => {
+    useEffect(() => {
+        return () => {
+            if (resizeTimerRef.current) clearTimeout(resizeTimerRef.current);
+        };
+    }, []);
+
+    const handleSwiperInit = (swiper: SwiperInstance) => {
+        swiperRef.current = swiper;
         rebuildLoop(swiper);
-        swiper.autoplay.start();
+        loopReadyRef.current = true;
+
+        // loop 정렬 직후 autoplay 시작 (초기 burst 방지)
+        requestAnimationFrame(() => {
+            startAutoplay(swiper);
+        });
+    };
+
+    const handleSwiperResize = (swiper: SwiperInstance) => {
+        if (!loopReadyRef.current) return;
+
+        if (resizeTimerRef.current) clearTimeout(resizeTimerRef.current);
+        resizeTimerRef.current = setTimeout(() => {
+            swiper.autoplay.stop();
+            swiper.loopFix();
+            swiper.update();
+            startAutoplay(swiper);
+        }, 150);
     };
 
     if (reduceMotion) {
@@ -107,8 +141,8 @@ export default function CareerStatsMarquee() {
                     observer
                     observeParents
                     watchSlidesProgress
-                    onInit={handleSwiperReady}
-                    onResize={handleSwiperReady}
+                    onInit={handleSwiperInit}
+                    onResize={handleSwiperResize}
                     slidesPerView="auto"
                     slidesPerGroup={1}
                     spaceBetween={MARQUEE_SPACE_BETWEEN}
@@ -122,6 +156,7 @@ export default function CareerStatsMarquee() {
                         pauseOnMouseEnter: false,
                         reverseDirection: true,
                         waitForTransition: true,
+                        enabled: false,
                     }}
                 >
                     {Array.from(

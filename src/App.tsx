@@ -133,7 +133,7 @@ function App() {
                             {showHero && (
                                 <HeroModal
                                     question="제 이름을 작성해주세요"
-                                    defaultName="박형우"
+                                    correctName="박형우"
                                     onConfirm={handleQuizConfirm}
                                 />
                             )}

@@ -3,13 +3,14 @@ import "./styles/HeroModal.css";
 
 type HeroModalProps = {
   question: string;
-  defaultName: string;
+  correctName: string;
   onConfirm: (name: string) => void;
 };
 
-function HeroModal({ question, defaultName, onConfirm }: HeroModalProps) {
+function HeroModal({ question, correctName, onConfirm }: HeroModalProps) {
   const [visible, setVisible] = useState(false);
-  const [name, setName] = useState(defaultName);
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -27,10 +28,22 @@ function HeroModal({ question, defaultName, onConfirm }: HeroModalProps) {
   }, []);
 
   const handleConfirm = () => {
-    if (name.trim()) {
-      setVisible(false);
-      setTimeout(() => onConfirm(name.trim()), 300);
+    const trimmed = name.trim();
+    if (!trimmed) return;
+
+    if (trimmed !== correctName) {
+      setError("이름이 일치하지 않아요. 다시 입력해주세요.");
+      return;
     }
+
+    setError("");
+    setVisible(false);
+    setTimeout(() => onConfirm(trimmed), 300);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    if (error) setError("");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -54,11 +67,18 @@ function HeroModal({ question, defaultName, onConfirm }: HeroModalProps) {
             ref={inputRef}
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={handleChange}
             onKeyDown={handleKeyDown}
             placeholder="이름을 입력하세요"
-            className="hero-modal__input"
+            className={`hero-modal__input${error ? " hero-modal__input--error" : ""}`}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? "hero-modal-error" : undefined}
           />
+          {error && (
+            <p id="hero-modal-error" className="hero-modal__error" role="alert">
+              {error}
+            </p>
+          )}
           <button
             type="button"
             onClick={handleConfirm}
