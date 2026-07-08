@@ -97,18 +97,18 @@ export const OUTER_ORBIT_DATA: ProjectItem[] = [
             "AI에게 구현 방법뿐 아니라 설계 이유를 질문하며 학습했고,\nReact와 TypeScript를 활용해 로그인, CRUD, 상태 관리 기능을 단계적으로 구현했습니다.",
         result: "처음으로 데이터와 화면이 연결되는 웹 서비스를 완성하며 퍼블리싱을 넘어 프론트엔드 개발의 전체 흐름을 경험할 수 있었습니다.",
     },
-    {
-        id: "toy2",
-        title: "토이프로젝트2",
-        thumbnail: projectsImage("toy2.png"),
-        url: "https://daum.net",
-        orbit: "outer",
-        type: "toy",
-        challenge:
-            "새로운 기술 스택으로 빠르게 프로토타입 만들기 (내용 수정 예정)",
-        solution: "기획부터 구현·배포까지 한 번에 진행 (내용 수정 예정)",
-        result: "전 과정을 경험하며 학습 (내용 수정 예정)",
-    },
+    // {
+    //     id: "toy2",
+    //     title: "토이프로젝트2",
+    //     thumbnail: projectsImage("toy2.png"),
+    //     url: "https://daum.net",
+    //     orbit: "outer",
+    //     type: "toy",
+    //     challenge:
+    //         "새로운 기술 스택으로 빠르게 프로토타입 만들기 (내용 수정 예정)",
+    //     solution: "기획부터 구현·배포까지 한 번에 진행 (내용 수정 예정)",
+    //     result: "전 과정을 경험하며 학습 (내용 수정 예정)",
+    // },
 ];
 
 /** 전체 포트폴리오 (모바일 리스트용) */
