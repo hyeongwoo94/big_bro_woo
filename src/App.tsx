@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Hero from "./sections/hero/Hero";
-import MatchCompany from "./sections/match-company/MatchCompany";
+// import Hero from "./sections/hero/Hero";
+// import MatchCompany from "./sections/match-company/MatchCompany";
 import Career from "./sections/career/Career";
 import Projects from "./sections/projects/Projects";
 import HowIUseAI from "./sections/howiuseai/HowIUseAI";
@@ -10,79 +10,82 @@ import WhoIAm from "./sections/whoiam/WhoIAm";
 import Contact from "./sections/contact/Contact";
 import ThankYou from "./pages/ThankYou";
 import NotFound from "./pages/NotFound";
-import Toast from "./shared/ui/Toast";
-import HeroModal from "./sections/hero/HeroModal";
+// import Toast from "./shared/ui/Toast";
+// import HeroModal from "./sections/hero/HeroModal";
 import { TechNoteProvider } from "./shared/ui/TechNote";
 import { QuickMenu } from "./shared/ui/QuickMenu";
-import {
-    getIntroProgress,
-    setIntroProgress,
-} from "./shared/utils/introProgress";
+// import {
+//     getIntroProgress,
+//     setIntroProgress,
+// } from "./shared/utils/introProgress";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const TOAST_MESSAGE_PC = "마우스를 움직여 이름을 찾아보세요";
-const TOAST_MESSAGE_MOBILE = "제 이름을 찾아보세요";
+// const TOAST_MESSAGE_PC = "마우스를 움직여 이름을 찾아보세요";
+// const TOAST_MESSAGE_MOBILE = "제 이름을 찾아보세요";
 
-const savedIntro = getIntroProgress();
+// const savedIntro = getIntroProgress();
 
 function App() {
     const location = useLocation();
-    const [showWelcomeToast, setShowWelcomeToast] = useState(
-        savedIntro === "none",
-    );
-    const [showHero, setShowHero] = useState(savedIntro === "none");
-    const [showProjects, setShowProjects] = useState(savedIntro !== "none");
-    const [matchCompanyPassed, setMatchCompanyPassed] = useState(
-        savedIntro === "complete",
-    );
-    const [isMobile, setIsMobile] = useState(false);
-    const skipInitialScrollRef = useRef(savedIntro === "complete");
+    // const [showWelcomeToast, setShowWelcomeToast] = useState(
+    //     savedIntro === "none",
+    // );
+    // const [showHero, setShowHero] = useState(savedIntro === "none");
+    // const [showProjects, setShowProjects] = useState(savedIntro !== "none");
+    // const [matchCompanyPassed, setMatchCompanyPassed] = useState(
+    //     savedIntro === "complete",
+    // );
+    // 인트로(이름 입력·질문) 비활성화: 본문 바로 표시
+    const [showProjects] = useState(true);
+    const [matchCompanyPassed] = useState(true);
+    // const [isMobile, setIsMobile] = useState(false);
+    const skipInitialScrollRef = useRef(true);
 
-    const handleQuizConfirm = (_name: string) => {
-        setShowHero(false);
-        setShowProjects(true);
-        setShowWelcomeToast(false);
-        setIntroProgress("hero");
-    };
+    // const handleQuizConfirm = (_name: string) => {
+    //     setShowHero(false);
+    //     setShowProjects(true);
+    //     setShowWelcomeToast(false);
+    //     setIntroProgress("hero");
+    // };
 
-    const handleMatchCompanyPass = () => {
-        setMatchCompanyPassed(true);
-        setIntroProgress("complete");
-    };
+    // const handleMatchCompanyPass = () => {
+    //     setMatchCompanyPassed(true);
+    //     setIntroProgress("complete");
+    // };
 
-    const submitQuizResult = async (
-        company: string,
-        result: "match" | "fail",
-        answers: ("yes" | "no")[],
-    ) => {
-        try {
-            await fetch("/api/submit-quiz-result", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    company: company || "미입력",
-                    result,
-                    answers: answers.slice(0, 3),
-                }),
-            });
-        } catch (_) {
-            // 전송 실패 시 무시 (오프라인 등)
-        }
-    };
+    // const submitQuizResult = async (
+    //     company: string,
+    //     result: "match" | "fail",
+    //     answers: ("yes" | "no")[],
+    // ) => {
+    //     try {
+    //         await fetch("/api/submit-quiz-result", {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify({
+    //                 company: company || "미입력",
+    //                 result,
+    //                 answers: answers.slice(0, 3),
+    //             }),
+    //         });
+    //     } catch (_) {
+    //         // 전송 실패 시 무시 (오프라인 등)
+    //     }
+    // };
 
-    useEffect(() => {
-        const mql = window.matchMedia("(max-width: 768px)");
-        const update = () => setIsMobile(mql.matches);
-        update();
-        mql.addEventListener("change", update);
-        return () => mql.removeEventListener("change", update);
-    }, []);
+    // useEffect(() => {
+    //     const mql = window.matchMedia("(max-width: 768px)");
+    //     const update = () => setIsMobile(mql.matches);
+    //     update();
+    //     mql.addEventListener("change", update);
+    //     return () => mql.removeEventListener("change", update);
+    // }, []);
 
-    useEffect(() => {
-        const isHeroCursor = showHero && location.pathname === "/";
-        document.body.classList.toggle("hero-cursor-mode", isHeroCursor);
-        return () => document.body.classList.remove("hero-cursor-mode");
-    }, [showHero, location.pathname]);
+    // useEffect(() => {
+    //     const isHeroCursor = showHero && location.pathname === "/";
+    //     document.body.classList.toggle("hero-cursor-mode", isHeroCursor);
+    //     return () => document.body.classList.remove("hero-cursor-mode");
+    // }, [showHero, location.pathname]);
 
     useEffect(() => {
         if (!matchCompanyPassed || !showProjects) return;
@@ -119,6 +122,7 @@ function App() {
                     path="/"
                     element={
                         <>
+                            {/* 이름 입력 인트로 비활성화
                             {showHero && <Hero name="박형우" />}
                             {showWelcomeToast && (
                                 <Toast
@@ -137,6 +141,7 @@ function App() {
                                     onConfirm={handleQuizConfirm}
                                 />
                             )}
+                            */}
                             {showProjects && (
                                 <main
                                     className="app-main"
@@ -145,12 +150,14 @@ function App() {
                                         color: "var(--color-text)",
                                     }}
                                 >
+                                    {/* 질문(MatchCompany) 섹션 비활성화
                                     {!matchCompanyPassed && (
                                         <MatchCompany
                                             onResult={submitQuizResult}
                                             onMatch={handleMatchCompanyPass}
                                         />
                                     )}
+                                    */}
                                     {matchCompanyPassed && (
                                         <div id="projects-next">
                                             <Career />
